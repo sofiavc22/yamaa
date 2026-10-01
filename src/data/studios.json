@@ -13,7 +13,8 @@
       "restaurativo"
     ],
     "instagram": "https://www.instagram.com/mula.yogashala/",
-    "whatsapp": ""
+    "whatsapp": "",
+    "website": "https://mulayoga.mx/"
   },
   {
     "name": "Con Pausa",
@@ -43,7 +44,8 @@
       "breathwork"
     ],
     "instagram": "https://www.instagram.com/gita.studio.mx/",
-    "whatsapp": "525651105809"
+    "whatsapp": "525651105809",
+    "website": "https://www.gita.studio/"
   },
   {
     "name": "Atma Yoga & Energy Center",
@@ -81,14 +83,15 @@
     "slug": "kurunta-yoga-by-ana-sordo",
     "zone": "Roma Norte",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "Guanajuato 114, Roma Norte",
     "modalities": [
       "Vinyasa Flow",
       "Hatha",
       "Kurunta"
     ],
     "instagram": "https://www.instagram.com/kuruntayoga/",
-    "whatsapp": "525531245645"
+    "whatsapp": "525531245645",
+    "website": "https://kuruntayoga.com.mx/"
   },
   {
     "name": "Taller Wellness",
