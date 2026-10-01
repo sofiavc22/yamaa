@@ -92,7 +92,29 @@
     "instagram": "https://www.instagram.com/gita.studio.mx/",
     "whatsapp": "525651105809",
     "website": "https://www.gita.studio/",
-    "images": []
+    "images": [
+      {
+        "kind": "cover",
+        "url": "/studios/gita-studio/cover.webp",
+        "alt": "Salón de práctica de Gita Studio en Ciudad de México",
+        "source": "Material oficial de Gita Studio",
+        "authorized": true
+      },
+      {
+        "kind": "gallery",
+        "url": "/studios/gita-studio/01.webp",
+        "alt": "Sala de práctica iluminada en azul en Gita Studio",
+        "source": "Material oficial de Gita Studio",
+        "authorized": true
+      },
+      {
+        "kind": "gallery",
+        "url": "/studios/gita-studio/02.webp",
+        "alt": "Fachada de Gita Studio en Ciudad de México",
+        "source": "Material oficial de Gita Studio",
+        "authorized": true
+      }
+    ]
   },
   {
     "name": "Atma Yoga & Energy Center",
