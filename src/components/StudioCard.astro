@@ -1,12 +1,13 @@
 ---
 const {studio}=Astro.props;
 const initials=studio.name.split(' ').filter(Boolean).slice(0,2).map((w)=>w[0]).join('');
+const cover=studio.images?.find((image)=>image.kind==='cover' && image.authorized && image.url);
 ---
 <a class="studio-card" href={`/estudios/${studio.slug}`}>
-  <div class="studio-photo placeholder">
-    <span class="placeholder-mark">{initials}</span>
+  <div class:list={["studio-photo",!cover&&"placeholder"]}>
+    {cover ? <img src={cover.url} alt={cover.alt || `Espacio de ${studio.name}`} loading="lazy"/> : <span class="placeholder-mark">{initials}</span>}
     <span class="save" aria-label="Guardar estudio">♡</span>
-    <span class="photo-status">Foto próximamente</span>
+    {!cover && <span class="photo-status">Foto próximamente</span>}
   </div>
   <div class="studio-copy">
     <div class="studio-topline"><h3>{studio.name}</h3><span>Confirmado</span></div>
