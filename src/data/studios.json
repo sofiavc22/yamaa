@@ -131,7 +131,29 @@
     ],
     "instagram": "https://www.instagram.com/atmayogamx/?hl=es",
     "whatsapp": "525585784540",
-    "images": []
+    "images": [
+      {
+        "kind": "cover",
+        "url": "/studios/atma-yoga-energy-center/cover.webp",
+        "alt": "Clase grupal de yoga en Atma Yoga & Energy Center",
+        "source": "Material oficial de Atma Yoga & Energy Center",
+        "authorized": true
+      },
+      {
+        "kind": "gallery",
+        "url": "/studios/atma-yoga-energy-center/01.webp",
+        "alt": "Encuentro de comunidad en Atma Yoga & Energy Center",
+        "source": "Material oficial de Atma Yoga & Energy Center",
+        "authorized": true
+      },
+      {
+        "kind": "gallery",
+        "url": "/studios/atma-yoga-energy-center/02.webp",
+        "alt": "Práctica de yoga en el salón de Atma Yoga & Energy Center",
+        "source": "Material oficial de Atma Yoga & Energy Center",
+        "authorized": true
+      }
+    ]
   },
   {
     "name": "Power Flow Yoga",
