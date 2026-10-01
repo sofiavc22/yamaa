@@ -1,0 +1,4 @@
+---
+const {studio}=Astro.props;
+---
+<a class="card" href={`/estudios/${studio.slug}`}><div class="photo"></div><h3>{studio.name}</h3><div class="meta">{studio.zone} · CDMX</div><div class="tags">{studio.modalities?.slice(0,3).join(' · ') || 'Yoga'}</div></a>
