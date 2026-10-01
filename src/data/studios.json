@@ -1,0 +1,513 @@
+[
+  {
+    "name": "Mūla Yoga Shala",
+    "slug": "mula-yoga-shala",
+    "zone": "Roma Norte",
+    "type": "Estudio de yoga",
+    "address": "Colima 220 Int. 406, Roma Norte",
+    "modalities": [
+      "Dharma",
+      "Hatha Vinyasa",
+      "Vinyasa",
+      "Rocket",
+      "restaurativo"
+    ],
+    "instagram": "https://www.instagram.com/mula.yogashala/",
+    "whatsapp": ""
+  },
+  {
+    "name": "Con Pausa",
+    "slug": "con-pausa",
+    "zone": "Roma Norte",
+    "type": "Estudio de yoga",
+    "address": "Colima 159 Piso 1, Roma Norte",
+    "modalities": [
+      "Vinyasa",
+      "Dharma",
+      "Air Yoga",
+      "sound bath"
+    ],
+    "instagram": "https://www.instagram.com/conpausamx/",
+    "whatsapp": "525523223239"
+  },
+  {
+    "name": "Gita Studio",
+    "slug": "gita-studio",
+    "zone": "Roma Norte",
+    "type": "Estudio de yoga",
+    "address": "Av. Chapultepec 360, Roma Norte",
+    "modalities": [
+      "Power",
+      "Rocket",
+      "Hatha",
+      "breathwork"
+    ],
+    "instagram": "https://www.instagram.com/gita.studio.mx/",
+    "whatsapp": "525651105809"
+  },
+  {
+    "name": "Atma Yoga & Energy Center",
+    "slug": "atma-yoga-energy-center",
+    "zone": "Roma Norte",
+    "type": "Estudio de yoga",
+    "address": "Av. Yucatán 69, Roma Norte",
+    "modalities": [
+      "Power",
+      "Ashtanga",
+      "Rocket",
+      "Hatha",
+      "meditación"
+    ],
+    "instagram": "https://www.instagram.com/atmayogamx/?hl=es",
+    "whatsapp": "525585784540"
+  },
+  {
+    "name": "Power Flow Yoga",
+    "slug": "power-flow-yoga",
+    "zone": "Roma Norte",
+    "type": "Estudio de yoga",
+    "address": "Uruapan 17, Roma Norte",
+    "modalities": [
+      "Power",
+      "Rocket",
+      "Vinyasa",
+      "Hatha"
+    ],
+    "instagram": "https://www.instagram.com/powerflowyogacdmx/?hl=es-la",
+    "whatsapp": ""
+  },
+  {
+    "name": "Kurunta Yoga by Ana Sordo",
+    "slug": "kurunta-yoga-by-ana-sordo",
+    "zone": "Roma Norte",
+    "type": "Estudio de yoga",
+    "address": "",
+    "modalities": [
+      "Vinyasa Flow",
+      "Hatha",
+      "Kurunta"
+    ],
+    "instagram": "https://www.instagram.com/kuruntayoga/",
+    "whatsapp": "525531245645"
+  },
+  {
+    "name": "Taller Wellness",
+    "slug": "taller-wellness",
+    "zone": "Roma Norte",
+    "type": "Wellness / yoga",
+    "address": "",
+    "modalities": [
+      "Yoga restaurativo",
+      "meditación"
+    ],
+    "instagram": "https://www.instagram.com/tallerwellness/",
+    "whatsapp": ""
+  },
+  {
+    "name": "Centro Budista de la Ciudad",
+    "slug": "centro-budista-de-la-ciudad",
+    "zone": "Roma Norte",
+    "type": "Centro budista / yoga",
+    "address": "Jalapa 94, Roma Norte",
+    "modalities": [
+      "Yoga",
+      "meditación"
+    ],
+    "instagram": "https://www.instagram.com/centro_budista/",
+    "whatsapp": "525555254023"
+  },
+  {
+    "name": "THE MAT MX",
+    "slug": "the-mat-mx",
+    "zone": "Roma Norte",
+    "type": "Hot yoga / Pilates",
+    "address": "Roma Norte",
+    "modalities": [
+      "Hot Power Yoga",
+      "breathwork"
+    ],
+    "instagram": "https://www.instagram.com/thematmx/",
+    "whatsapp": "525537589176"
+  },
+  {
+    "name": "Bodai Yoga Condesa",
+    "slug": "bodai-yoga-condesa",
+    "zone": "Condesa",
+    "type": "Estudio de yoga",
+    "address": "Ámsterdam 124 piso 5, Condesa",
+    "modalities": [
+      "Yoga"
+    ],
+    "instagram": "https://www.instagram.com/bodaiyoga/",
+    "whatsapp": "525536594811"
+  },
+  {
+    "name": "Yoga en Síntesis Condesa",
+    "slug": "yoga-en-sintesis-condesa",
+    "zone": "Condesa",
+    "type": "Estudio de yoga",
+    "address": "Atlixco 72, Condesa",
+    "modalities": [
+      "Yoga"
+    ],
+    "instagram": "https://yogaensintesis.com",
+    "whatsapp": "525537343703"
+  },
+  {
+    "name": "Mukta Yoga Vinyasa",
+    "slug": "mukta-yoga-vinyasa",
+    "zone": "Condesa",
+    "type": "Estudio de yoga",
+    "address": "Ámsterdam 171 int 101, Hipódromo",
+    "modalities": [
+      "Vinyasa"
+    ],
+    "instagram": "https://www.instagram.com/muktayoga.vinyasa/?hl=es",
+    "whatsapp": "525560610108"
+  },
+  {
+    "name": "YOGA42",
+    "slug": "yoga42",
+    "zone": "Condesa",
+    "type": "Estudio de yoga",
+    "address": "Zamora 169, Condesa",
+    "modalities": [
+      "Yoga"
+    ],
+    "instagram": "https://www.instagram.com/coachingyoga42/",
+    "whatsapp": "525543482089"
+  },
+  {
+    "name": "Origen Estudio",
+    "slug": "origen-estudio",
+    "zone": "Condesa",
+    "type": "Yoga / Pilates",
+    "address": "Cuernavaca 85, Condesa",
+    "modalities": [
+      "Yoga",
+      "Pilates"
+    ],
+    "instagram": "https://www.instagram.com/thisisorigenstudio/?hl=es",
+    "whatsapp": "525533980669"
+  },
+  {
+    "name": "Sat Nam Yoga y Pilates",
+    "slug": "sat-nam-yoga-y-pilates",
+    "zone": "Condesa",
+    "type": "Yoga / Pilates",
+    "address": "",
+    "modalities": [
+      "Hatha",
+      "meditación",
+      "Acro Yoga"
+    ],
+    "instagram": "https://www.instagram.com/satnam.yoga.pilates/?hl=es",
+    "whatsapp": "525565741897"
+  },
+  {
+    "name": "Duna Studio",
+    "slug": "duna-studio",
+    "zone": "Condesa",
+    "type": "Estudio mixto",
+    "address": "",
+    "modalities": [
+      "Yoga",
+      "Pilates",
+      "Body Sculpt"
+    ],
+    "instagram": "https://www.instagram.com/hidunastudio_",
+    "whatsapp": "525648022658"
+  },
+  {
+    "name": "MAT Barre Studio",
+    "slug": "mat-barre-studio",
+    "zone": "Condesa",
+    "type": "Estudio mixto",
+    "address": "",
+    "modalities": [
+      "Yoga",
+      "Pilates",
+      "Barre"
+    ],
+    "instagram": "https://www.instagram.com/mat.barre?igsh=b3ViODg3eGc4ZzZs&utm_source=qr",
+    "whatsapp": "525561888535"
+  },
+  {
+    "name": "AgoraLucis",
+    "slug": "agoralucis",
+    "zone": "Polanco",
+    "type": "Yoga / wellness",
+    "address": "Lafontaine 78, Polanco",
+    "modalities": [
+      "Yoga"
+    ],
+    "instagram": "https://www.instagram.com/agoralucis/",
+    "whatsapp": "525522544381"
+  },
+  {
+    "name": "Ganesha",
+    "slug": "ganesha",
+    "zone": "Polanco",
+    "type": "Estudio de yoga",
+    "address": "Lope de Vega 111, Polanco/Granada",
+    "modalities": [
+      "Yoga"
+    ],
+    "instagram": "https://www.instagram.com/ganesh.center/",
+    "whatsapp": "525579426613"
+  },
+  {
+    "name": "Iyengar Yoga Center",
+    "slug": "iyengar-yoga-center",
+    "zone": "Polanco",
+    "type": "Estudio de yoga",
+    "address": "Lafontaine 78, Polanco",
+    "modalities": [
+      "Iyengar"
+    ],
+    "instagram": "https://www.instagram.com/iyengar_yoga_center/",
+    "whatsapp": "525561010784"
+  },
+  {
+    "name": "Gurukul Yoga Studio Polanco",
+    "slug": "gurukul-yoga-studio-polanco",
+    "zone": "Polanco",
+    "type": "Estudio de yoga",
+    "address": "Lafontaine 78, Polanco",
+    "modalities": [
+      "Hatha",
+      "pranayama",
+      "meditación"
+    ],
+    "instagram": "",
+    "whatsapp": "525524818201"
+  },
+  {
+    "name": "Gayo Yoga & Wellness",
+    "slug": "gayo-yoga-wellness",
+    "zone": "Polanco",
+    "type": "Estudio de yoga",
+    "address": "Av. Sudermann 249, Polanco",
+    "modalities": [
+      "Dharma",
+      "aéreo",
+      "restaurativo",
+      "sound healing"
+    ],
+    "instagram": "https://www.instagram.com/gayoyogawellness/",
+    "whatsapp": "525630012024"
+  },
+  {
+    "name": "Light On Yoga",
+    "slug": "light-on-yoga",
+    "zone": "Polanco",
+    "type": "Yoga / Barre / Pilates",
+    "address": "Mariano Escobedo 543, Polanco",
+    "modalities": [
+      "Yoga",
+      "meditación",
+      "sound healing"
+    ],
+    "instagram": "https://www.instagram.com/lightonstudiosmx/",
+    "whatsapp": "525628120008"
+  },
+  {
+    "name": "KO Horacio Polanco",
+    "slug": "ko-horacio-polanco",
+    "zone": "Polanco",
+    "type": "Estudio mixto",
+    "address": "",
+    "modalities": [
+      "Yoga + entrenamiento"
+    ],
+    "instagram": "https://www.instagram.com/ilivekomx/?hl=es",
+    "whatsapp": "933534297"
+  },
+  {
+    "name": "FIRA Wellness Club",
+    "slug": "fira-wellness-club",
+    "zone": "Polanco",
+    "type": "Wellness",
+    "address": "",
+    "modalities": [
+      "Meditación + movimiento"
+    ],
+    "instagram": "https://www.instagram.com/firawellnessclub/",
+    "whatsapp": "525529858570"
+  },
+  {
+    "name": "Estudio Bengala Polanco",
+    "slug": "estudio-bengala-polanco",
+    "zone": "Polanco",
+    "type": "Estudio de yoga",
+    "address": "",
+    "modalities": [
+      "Bikram",
+      "Kundalini",
+      "Power Yoga"
+    ],
+    "instagram": "https://www.instagram.com/bengalaestudio/",
+    "whatsapp": "525534817699"
+  },
+  {
+    "name": "Coven Wellness Club",
+    "slug": "coven-wellness-club",
+    "zone": "Polanco",
+    "type": "Wellness / yoga",
+    "address": "",
+    "modalities": [
+      "Yoga",
+      "Barre",
+      "Pilates"
+    ],
+    "instagram": "https://www.instagram.com/coven.wellness_club/",
+    "whatsapp": ""
+  },
+  {
+    "name": "Origen Estudio Polanco",
+    "slug": "origen-estudio-polanco",
+    "zone": "Polanco",
+    "type": "Yoga / Pilates",
+    "address": "",
+    "modalities": [
+      "Yoga",
+      "Pilates"
+    ],
+    "instagram": "https://www.instagram.com/thisisorigenestudio/",
+    "whatsapp": "525572208071"
+  },
+  {
+    "name": "One Percent Yoga",
+    "slug": "one-percent-yoga",
+    "zone": "Polanco",
+    "type": "Yoga / Pilates",
+    "address": "",
+    "modalities": [
+      "Yoga",
+      "Pilates"
+    ],
+    "instagram": "https://www.instagram.com/onepercentyogamx/",
+    "whatsapp": "525564906300"
+  },
+  {
+    "name": "SoulStudio Barre & Yoga Masaryk",
+    "slug": "soulstudio-barre-yoga-masaryk",
+    "zone": "Polanco",
+    "type": "Yoga / Barre",
+    "address": "",
+    "modalities": [
+      "Yoga",
+      "Barre"
+    ],
+    "instagram": "https://www.instagram.com/soulstudiobarre/?hl=es",
+    "whatsapp": ""
+  },
+  {
+    "name": "KoKo Yoga Del Valle",
+    "slug": "koko-yoga-del-valle",
+    "zone": "Del Valle",
+    "type": "Estudio de yoga",
+    "address": "San Francisco 233, Del Valle",
+    "modalities": [
+      "Varios estilos",
+      "Tai Chi"
+    ],
+    "instagram": "https://www.instagram.com/kokoyogamx",
+    "whatsapp": "525545740558"
+  },
+  {
+    "name": "Yoga Espacio Del Valle",
+    "slug": "yoga-espacio-del-valle",
+    "zone": "Del Valle",
+    "type": "Estudio de yoga",
+    "address": "Patricio Sanz 1011, Del Valle",
+    "modalities": [
+      "Yoga",
+      "meditación"
+    ],
+    "instagram": "",
+    "whatsapp": "525540213958"
+  },
+  {
+    "name": "Dharma Yoga Studio",
+    "slug": "dharma-yoga-studio",
+    "zone": "Del Valle",
+    "type": "Estudio de yoga",
+    "address": "",
+    "modalities": [
+      "Restaurativo",
+      "Hatha",
+      "yoga suave"
+    ],
+    "instagram": "https://www.instagram.com/dharma.yoga.studio/",
+    "whatsapp": "525517028281"
+  },
+  {
+    "name": "Metta Yoga",
+    "slug": "metta-yoga",
+    "zone": "Del Valle",
+    "type": "Estudio de yoga",
+    "address": "",
+    "modalities": [
+      "Restaurativo",
+      "Hatha"
+    ],
+    "instagram": "https://www.instagram.com/mettayoga.mx/",
+    "whatsapp": "525542265007"
+  },
+  {
+    "name": "Aera Studio",
+    "slug": "aera-studio",
+    "zone": "Del Valle",
+    "type": "Estudio mixto",
+    "address": "",
+    "modalities": [
+      "Yoga",
+      "Pilates reformer",
+      "fitness"
+    ],
+    "instagram": "https://www.instagram.com/aerastudio.mx/",
+    "whatsapp": "525526898793"
+  },
+  {
+    "name": "Bodai Yoga Del Valle",
+    "slug": "bodai-yoga-del-valle",
+    "zone": "Del Valle",
+    "type": "Estudio de yoga",
+    "address": "",
+    "modalities": [
+      "Basic Flow",
+      "Hatha",
+      "Yoga"
+    ],
+    "instagram": "https://www.instagram.com/bodaiyoga/",
+    "whatsapp": "525536594811"
+  },
+  {
+    "name": "Yoga Espacio Coyoacán",
+    "slug": "yoga-espacio-coyoacan",
+    "zone": "Coyoacán",
+    "type": "Estudio de yoga",
+    "address": "Miguel Ángel de Quevedo 969, El Rosedal",
+    "modalities": [
+      "Yoga",
+      "restaurativo",
+      "Vinyasa"
+    ],
+    "instagram": "https://www.instagram.com/clasesyogaespacio/",
+    "whatsapp": "525611647858"
+  },
+  {
+    "name": "YOGA CALIENTE - Hot Yoga Studio Santa Fe",
+    "slug": "yoga-caliente-hot-yoga-studio-santa-fe",
+    "zone": "Santa Fe",
+    "type": "Estudio de yoga",
+    "address": "Guillermo González Camarena 900 Local 8, Santa Fe",
+    "modalities": [
+      "Hot Yoga",
+      "estilo Bikram"
+    ],
+    "instagram": "https://www.instagram.com/yogacaliente.cdmx/?hl=es",
+    "whatsapp": "525528662142"
+  }
+]
