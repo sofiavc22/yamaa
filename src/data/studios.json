@@ -53,7 +53,29 @@
     ],
     "instagram": "https://www.instagram.com/conpausamx/",
     "whatsapp": "525523223239",
-    "images": []
+    "images": [
+      {
+        "kind": "cover",
+        "url": "/studios/con-pausa/cover.webp",
+        "alt": "Práctica de yoga frente al espejo en Con Pausa",
+        "source": "Instagram oficial de Con Pausa",
+        "authorized": true
+      },
+      {
+        "kind": "gallery",
+        "url": "/studios/con-pausa/01.webp",
+        "alt": "Práctica de yoga en el estudio Con Pausa",
+        "source": "Instagram oficial de Con Pausa",
+        "authorized": true
+      },
+      {
+        "kind": "gallery",
+        "url": "/studios/con-pausa/02.webp",
+        "alt": "Práctica de yoga con espejo en Con Pausa",
+        "source": "Instagram oficial de Con Pausa",
+        "authorized": true
+      }
+    ]
   },
   {
     "name": "Gita Studio",
