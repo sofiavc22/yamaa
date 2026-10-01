@@ -1,0 +1,4 @@
+---
+import Base from '../../layouts/Base.astro'; import StudioCard from '../../components/StudioCard.astro'; import studios from '../../data/studios.json';
+---
+<Base title="Clases y estudios de yoga en CDMX | Yamaa"><main class="shell section"><div class="eyebrow">Ciudad de México</div><h1 class="page-title">Estudios y clases de yoga en CDMX</h1><p class="muted">Explora {studios.length} fichas confirmadas por zona y tipo de práctica.</p><div class="chips filters"><span class="chip">Todas las zonas</span><span class="chip">Principiantes</span><span class="chip">Vinyasa</span><span class="chip">Hatha</span><span class="chip">Hot Yoga</span><span class="chip">Meditación</span></div><div class="grid">{studios.map(s=><StudioCard studio={s}/>)}</div></main></Base>
