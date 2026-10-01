@@ -1,4 +1,16 @@
 ---
 const {studio}=Astro.props;
+const initials=studio.name.split(' ').filter(Boolean).slice(0,2).map((w)=>w[0]).join('');
 ---
-<a class="card" href={`/estudios/${studio.slug}`}><div class="photo"></div><h3>{studio.name}</h3><div class="meta">{studio.zone} · CDMX</div><div class="tags">{studio.modalities?.slice(0,3).join(' · ') || 'Yoga'}</div></a>
+<a class="studio-card" href={`/estudios/${studio.slug}`}>
+  <div class="studio-photo placeholder">
+    <span class="placeholder-mark">{initials}</span>
+    <span class="save" aria-label="Guardar estudio">♡</span>
+    <span class="photo-status">Foto próximamente</span>
+  </div>
+  <div class="studio-copy">
+    <div class="studio-topline"><h3>{studio.name}</h3><span>Confirmado</span></div>
+    <div class="meta">{studio.zone}, CDMX</div>
+    <div class="tags">{studio.modalities?.slice(0,3).join(' · ') || 'Yoga'}</div>
+  </div>
+</a>
