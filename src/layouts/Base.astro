@@ -1,0 +1,5 @@
+---
+import '../styles/global.css';
+const {title='Yamaa — Encuentra dónde practicar yoga',description='Descubre estudios y clases de yoga en Ciudad de México.'}=Astro.props;
+---
+<!doctype html><html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><title>{title}</title><meta name="description" content={description}/></head><body><header class="shell nav"><a class="wordmark" href="/">yamaa</a><nav class="navlinks"><a href="/cdmx">Explorar</a><a href="/#guias">Guías</a><a href="/login">Iniciar sesión</a><a class="btn" href="/registro">Registrarme</a></nav></header><slot/><footer class="footer"><div class="shell"><div class="wordmark">yamaa</div><p>Encuentra dónde practicar yoga en México.</p></div></footer></body></html>
