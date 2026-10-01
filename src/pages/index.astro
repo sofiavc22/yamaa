@@ -33,11 +33,11 @@ const zones=['Roma Norte','Condesa','Polanco','Del Valle','Coyoacán','Santa Fe'
     <div class="grid">{featured.map(s=><StudioCard studio={s}/>)}</div>
   </section>
 
-  <section class="zone-band">
-    <div class="shell section">
-      <div class="kicker">Por zona</div><h2>Practica cerca de ti</h2>
-      <div class="zone-grid">{zones.map((z,i)=><a class="zone-card" href="/cdmx"><span>0{i+1}</span><strong>{z}</strong><em>Explorar estudios →</em></a>)}</div>
+  <section class="shell section zones-light">
+    <div class="section-head">
+      <div><div class="kicker">Explora por zona</div><h2>Yoga cerca de ti</h2></div>
     </div>
+    <div class="zone-pills">{zones.map(z=><a href="/cdmx">{z}<span>→</span></a>)}</div>
   </section>
 
   <section id="guias" class="shell section guides">
