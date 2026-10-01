@@ -15,7 +15,29 @@
     "instagram": "https://www.instagram.com/mula.yogashala/",
     "whatsapp": "",
     "website": "https://mulayoga.mx/",
-    "images": []
+    "images": [
+      {
+        "kind": "cover",
+        "url": "/studios/mula-yoga-shala/cover.webp",
+        "alt": "Personas meditando durante una práctica en Mūla Yoga Shala",
+        "source": "Instagram oficial de Mūla Yoga Shala",
+        "authorized": true
+      },
+      {
+        "kind": "gallery",
+        "url": "/studios/mula-yoga-shala/01.webp",
+        "alt": "Práctica de yoga con instructor en Mūla Yoga Shala",
+        "source": "Instagram oficial de Mūla Yoga Shala",
+        "authorized": true
+      },
+      {
+        "kind": "gallery",
+        "url": "/studios/mula-yoga-shala/02.webp",
+        "alt": "Práctica de estiramiento en Mūla Yoga Shala",
+        "source": "Instagram oficial de Mūla Yoga Shala",
+        "authorized": true
+      }
+    ]
   },
   {
     "name": "Con Pausa",
