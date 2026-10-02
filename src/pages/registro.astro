@@ -1,4 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 ---
-<Base title="Crear cuenta | Yamaa"><main class="shell auth"><div class="eyebrow">Yamaa</div><h1>Únete a Yamaa</h1><p class="muted">Crea tu cuenta gratis para desbloquear la información completa de los estudios y guardar tus favoritos.</p><div class="panel"><button class="btn primary full">Continuar con Google</button></div></main></Base>
+<Base title="Crear cuenta | Yamaa">
+<main class="shell auth"><div class="eyebrow">Yamaa</div><h1>Únete a Yamaa</h1><p class="muted">Crea tu cuenta gratis para desbloquear la información completa de los estudios y guardar tus favoritos.</p>
+<form class="panel auth-form" id="signup-form"><label>Correo electrónico<input type="email" name="email" autocomplete="email" required /></label><label>Contraseña<input type="password" name="password" autocomplete="new-password" minlength="8" required /></label><button class="btn primary full" type="submit">Crear cuenta gratis</button><p class="auth-message" id="auth-message" aria-live="polite"></p><p class="auth-switch">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p></form></main>
+<script>
+import { supabase } from '../lib/supabase.js';
+const form=document.querySelector('#signup-form'); const message=document.querySelector('#auth-message');
+form?.addEventListener('submit',async(e)=>{e.preventDefault();message.textContent='Creando tu cuenta…';const data=new FormData(form);const email=String(data.get('email')||'');const password=String(data.get('password')||'');const {data:result,error}=await supabase.auth.signUp({email,password,options:{emailRedirectTo:window.location.origin+'/cdmx'}});if(error){message.textContent=error.message;return;}if(result.session){window.location.href='/cdmx';return;}message.textContent='Revisa tu correo para confirmar tu cuenta. Después podrás iniciar sesión.';});
+</script>
+</Base>
