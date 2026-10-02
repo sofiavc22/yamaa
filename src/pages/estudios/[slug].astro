@@ -35,9 +35,15 @@ const gallery=authorizedImages.filter((image)=>image!==cover).slice(0,2);
   </div>
 </main>
 <script>
-const applyAuth=(session)=>{const signedIn=!!session?.user;document.querySelectorAll('.auth-locked').forEach(el=>el.hidden=signedIn);document.querySelectorAll('.auth-unlocked,.auth-contact').forEach(el=>el.hidden=!signedIn);};
-window.addEventListener('yamaa-auth',(e)=>applyAuth(e.detail.session));
+import { supabase } from '../../lib/supabase.js';
 const fav=document.querySelector('.favorite-button');
-fav?.addEventListener('click',()=>{if(document.documentElement.dataset.auth!=='signed-in'){window.location.href='/registro';return;}fav.textContent=fav.textContent.includes('♡')?'♥ Guardado':'♡ Guardar';});
+const slug=fav?.dataset.studioSlug;
+let currentUser=null;
+let isFavorite=false;
+const paintFavorite=()=>{if(!fav)return;fav.textContent=isFavorite?'♥ Guardado':'♡ Guardar';fav.setAttribute('aria-pressed',String(isFavorite));};
+const loadFavorite=async()=>{if(!currentUser||!slug)return;const {data,error}=await supabase.from('favorites').select('studio_slug').eq('user_id',currentUser.id).eq('studio_slug',slug).maybeSingle();if(!error){isFavorite=!!data;paintFavorite();}};
+const applyAuth=async(session)=>{const signedIn=!!session?.user;currentUser=session?.user||null;document.querySelectorAll('.auth-locked').forEach(el=>el.hidden=signedIn);document.querySelectorAll('.auth-unlocked,.auth-contact').forEach(el=>el.hidden=!signedIn);if(signedIn)await loadFavorite();else{isFavorite=false;paintFavorite();}};
+window.addEventListener('yamaa-auth',(e)=>applyAuth(e.detail.session));
+fav?.addEventListener('click',async()=>{if(!currentUser){window.location.href='/registro';return;}fav.disabled=true;if(isFavorite){const {error}=await supabase.from('favorites').delete().eq('user_id',currentUser.id).eq('studio_slug',slug);if(!error)isFavorite=false;}else{const {error}=await supabase.from('favorites').insert({user_id:currentUser.id,studio_slug:slug});if(!error)isFavorite=true;}paintFavorite();fav.disabled=false;});
 </script>
 </Base>
