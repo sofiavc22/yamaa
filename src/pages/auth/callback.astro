@@ -1,0 +1,116 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Confirmando tu cuenta | Yamaa">
+  <main class="auth-callback-shell">
+    <section class="auth-callback-card" aria-live="polite">
+      <p class="auth-callback-eyebrow">YAMAA</p>
+      <h1 id="auth-title">Confirmando tu cuenta…</h1>
+      <p id="auth-message">Estamos verificando tu correo. Esto tomará solo un momento.</p>
+      <a id="auth-action" href="/login" hidden>Iniciar sesión</a>
+    </section>
+  </main>
+</Base>
+
+<script>
+  import { supabase } from '../../lib/supabase';
+
+  const title = document.querySelector('#auth-title');
+  const message = document.querySelector('#auth-message');
+  const action = document.querySelector('#auth-action');
+
+  const showResult = (heading, copy, href = '/login', label = 'Iniciar sesión') => {
+    if (title) title.textContent = heading;
+    if (message) message.textContent = copy;
+    if (action instanceof HTMLAnchorElement) {
+      action.href = href;
+      action.textContent = label;
+      action.hidden = false;
+    }
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const tokenHash = params.get('token_hash');
+  const type = params.get('type');
+
+  if (!tokenHash) {
+    showResult(
+      'El enlace no es válido',
+      'No encontramos la información necesaria para confirmar tu cuenta. Solicita un nuevo correo de confirmación.'
+    );
+  } else {
+    const { error } = await supabase.auth.verifyOtp({
+      token_hash: tokenHash,
+      type: type === 'email' ? 'email' : 'signup'
+    });
+
+    if (error) {
+      showResult(
+        'No pudimos confirmar tu correo',
+        'El enlace puede haber vencido o ya haber sido utilizado. Intenta iniciar sesión o solicita un nuevo correo.'
+      );
+    } else {
+      showResult(
+        'Tu cuenta está lista',
+        'Tu correo fue confirmado correctamente. Ya puedes entrar a Yamaa, consultar la información disponible y guardar tus estudios favoritos.',
+        '/cdmx',
+        'Explorar estudios'
+      );
+    }
+  }
+</script>
+
+<style>
+  .auth-callback-shell {
+    min-height: 70vh;
+    display: grid;
+    place-items: center;
+    padding: 64px 24px;
+  }
+
+  .auth-callback-card {
+    width: min(620px, 100%);
+    border: 1px solid #e5e2db;
+    border-radius: 28px;
+    padding: clamp(32px, 6vw, 56px);
+    background: #fff;
+  }
+
+  .auth-callback-eyebrow {
+    margin: 0 0 20px;
+    color: #176b70;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .12em;
+  }
+
+  .auth-callback-card h1 {
+    margin: 0 0 16px;
+    font-size: clamp(36px, 7vw, 64px);
+    line-height: .98;
+    letter-spacing: -.045em;
+  }
+
+  .auth-callback-card > p:not(.auth-callback-eyebrow) {
+    margin: 0;
+    color: #777974;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  #auth-action {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 14px 24px;
+    border-radius: 999px;
+    background: #176b70;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  #auth-action[hidden] {
+    display: none;
+  }
+</style>
