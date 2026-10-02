@@ -2,4 +2,15 @@
 import '../styles/global.css';
 const {title='Yamaa — Encuentra dónde practicar yoga',description='Descubre estudios y clases de yoga en Ciudad de México.'}=Astro.props;
 ---
-<!doctype html><html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><title>{title}</title><meta name="description" content={description}/></head><body><header class="shell nav"><a class="wordmark" href="/">yamaa</a><nav class="navlinks"><a href="/cdmx">Explorar</a><a href="/#guias">Guías</a><a href="/login">Iniciar sesión</a><a class="btn" href="/registro">Registrarme</a></nav></header><slot/><footer class="footer"><div class="shell"><div class="wordmark">yamaa</div><p>Encuentra dónde practicar yoga en México.</p></div></footer></body></html>
+<!doctype html><html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><title>{title}</title><meta name="description" content={description}/></head><body><header class="shell nav"><a class="wordmark" href="/">yamaa</a><nav class="navlinks"><a href="/cdmx">Explorar</a><a href="/#guias">Guías</a><a class="guest-only" href="/login">Iniciar sesión</a><a class="btn guest-only" href="/registro">Registrarme</a><span class="member-only member-email" hidden></span><button class="nav-logout member-only" id="logout-button" hidden>Cerrar sesión</button></nav></header><slot/><footer class="footer"><div class="shell"><div class="wordmark">yamaa</div><p>Encuentra dónde practicar yoga en México.</p></div></footer>
+<script>
+import { supabase } from '../lib/supabase.js';
+const guestEls=[...document.querySelectorAll('.guest-only')];
+const memberEls=[...document.querySelectorAll('.member-only')];
+const emailEl=document.querySelector('.member-email');
+const renderSession=(session)=>{const signedIn=!!session?.user;guestEls.forEach(el=>el.hidden=signedIn);memberEls.forEach(el=>el.hidden=!signedIn);if(emailEl) emailEl.textContent=session?.user?.email||'Mi cuenta';document.documentElement.dataset.auth=signedIn?'signed-in':'guest';window.dispatchEvent(new CustomEvent('yamaa-auth',{detail:{session}}));};
+supabase.auth.getSession().then(({data})=>renderSession(data.session));
+supabase.auth.onAuthStateChange((_event,session)=>renderSession(session));
+document.querySelector('#logout-button')?.addEventListener('click',async()=>{await supabase.auth.signOut();window.location.href='/';});
+</script>
+</body></html>
