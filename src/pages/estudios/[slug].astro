@@ -15,7 +15,7 @@ const gallery=authorizedImages.filter((image)=>image!==cover).slice(0,2);
 <Base title={`${studio.name} — Yoga en ${studio.zone} | Yamaa`}>
 <main class="shell detail">
   <div class="studio-breadcrumb"><a href="/cdmx">Yoga en CDMX</a><span>›</span><span>{studio.zone}</span></div>
-  <div class="detail-heading"><div><div class="eyebrow">Estudio confirmado · {studio.zone}</div><h1>{studio.name}</h1><p class="detail-sub">{studio.type} · {studio.modalities?.slice(0,3).join(' · ')}</p></div><button class="save-detail" aria-label="Guardar estudio">♡ Guardar</button></div>
+  <div class="detail-heading"><div><div class="eyebrow">Estudio confirmado · {studio.zone}</div><h1>{studio.name}</h1><p class="detail-sub">{studio.type} · {studio.modalities?.slice(0,3).join(' · ')}</p></div><button class="save-detail favorite-button" data-studio-slug={studio.slug} aria-label="Guardar estudio">♡ Guardar</button></div>
   <div class:list={["photo-layout",gallery.length===0&&"single"]}>
     <div class:list={["studio-photo","detail-photo",!cover&&"placeholder"]}>{cover ? <img src={cover.url} alt={cover.alt || `Espacio de ${studio.name}`}/> : <><span class="placeholder-mark">{studio.name.split(' ').filter(Boolean).slice(0,2).map(w=>w[0]).join('')}</span><span class="photo-status">Fotos próximamente</span></>}</div>
     {gallery.length>0 && <div class="photo-side">{gallery.map(image=><img src={image.url} alt={image.alt || `${studio.name}, ${studio.zone}`} loading="lazy"/>)}</div>}
@@ -25,13 +25,19 @@ const gallery=authorizedImages.filter((image)=>image!==cover).slice(0,2);
       <section class="detail-section"><div class="section-label">Lo esencial</div><h2>Sobre {studio.name}</h2><p class="detail-intro">Estudio de {studio.type.toLowerCase()} en {studio.zone}, Ciudad de México. En Yamaa reunimos información práctica para ayudarte a decidir dónde practicar antes de contactar al estudio.</p></section>
       <section class="detail-section"><div class="section-label">Práctica</div><h2>Clases y estilos</h2><div class="chips">{studio.modalities?.map(m=><span class="chip">{m}</span>)}</div></section>
       <section class="detail-section location-section"><div class="section-label">Ubicación</div><h2>{studio.zone}, CDMX</h2><p class="muted">{studio.address || 'Consulta la ubicación exacta en Google Maps.'}</p><a class="inline-action" href={maps} target="_blank" rel="noopener">Ver ubicación en Google Maps ↗</a></section>
-      <section class="locked-details"><div><div class="section-label">Información para planear tu visita</div><h2>Precios, horarios y detalles de la clase</h2><p>Consulta clase de prueba, precios, horarios, nivel recomendado, amenidades y cómo reservar.</p></div><div class="locked-action"><span>Información para miembros de Yamaa</span><a class="btn primary" href="/registro">Crear cuenta gratis</a><a class="login-link" href="/login">Ya tengo cuenta</a></div></section>
+      <section class="locked-details"><div><div class="section-label">Información para planear tu visita</div><h2>Precios, horarios y detalles de la clase</h2><p>Consulta clase de prueba, precios, horarios, nivel recomendado, amenidades y cómo reservar.</p></div><div class="locked-action auth-locked"><span>Información para miembros de Yamaa</span><a class="btn primary" href="/registro">Crear cuenta gratis</a><a class="login-link" href="/login">Ya tengo cuenta</a></div><div class="member-unlocked auth-unlocked" hidden><strong>Cuenta activa</strong><p>Ya puedes consultar la información disponible y contactar directamente al estudio.</p></div></section>
     </div>
     <aside class="detail-aside">
-      {wa && <div class="contact-card"><div class="section-label">Contacto</div><h3>¿Quieres practicar aquí?</h3><p>Pregunta directamente al estudio por clases, disponibilidad y reservas.</p><a class="btn primary full" href={wa} target="_blank" rel="noopener">Contactar al estudio</a></div>}
+      {wa && <div class="contact-card auth-contact" hidden><div class="section-label">Contacto</div><h3>¿Quieres practicar aquí?</h3><p>Pregunta directamente al estudio por clases, disponibilidad y reservas.</p><a class="btn primary full" href={wa} target="_blank" rel="noopener">Contactar al estudio</a></div>}
       <div class="link-card"><div class="section-label">Enlaces oficiales</div>{instagram && <a href={instagram} target="_blank" rel="noopener">Instagram <span>↗</span></a>}{website && <a href={website} target="_blank" rel="noopener">Sitio web <span>↗</span></a>}<a href={maps} target="_blank" rel="noopener">Google Maps <span>↗</span></a></div>
       <div class="trust-note"><strong>Información confirmada</strong><p>Yamaa reúne información pública y oficial del estudio. Seguimos completando y verificando cada ficha.</p></div>
     </aside>
   </div>
 </main>
+<script>
+const applyAuth=(session)=>{const signedIn=!!session?.user;document.querySelectorAll('.auth-locked').forEach(el=>el.hidden=signedIn);document.querySelectorAll('.auth-unlocked,.auth-contact').forEach(el=>el.hidden=!signedIn);};
+window.addEventListener('yamaa-auth',(e)=>applyAuth(e.detail.session));
+const fav=document.querySelector('.favorite-button');
+fav?.addEventListener('click',()=>{if(document.documentElement.dataset.auth!=='signed-in'){window.location.href='/registro';return;}fav.textContent=fav.textContent.includes('♡')?'♥ Guardado':'♡ Guardar';});
+</script>
 </Base>
