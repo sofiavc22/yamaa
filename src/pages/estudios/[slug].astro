@@ -16,8 +16,33 @@ const description=studio.seoDescription || `Conoce ${studio.name} en ${studio.zo
 const verifiedLabel=studio.verifiedAt
   ? new Intl.DateTimeFormat('es-MX',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(`${studio.verifiedAt}T00:00:00Z`))
   : '';
+const pageUrl=`https://www.clasedeyoga.com.mx/estudios/${studio.slug}`;
+const structuredData={
+  '@context':'https://schema.org',
+  '@graph':[
+    {
+      '@type':'SportsActivityLocation',
+      '@id':`${pageUrl}#studio`,
+      name:studio.name,
+      description,
+      url:pageUrl,
+      address:{'@type':'PostalAddress',streetAddress:studio.address || undefined,addressLocality:'Ciudad de México',addressRegion:'CDMX',addressCountry:'MX'},
+      image:authorizedImages.map((image)=>new URL(image.url,'https://www.clasedeyoga.com.mx').href),
+      sameAs:[website,instagram].filter(Boolean),
+      telephone:studio.whatsapp ? `+${studio.whatsapp}` : undefined
+    },
+    {
+      '@type':'BreadcrumbList',
+      itemListElement:[
+        {'@type':'ListItem',position:1,name:'Inicio',item:'https://www.clasedeyoga.com.mx/'},
+        {'@type':'ListItem',position:2,name:'Yoga en CDMX',item:'https://www.clasedeyoga.com.mx/cdmx'},
+        {'@type':'ListItem',position:3,name:studio.name,item:pageUrl}
+      ]
+    }
+  ]
+};
 ---
-<Base title={title} description={description}>
+<Base title={title} description={description} structuredData={structuredData}>
 <main class="shell detail">
   <div class="studio-breadcrumb"><a href="/cdmx">Yoga en CDMX</a><span>›</span><span>{studio.zone}</span></div>
   <div class="detail-heading"><div><div class="eyebrow">Estudio confirmado · {studio.zone}</div><h1>{studio.name}</h1><p class="detail-sub">{studio.type} · {studio.modalities?.slice(0,3).join(' · ')}</p></div><button class="save-detail favorite-button" data-studio-slug={studio.slug} aria-label="Guardar estudio">♡ Guardar</button></div>

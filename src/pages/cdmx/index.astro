@@ -1,4 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro'; import StudioCard from '../../components/StudioCard.astro'; import studios from '../../data/studios.json';
+const structuredData={
+  '@context':'https://schema.org',
+  '@graph':[
+    {'@type':'CollectionPage','@id':'https://www.clasedeyoga.com.mx/cdmx#page',name:'Clases y estudios de yoga en CDMX',url:'https://www.clasedeyoga.com.mx/cdmx',inLanguage:'es-MX'},
+    {'@type':'ItemList',name:'Estudios de yoga en Ciudad de México',numberOfItems:studios.length,itemListElement:studios.map((studio,index)=>({'@type':'ListItem',position:index+1,name:studio.name,url:`https://www.clasedeyoga.com.mx/estudios/${studio.slug}`}))},
+    {'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Inicio',item:'https://www.clasedeyoga.com.mx/'},{'@type':'ListItem',position:2,name:'Yoga en CDMX',item:'https://www.clasedeyoga.com.mx/cdmx'}]}
+  ]
+};
 ---
-<Base title="Clases y estudios de yoga en CDMX | Yamaa"><main class="shell section"><div class="eyebrow">Ciudad de México</div><h1 class="page-title">Estudios y clases de yoga en CDMX</h1><p class="muted">Explora {studios.length} fichas confirmadas por zona y tipo de práctica.</p><div class="chips filters"><span class="chip">Todas las zonas</span><span class="chip">Principiantes</span><span class="chip">Vinyasa</span><span class="chip">Hatha</span><span class="chip">Hot Yoga</span><span class="chip">Meditación</span></div><div class="grid">{studios.map(s=><StudioCard studio={s}/>)}</div></main></Base>
+<Base title="Clases y estudios de yoga en CDMX | Yamaa" description={`Explora ${studios.length} estudios y clases de yoga en CDMX por zona y estilo de práctica.`} structuredData={structuredData}><main class="shell section"><div class="eyebrow">Ciudad de México</div><h1 class="page-title">Estudios y clases de yoga en CDMX</h1><p class="muted">Explora {studios.length} fichas confirmadas por zona y tipo de práctica.</p><div class="chips filters"><span class="chip">Todas las zonas</span><span class="chip">Principiantes</span><span class="chip">Vinyasa</span><span class="chip">Hatha</span><span class="chip">Hot Yoga</span><span class="chip">Meditación</span></div><div class="grid">{studios.map(s=><StudioCard studio={s}/>)}</div></main></Base>

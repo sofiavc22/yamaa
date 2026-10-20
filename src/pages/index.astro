@@ -5,8 +5,15 @@ import studios from '../data/studios.json';
 const featured=studios.slice(0,6);
 const filters=['Cerca de mí','Principiantes','Vinyasa','Hot yoga','Relajarme','Algo intenso'];
 const zones=['Roma Norte','Condesa','Polanco','Del Valle','Coyoacán','Santa Fe'];
+const structuredData={
+  '@context':'https://schema.org',
+  '@graph':[
+    {'@type':'Organization','@id':'https://www.clasedeyoga.com.mx/#organization',name:'Yamaa',url:'https://www.clasedeyoga.com.mx/'},
+    {'@type':'WebSite','@id':'https://www.clasedeyoga.com.mx/#website',name:'Yamaa',url:'https://www.clasedeyoga.com.mx/',publisher:{'@id':'https://www.clasedeyoga.com.mx/#organization'},inLanguage:'es-MX'}
+  ]
+};
 ---
-<Base>
+<Base structuredData={structuredData}>
 <main>
   <section class="shell hero-v2">
     <div class="hero-copy">
