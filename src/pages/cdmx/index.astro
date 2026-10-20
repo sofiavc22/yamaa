@@ -1,12 +1,62 @@
 ---
-import Base from '../../layouts/Base.astro'; import StudioCard from '../../components/StudioCard.astro'; import studios from '../../data/studios.json';
-const structuredData={
-  '@context':'https://schema.org',
-  '@graph':[
-    {'@type':'CollectionPage','@id':'https://www.clasedeyoga.com.mx/cdmx#page',name:'Clases y estudios de yoga en CDMX',url:'https://www.clasedeyoga.com.mx/cdmx',inLanguage:'es-MX'},
-    {'@type':'ItemList',name:'Estudios de yoga en Ciudad de México',numberOfItems:studios.length,itemListElement:studios.map((studio,index)=>({'@type':'ListItem',position:index+1,name:studio.name,url:`https://www.clasedeyoga.com.mx/estudios/${studio.slug}`}))},
-    {'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Inicio',item:'https://www.clasedeyoga.com.mx/'},{'@type':'ListItem',position:2,name:'Yoga en CDMX',item:'https://www.clasedeyoga.com.mx/cdmx'}]}
+import Base from '../../layouts/Base.astro';
+import StudioCard from '../../components/StudioCard.astro';
+import studios from '../../data/studios.json';
+
+const zoneOrder = ['Roma Norte', 'Condesa', 'Polanco', 'Del Valle', 'Escandón', 'Coyoacán', 'Santa Fe'];
+const slugify = (value) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const groupedStudios = zoneOrder
+  .map((zone) => ({ zone, studios: studios.filter((studio) => studio.zone === zone) }))
+  .filter((group) => group.studios.length > 0);
+
+const faqs = [
+  { question: '¿Cuánto cuesta una clase de yoga en CDMX?', answer: 'El precio depende del estudio, la modalidad y el tipo de paquete. En cada ficha mostramos la información pública disponible o un enlace a la tarifa oficial para que confirmes el precio vigente antes de reservar.' },
+  { question: '¿Cómo encuentro horarios disponibles?', answer: 'Abre la ficha del estudio que te interesa. Cuando el estudio publica su calendario, encontrarás un enlace directo a sus horarios o sistema oficial de reservas.' },
+  { question: '¿Hay clases para principiantes?', answer: 'Sí. Revisa las modalidades y la nota para principiantes de cada ficha. Si el nivel no está indicado, confirma directamente con el estudio antes de asistir.' },
+  { question: '¿Qué zona tiene más opciones?', answer: `En este directorio, Polanco, Roma Norte, Condesa y Del Valle concentran la mayor cantidad de fichas. En total puedes comparar ${studios.length} estudios en siete zonas de CDMX.` }
+];
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'CollectionPage', '@id': 'https://www.clasedeyoga.com.mx/cdmx#page', name: 'Clases y estudios de yoga en CDMX: precios y horarios', description: `Compara ${studios.length} estudios de yoga en CDMX por colonia, estilo, horarios y precios publicados.`, url: 'https://www.clasedeyoga.com.mx/cdmx', inLanguage: 'es-MX' },
+    { '@type': 'ItemList', name: 'Estudios de yoga en Ciudad de México', numberOfItems: studios.length, itemListElement: studios.map((studio, index) => ({ '@type': 'ListItem', position: index + 1, name: studio.name, url: `https://www.clasedeyoga.com.mx/estudios/${studio.slug}` })) },
+    { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.clasedeyoga.com.mx/' }, { '@type': 'ListItem', position: 2, name: 'Yoga en CDMX', item: 'https://www.clasedeyoga.com.mx/cdmx' }] },
+    { '@type': 'FAQPage', mainEntity: faqs.map((faq) => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })) }
   ]
 };
 ---
-<Base title="Clases y estudios de yoga en CDMX | Yamaa" description={`Explora ${studios.length} estudios y clases de yoga en CDMX por zona y estilo de práctica.`} structuredData={structuredData}><main class="shell section"><div class="eyebrow">Ciudad de México</div><h1 class="page-title">Estudios y clases de yoga en CDMX</h1><p class="muted">Explora {studios.length} fichas confirmadas por zona y tipo de práctica.</p><div class="chips filters"><span class="chip">Todas las zonas</span><span class="chip">Principiantes</span><span class="chip">Vinyasa</span><span class="chip">Hatha</span><span class="chip">Hot Yoga</span><span class="chip">Meditación</span></div><div class="grid">{studios.map(s=><StudioCard studio={s}/>)}</div></main></Base>
+
+<Base title="Clases y estudios de yoga en CDMX: precios y horarios | Yamaa" description={`Compara ${studios.length} estudios de yoga en CDMX por colonia y estilo. Consulta ubicación, horarios, precios publicados y enlaces para reservar.`} structuredData={structuredData}>
+  <main id="top">
+    <section class="shell city-hero">
+      <div class="eyebrow">Guía de yoga en Ciudad de México</div>
+      <h1 class="page-title">Clases y estudios de yoga en CDMX</h1>
+      <p class="city-lead">Compara {studios.length} estudios en siete zonas de la ciudad. Revisa estilos de yoga, ubicación, horarios y precios publicados antes de elegir dónde practicar.</p>
+      <nav class="zone-index" aria-label="Explorar estudios por zona">
+        {groupedStudios.map(({ zone, studios: zoneStudios }) => <a class="chip" href={`#${slugify(zone)}`}>{zone} <span>{zoneStudios.length}</span></a>)}
+      </nav>
+      <div class="city-help">
+        <div><strong>1. Elige una zona</strong><span>Empieza por la colonia que te resulte más práctica.</span></div>
+        <div><strong>2. Compara estilos</strong><span>Vinyasa, Hatha, Power, restaurativo y más.</span></div>
+        <div><strong>3. Confirma y reserva</strong><span>Usa el sitio, Instagram o WhatsApp oficial del estudio.</span></div>
+      </div>
+    </section>
+
+    <div class="shell zone-directory">
+      {groupedStudios.map(({ zone, studios: zoneStudios }) => (
+        <section class="zone-section" id={slugify(zone)}>
+          <div class="zone-heading"><div><div class="eyebrow">Yoga en {zone}</div><h2>{zoneStudios.length} {zoneStudios.length === 1 ? 'estudio' : 'estudios'} para comparar</h2></div><a class="back-link" href="#top">Volver arriba ↑</a></div>
+          <div class="grid">{zoneStudios.map((studio) => <StudioCard studio={studio} />)}</div>
+        </section>
+      ))}
+    </div>
+
+    <section class="city-faq">
+      <div class="shell">
+        <div class="eyebrow">Antes de reservar</div><h2>Preguntas sobre clases de yoga en CDMX</h2>
+        <div class="faq-grid">{faqs.map((faq) => <article><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</div>
+      </div>
+    </section>
+  </main>
+</Base>
