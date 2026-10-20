@@ -92,6 +92,16 @@
     "instagram": "https://www.instagram.com/gita.studio.mx/",
     "whatsapp": "525651105809",
     "website": "https://www.gita.studio/",
+    "seoTitle": "Gita Studio en Roma Norte: clases y horarios | Yamaa",
+    "seoDescription": "Conoce Gita Studio en Roma Norte: clases de Power, Rocket y Hatha yoga, ubicación, horarios, tarifas oficiales y cómo reservar.",
+    "summary": "Gita Studio es un estudio de yoga en Roma Norte con clases de Power, Rocket y Hatha, además de sesiones de breathwork. Consulta su calendario y tarifas oficiales antes de reservar.",
+    "scheduleSummary": "El calendario cambia por semana; consulta los horarios disponibles en el sitio oficial.",
+    "scheduleUrl": "https://www.gita.studio/horarios",
+    "pricingSummary": "Clases individuales y paquetes disponibles en el sitio oficial.",
+    "pricingUrl": "https://www.gita.studio/tarifas",
+    "bookingUrl": "https://www.gita.studio/horarios",
+    "verifiedAt": "2026-10-20",
+    "verificationSource": "Sitio oficial de Gita Studio",
     "images": [
       {
         "kind": "cover",
@@ -178,13 +188,24 @@
     "type": "Estudio de yoga",
     "address": "Guanajuato 114, Roma Norte",
     "modalities": [
-      "Vinyasa Flow",
-      "Hatha",
-      "Kurunta"
+      "Air Yoga",
+      "Wall Yoga",
+      "Kurunta Yoga"
     ],
     "instagram": "https://www.instagram.com/kuruntayoga/",
     "whatsapp": "525531245645",
     "website": "https://kuruntayoga.com.mx/",
+    "seoTitle": "Kurunta Yoga en Roma Norte: clases y reservas | Yamaa",
+    "seoDescription": "Conoce Kurunta Yoga by Ana Sordo en Roma Norte: Air Yoga, Wall Yoga, ubicación, paquetes de clases y cómo reservar.",
+    "summary": "Kurunta Yoga by Ana Sordo ofrece Air Yoga y Wall Yoga en Roma Norte. Sus prácticas utilizan hamacas y pared como apoyo para trabajar fuerza, flexibilidad y alineación.",
+    "scheduleSummary": "Las clases y lugares disponibles se consultan en el sistema oficial de reservas.",
+    "scheduleUrl": "https://kuruntayoga.com.mx/reservas/",
+    "pricingSummary": "El estudio publica paquetes de clases y promociones en su sitio oficial.",
+    "pricingUrl": "https://kuruntayoga.com.mx/reservas/paquetes-de-clases/",
+    "bookingUrl": "https://kuruntayoga.com.mx/reservas/",
+    "beginnerNote": "El estudio presenta Air Yoga como una práctica disponible desde nivel principiante hasta avanzado.",
+    "verifiedAt": "2026-10-20",
+    "verificationSource": "Sitio oficial de Kurunta Yoga",
     "images": []
   },
   {
@@ -313,16 +334,28 @@
   {
     "name": "Duna Studio",
     "slug": "duna-studio",
-    "zone": "Condesa",
+    "zone": "Escandón",
     "type": "Estudio mixto",
-    "address": "",
+    "address": "Cda. de la Paz 15, Escandón I Sección",
     "modalities": [
       "Yoga",
-      "Pilates",
-      "Body Sculpt"
+      "Pilates Reformer",
+      "Pilates Mat",
+      "Sculpt"
     ],
     "instagram": "https://www.instagram.com/hidunastudio_",
     "whatsapp": "525648022658",
+    "website": "https://dunastudio.space/",
+    "seoTitle": "Duna Studio CDMX: yoga, pilates y horarios | Yamaa",
+    "seoDescription": "Conoce Duna Studio en Escandón, CDMX: clases de yoga, Pilates Reformer, Pilates Mat y Sculpt, horarios y cómo reservar.",
+    "summary": "Duna Studio es un espacio de movimiento en Escandón con yoga, Pilates Reformer, Pilates Mat y Sculpt, además de algunas clases con calefacción infrarroja.",
+    "scheduleSummary": "Lunes a jueves de 6:00 a 11:00 y de 17:00 a 21:00; viernes hasta las 19:00; fines de semana de 9:00 a 13:00.",
+    "scheduleUrl": "https://dunastudio.space/terminos-y-condiciones/",
+    "pricingSummary": "Ofrece clase muestra, clase suelta, paquetes y membresías; confirma precios vigentes directamente con el estudio.",
+    "pricingUrl": "https://dunastudio.space/",
+    "bookingUrl": "https://dunastudio.space/",
+    "verifiedAt": "2026-10-20",
+    "verificationSource": "Sitio y términos oficiales de Duna Studio",
     "images": []
   },
   {
