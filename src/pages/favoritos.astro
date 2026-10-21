@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import StudioCard from '../components/StudioCard.astro';
+import studios from '../data/studios.json';
+---
+<Base title="Tus favoritos | Yamaa">
+  <main class="shell section favorites-page">
+    <h1>Tus favoritos</h1>
+    <p class="muted" id="favorites-message" role="status">Inicia sesión para ver los estudios que guardaste.</p>
+    <a class="btn primary" id="favorites-login" href="/login">Iniciar sesión</a>
+    <div class="grid" id="favorites-grid" hidden>{studios.map(studio=><div data-favorite-slug={studio.slug} hidden><StudioCard studio={studio}/></div>)}</div>
+  </main>
+</Base>
+<script>
+async function loadFavorites() {
+  if (!import.meta.env.PUBLIC_SUPABASE_URL || !import.meta.env.PUBLIC_SUPABASE_ANON_KEY) return;
+  const { supabase } = await import('../lib/supabase.js');
+  const {data:{session}} = await supabase.auth.getSession();
+  if (!session) return;
+  const message = document.querySelector('#favorites-message');
+  document.querySelector('#favorites-login')?.setAttribute('hidden','');
+  if (message) message.textContent = 'Cargando tus favoritos…';
+  const {data,error} = await supabase.from('favorites').select('studio_slug').eq('user_id',session.user.id);
+  if (error) { if(message) message.textContent = 'No pudimos cargar tus favoritos. Vuelve a intentarlo.'; return; }
+  const slugs = new Set((data || []).map(item=>item.studio_slug));
+  let count=0;
+  document.querySelectorAll('[data-favorite-slug]').forEach(card=>{const saved=slugs.has(card.getAttribute('data-favorite-slug'));card.toggleAttribute('hidden',!saved);if(saved)count++;});
+  document.querySelector('#favorites-grid')?.removeAttribute('hidden');
+  if(message) message.textContent = count ? `${count} estudios guardados para tu próxima práctica.` : 'Aún no tienes favoritos. Abre un estudio y toca Guardar para encontrarlo aquí.';
+}
+loadFavorites().catch(()=>{const message=document.querySelector('#favorites-message');if(message)message.textContent='No pudimos cargar tus favoritos. Vuelve a intentarlo.';});
+</script>

@@ -6,6 +6,11 @@ const path=Astro.url.pathname==='/' ? '/' : Astro.url.pathname.replace(/\/$/,'')
 const canonical=`${site}${path}`;
 ---
 <!doctype html><html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><title>{title}</title><meta name="description" content={description}/><link rel="canonical" href={canonical}/><meta property="og:type" content="website"/><meta property="og:site_name" content="Yamaa"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/>{structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />}</head><body><header class="shell nav"><a class="wordmark" href="/">yamaa</a><nav class="navlinks"><a href="/cdmx">Explorar</a><a href="/#guias">Guías</a><a class="guest-only" href="/login">Iniciar sesión</a><a class="btn guest-only" href="/registro">Registrarme</a><span class="member-only member-email" hidden></span><button class="nav-logout member-only" id="logout-button" hidden>Cerrar sesión</button></nav></header><slot/><footer class="footer"><div class="shell"><div class="wordmark">yamaa</div><p>Encuentra dónde practicar yoga en México.</p></div></footer>
+<nav class="bottom-nav" aria-label="Navegación principal">
+  <a href="/" aria-current={path==='/'?'page':undefined}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="m16 16 5 5"/></svg><span>Buscar</span></a>
+  <a href="/favoritos" aria-current={path==='/favoritos'?'page':undefined}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20.5 4.8c-2.5-2.6-6.2-1.6-8.5 1-2.3-2.6-6-3.6-8.5-1C-1 9.5 7 16.5 12 21c5-4.5 13-11.5 8.5-16.2Z"/></svg><span>Favoritos</span></a>
+  <a href="/login" aria-current={path==='/login'?'page':undefined}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="9" r="3"/><path d="M6 19v-2a6 6 0 0 1 12 0v2"/></svg><span class="guest-only">Iniciar sesión</span><span class="member-only" hidden>Mi cuenta</span></a>
+</nav>
 <script>
 import { supabase } from '../lib/supabase.js';
 const guestEls=[...document.querySelectorAll('.guest-only')];
