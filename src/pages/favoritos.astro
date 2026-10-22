@@ -5,13 +5,59 @@ import studios from '../data/studios.json';
 ---
 <Base title="Tus favoritos | Yamaa">
   <main class="shell section favorites-page">
-    <h1>Tus favoritos</h1>
-    <p class="muted" id="favorites-message" role="status">Inicia sesión para ver los estudios que guardaste.</p>
-    <a class="btn primary" id="favorites-login" href="/login">Iniciar sesión</a>
+    <h1>Favoritos</h1>
+    <h2 id="favorites-guest-heading">Inicia sesión para ver tus favoritos</h2>
+    <p class="muted" id="favorites-message" role="status">Guarda tus estudios favoritos y vuelve a encontrarlos cuando quieras practicar.</p>
+    <button class="btn primary" id="favorites-login" type="button">Inicia sesión</button>
+    <dialog class="signin-sheet" aria-labelledby="sheet-title">
+      <button class="sheet-close" type="button" aria-label="Cerrar">×</button>
+      <div class="sheet-wordmark" aria-hidden="true">yamaa</div>
+      <h2 id="sheet-title">Inicia sesión o regístrate</h2>
+      <form id="favorites-signin-form" class="sheet-form">
+        <label class="sr-only" for="sheet-email">Correo electrónico</label>
+        <input id="sheet-email" name="email" type="email" autocomplete="email" placeholder="Correo electrónico" required />
+        <div id="sheet-password-step" hidden><label class="sr-only" for="sheet-password">Contraseña</label><input id="sheet-password" name="password" type="password" autocomplete="current-password" placeholder="Contraseña" /></div>
+        <button class="btn primary" id="sheet-continue" type="submit">Continuar</button>
+        <p id="sheet-message" class="auth-message" aria-live="polite"></p>
+      </form>
+      <div class="sheet-divider"><span>o</span></div>
+      <p class="sheet-register">¿Es tu primera vez en Yamaa? <a href="/registro">Crea una cuenta</a></p>
+    </dialog>
     <div class="grid" id="favorites-grid" hidden>{studios.map(studio=><div data-favorite-slug={studio.slug} hidden><StudioCard studio={studio}/></div>)}</div>
   </main>
 </Base>
 <script>
+const sheet = document.querySelector('.signin-sheet');
+const trigger = document.querySelector('#favorites-login');
+trigger?.addEventListener('click',()=>{if(sheet instanceof HTMLDialogElement)sheet.showModal();});
+document.querySelector('.sheet-close')?.addEventListener('click',()=>{if(sheet instanceof HTMLDialogElement)sheet.close();});
+sheet?.addEventListener('click',event=>{if(event.target===sheet && sheet instanceof HTMLDialogElement){const box=sheet.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)sheet.close();}});
+const form = document.querySelector('#favorites-signin-form');
+let passwordStep = false;
+form?.addEventListener('submit',async event=>{
+  event.preventDefault();
+  const password = document.querySelector('#sheet-password');
+  const message = document.querySelector('#sheet-message');
+  const button = document.querySelector('#sheet-continue');
+  if(!passwordStep){
+    passwordStep=true;
+    document.querySelector('#sheet-password-step')?.removeAttribute('hidden');
+    if(password instanceof HTMLInputElement){password.required=true;password.focus();}
+    if(button)button.textContent='Iniciar sesión';
+    return;
+  }
+  if(!import.meta.env.PUBLIC_SUPABASE_URL || !import.meta.env.PUBLIC_SUPABASE_ANON_KEY){if(message)message.textContent='El acceso a tu cuenta estará disponible en el sitio publicado.';return;}
+  if(button instanceof HTMLButtonElement)button.disabled=true;
+  try{
+    const {supabase}=await import('../lib/supabase.js');
+    const data=new FormData(form);
+    const {error}=await supabase.auth.signInWithPassword({email:String(data.get('email')||''),password:String(data.get('password')||'')});
+    if(error){if(message)message.textContent='Revisa tu correo y contraseña e inténtalo de nuevo.';return;}
+    if(sheet instanceof HTMLDialogElement)sheet.close();
+    await loadFavorites();
+  }catch{if(message)message.textContent='No pudimos conectar. Vuelve a intentarlo.';}
+  finally{if(button instanceof HTMLButtonElement)button.disabled=false;}
+});
 async function loadFavorites() {
   if (!import.meta.env.PUBLIC_SUPABASE_URL || !import.meta.env.PUBLIC_SUPABASE_ANON_KEY) return;
   const { supabase } = await import('../lib/supabase.js');
@@ -19,6 +65,7 @@ async function loadFavorites() {
   if (!session) return;
   const message = document.querySelector('#favorites-message');
   document.querySelector('#favorites-login')?.setAttribute('hidden','');
+  document.querySelector('#favorites-guest-heading')?.setAttribute('hidden','');
   if (message) message.textContent = 'Cargando tus favoritos…';
   const {data,error} = await supabase.from('favorites').select('studio_slug').eq('user_id',session.user.id);
   if (error) { if(message) message.textContent = 'No pudimos cargar tus favoritos. Vuelve a intentarlo.'; return; }
