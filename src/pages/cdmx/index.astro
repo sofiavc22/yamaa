@@ -44,7 +44,6 @@ const structuredData = {
       <div class="results-empty" hidden><h2>No encontramos estudios con esos filtros</h2><p>Prueba con otra zona o estilo para encontrar tu próxima práctica.</p><a class="btn" href="/cdmx">Quitar filtros</a></div>
       <div class="grid results-grid">{studios.map(studio=><StudioCard studio={studio} listing={true}/>)}</div>
     </section>
-    <a class="results-map-button" href="https://www.google.com/maps/search/?api=1&query=estudios+de+yoga+Ciudad+de+Mexico" target="_blank" rel="noopener" aria-label="Ver estudios de la zona en Google Maps, abre otra pestaña"><span>Mapa</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2V5Zm6-2v16m6-14v16"/></svg></a>
     <dialog class="results-filter-sheet" aria-labelledby="results-filter-title">
       <form action="/cdmx" method="get">
         <header><button type="button" class="results-close" aria-label="Cerrar filtros">×</button><h2 id="results-filter-title">Encuentra tu práctica</h2></header>
@@ -81,7 +80,6 @@ document.querySelector('.results-empty')?.toggleAttribute('hidden',count>0);
 const caption=document.querySelector('#results-search-caption');if(caption)caption.textContent=[zone||'Todas las zonas',style||'Todos los estilos',query].filter(Boolean).join(' · ');
 const badge=document.querySelector('#results-filter-badge');const activeCount=[zone,style,query].filter(Boolean).length;if(badge&&activeCount){badge.textContent=String(activeCount);badge.removeAttribute('hidden');}
 document.querySelectorAll<HTMLAnchorElement>('[data-style-filter]').forEach(link=>{const value=link.dataset.styleFilter||'';const next=new URLSearchParams(params);if(value)next.set('estilo',value);else next.delete('estilo');link.href='/cdmx'+(next.size?'?'+next:'');if(normalize(value)===normalize(style))link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});
-const map=document.querySelector<HTMLAnchorElement>('.results-map-button');if(map)map.href='https://www.google.com/maps/search/?'+new URLSearchParams({api:'1',query:['estudios de yoga',style,zone,'Ciudad de México'].filter(Boolean).join(' ')});
 const sheet=document.querySelector<HTMLDialogElement>('.results-filter-sheet');
 const form=sheet?.querySelector('form');
 for(const name of ['zona','estilo','q']){const input=form?.elements.namedItem(name);if(input instanceof HTMLInputElement||input instanceof HTMLSelectElement){const value=params.get(name)||'';if(input instanceof HTMLSelectElement&&value){const option=[...input.options].find(option=>normalize(option.value)===normalize(value));if(option)input.value=option.value;else{input.add(new Option(value,value));input.value=value;}}else input.value=value;}}
