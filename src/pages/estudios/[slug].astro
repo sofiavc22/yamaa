@@ -11,7 +11,9 @@ const website=studio.website || (studio.instagram && !studio.instagram.includes(
 const instagram=studio.instagram?.includes('instagram.com') ? studio.instagram : '';
 const authorizedImages=(studio.images || []).filter((image)=>image.authorized && image.url);
 const cover=authorizedImages.find((image)=>image.kind==='cover') || authorizedImages[0];
-const gallery=authorizedImages.filter((image)=>image!==cover).slice(0,2);
+const gallery=cover?[cover,...authorizedImages.filter((image)=>image!==cover)]:[];
+const bookingTarget=studio.bookingUrl||wa||website||instagram||'#enlaces';
+const bookingLabel=studio.bookingUrl?'Reservar clase':wa?'Consultar disponibilidad':website||instagram?'Contactar al estudio':'Ver contacto';
 const title=studio.seoTitle || `${studio.name} — Yoga en ${studio.zone} | Yamaa`;
 const description=studio.seoDescription || `Conoce ${studio.name} en ${studio.zone}, CDMX: estilos de yoga, ubicación y enlaces oficiales para planear tu visita.`;
 const verifiedLabel=studio.verifiedAt
@@ -44,19 +46,35 @@ const structuredData={
 };
 ---
 <Base title={title} description={description} structuredData={structuredData}>
-<main class="shell detail">
-  <div class="studio-breadcrumb"><a href="/cdmx">Yoga en CDMX</a><span>›</span><span>{studio.zone}</span></div>
-  <div class="detail-heading"><div><div class="eyebrow">Estudio confirmado · {studio.zone}</div><h1>{studio.name}</h1><p class="detail-sub">{studio.type} · {studio.modalities?.slice(0,3).join(' · ')}</p></div><button class="save-detail favorite-button" data-studio-slug={studio.slug} aria-label="Guardar estudio">♡ Guardar</button></div>
-  <div class:list={["photo-layout",gallery.length===0&&"single"]}>
-    <div class:list={["studio-photo","detail-photo",!cover&&"placeholder"]}>{cover ? <img src={cover.url} alt={cover.alt || `Espacio de ${studio.name}`}/> : <><span class="placeholder-mark">{studio.name.split(' ').filter(Boolean).slice(0,2).map(w=>w[0]).join('')}</span><span class="photo-status">Fotos próximamente</span></>}</div>
-    {gallery.length>0 && <div class="photo-side">{gallery.map(image=><img src={image.url} alt={image.alt || `${studio.name}, ${studio.zone}`} loading="lazy"/>)}</div>}
-  </div>
+<main class="studio-experience" data-studio-title={studio.name} data-share-url={pageUrl}>
+  <section class="studio-visual" aria-label={`Fotografías de ${studio.name}`}>
+    <div class="studio-overlay-nav">
+      <a class="round-action" href="/cdmx" aria-label="Volver a los estudios"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7"/></svg></a>
+      <div class="studio-overlay-actions">
+        <button class="round-action studio-share" type="button" aria-label="Compartir estudio"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M5 13v7h14v-7"/></svg></button>
+        <button class="round-action favorite-button" type="button" data-studio-slug={studio.slug} aria-label="Guardar estudio" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.8c-2.5-2.6-6.2-1.6-8.5 1-2.3-2.6-6-3.6-8.5-1C-1 9.5 7 16.5 12 21c5-4.5 13-11.5 8.5-16.2Z"/></svg></button>
+      </div>
+    </div>
+    <div class="studio-photo-track" tabindex="0" aria-label="Galería de fotos, desliza para ver más">
+      {gallery.length ? gallery.map((image,index)=><img src={image.url} alt={image.alt||`${studio.name}, fotografía ${index+1}`} loading={index===0?'eager':'lazy'}/>) : <div class="studio-gallery-empty"><span class="wordmark">yamaa</span><p>Fotografías próximamente</p></div>}
+    </div>
+    {gallery.length>1 && <><button class="gallery-step gallery-prev" type="button" aria-label="Foto anterior">‹</button><button class="gallery-step gallery-next" type="button" aria-label="Siguiente foto">›</button></>}
+    {gallery.length>0 && <span class="gallery-counter" aria-live="polite"><span id="gallery-current">1</span> / {gallery.length}</span>}
+  </section>
+  <div class="shell studio-body">
+    <header class="studio-summary">
+      <h1>{studio.name}</h1>
+      <p>{studio.type} en {studio.zone}, Ciudad de México</p>
+      <p class="studio-summary-styles">{studio.modalities?.slice(0,3).join(' · ')}</p>
+      <div class="studio-quick-facts"><a href="#ubicacion"><span>Ubicación</span><strong>{studio.zone}</strong></a><a href="#practica"><span>Tu práctica</span><strong>{studio.modalities?.[0]||'Yoga'}</strong></a><a href="#visita"><span>Planea tu visita</span><strong>Horarios y precios</strong></a></div>
+      <p class="studio-action-message" role="status"></p>
+    </header>
   <div class="detail-grid">
     <div class="detail-main">
-      <section class="detail-section"><div class="section-label">Lo esencial</div><h2>Sobre {studio.name}</h2><p class="detail-intro">{studio.summary || `Estudio de ${studio.type.toLowerCase()} en ${studio.zone}, Ciudad de México. En Yamaa reunimos información práctica para ayudarte a decidir dónde practicar antes de contactar al estudio.`}</p></section>
-      <section class="detail-section"><div class="section-label">Práctica</div><h2>Clases y estilos</h2><div class="chips">{studio.modalities?.map(m=><span class="chip">{m}</span>)}</div></section>
-      <section class="detail-section location-section"><div class="section-label">Ubicación</div><h2>{studio.zone}, CDMX</h2><StudioMap studio={studio} /></section>
-      <section class="visit-details"><div class="section-label">Información para planear tu visita</div><h2>Horarios, precios y reservas</h2><div class="visit-facts">
+      <section class="detail-section"><div class="section-label">Lo esencial</div><h2>Sobre {studio.name}</h2><p class="detail-intro">{studio.summary || `${studio.type} en ${studio.zone}, Ciudad de México. En Yamaa reunimos información práctica para ayudarte a decidir dónde practicar antes de contactar al estudio.`}</p></section>
+      <section class="detail-section" id="practica"><div class="section-label">Práctica</div><h2>Clases y estilos</h2><div class="chips">{studio.modalities?.map(m=><span class="chip">{m}</span>)}</div></section>
+      <section class="detail-section location-section" id="ubicacion"><div class="section-label">Ubicación</div><h2>{studio.zone}, CDMX</h2><StudioMap studio={studio} /></section>
+      <section class="visit-details" id="visita"><div class="section-label">Información para planear tu visita</div><h2>Horarios, precios y reservas</h2><div class="visit-facts">
         <div class="visit-fact"><h3>Horarios</h3><p>{studio.scheduleSummary || 'Consulta los horarios vigentes directamente con el estudio.'}</p>{studio.scheduleUrl && <a class="inline-action" href={studio.scheduleUrl} target="_blank" rel="noopener" data-outbound-kind="schedule">Ver horarios oficiales ↗</a>}</div>
         <div class="visit-fact"><h3>Precios</h3><p>{studio.pricingSummary || 'Pregunta por la clase de prueba, clases individuales y paquetes disponibles.'}</p>{studio.pricingUrl && <a class="inline-action" href={studio.pricingUrl} target="_blank" rel="noopener" data-outbound-kind="pricing">Consultar precios oficiales ↗</a>}</div>
         {studio.beginnerNote && <div class="visit-fact"><h3>Para principiantes</h3><p>{studio.beginnerNote}</p></div>}
@@ -64,22 +82,44 @@ const structuredData={
     </div>
     <aside class="detail-aside">
       {wa && <div class="contact-card"><div class="section-label">Contacto</div><h3>¿Quieres practicar aquí?</h3><p>Pregunta directamente al estudio por clases, disponibilidad y reservas.</p><a class="btn primary full" href={wa} target="_blank" rel="noopener" data-outbound-kind="whatsapp">Contactar al estudio</a></div>}
-      <div class="link-card"><div class="section-label">Enlaces oficiales</div>{studio.bookingUrl && <a href={studio.bookingUrl} target="_blank" rel="noopener" data-outbound-kind="booking">Reservar <span>↗</span></a>}{instagram && <a href={instagram} target="_blank" rel="noopener" data-outbound-kind="instagram">Instagram <span>↗</span></a>}{website && <a href={website} target="_blank" rel="noopener" data-outbound-kind="website">Sitio web <span>↗</span></a>}<a href={maps} target="_blank" rel="noopener" data-outbound-kind="maps">Google Maps <span>↗</span></a></div>
+      <div class="link-card" id="enlaces"><div class="section-label">Enlaces oficiales</div>{studio.bookingUrl && <a href={studio.bookingUrl} target="_blank" rel="noopener" data-outbound-kind="booking">Reservar <span>↗</span></a>}{instagram && <a href={instagram} target="_blank" rel="noopener" data-outbound-kind="instagram">Instagram <span>↗</span></a>}{website && <a href={website} target="_blank" rel="noopener" data-outbound-kind="website">Sitio web <span>↗</span></a>}<a href={maps} target="_blank" rel="noopener" data-outbound-kind="maps">Google Maps <span>↗</span></a></div>
       <div class="trust-note"><strong>Información confirmada</strong><p>Yamaa reúne información pública y oficial del estudio.{verifiedLabel && <> Verificada el <time datetime={studio.verifiedAt}>{verifiedLabel}</time>.</>}</p>{studio.verificationSource && <small>Fuente: {studio.verificationSource}</small>}</div>
     </aside>
   </div>
+  </div>
+  <aside class="studio-booking-bar" aria-label="Contactar y reservar">
+    <div class="studio-booking-inner"><div class="studio-booking-copy"><strong>{studio.pricingSummary||'Encuentra tu próxima clase'}</strong><span>{studio.pricingSummary?'Confirma la tarifa con el estudio':'Consulta horarios y precios con el estudio'}</span></div><a class="btn primary" href={bookingTarget} target={bookingTarget.startsWith('#')?undefined:'_blank'} rel={bookingTarget.startsWith('#')?undefined:'noopener'} data-outbound-kind={studio.bookingUrl?'booking':'contact'}>{bookingLabel} ↗</a></div>
+  </aside>
 </main>
 <script>
-import { supabase } from '../../lib/supabase.js';
-const fav=document.querySelector('.favorite-button');
+const root=document.querySelector<HTMLElement>('.studio-experience');
+const track=document.querySelector<HTMLElement>('.studio-photo-track');
+const photos=track?.querySelectorAll('img');
+const counter=document.querySelector('#gallery-current');
+const updateCount=()=>{if(track&&counter&&photos?.length)counter.textContent=String(Math.min(photos.length,Math.max(1,Math.round(track.scrollLeft/track.clientWidth)+1)));};
+track?.addEventListener('scroll',updateCount,{passive:true});
+window.addEventListener('resize',updateCount);
+const move=(direction:number)=>{if(track)track.scrollBy({left:direction*track.clientWidth,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});};
+document.querySelector('.gallery-prev')?.addEventListener('click',()=>move(-1));
+document.querySelector('.gallery-next')?.addEventListener('click',()=>move(1));
+track?.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();move(1);}if(e.key==='ArrowLeft'){e.preventDefault();move(-1);}});
+const message=document.querySelector('.studio-action-message');
+const notify=(text:string)=>{if(message)message.textContent=text;};
+document.querySelector('.studio-share')?.addEventListener('click',async()=>{
+ const url=root?.dataset.shareUrl||window.location.href;
+ try{if(navigator.share)await navigator.share({title:root?.dataset.studioTitle||'Yamaa',url});else{await navigator.clipboard.writeText(url);notify('Enlace copiado para compartir.');}}
+ catch(error){if(!(error instanceof DOMException&&error.name==='AbortError'))notify('No pudimos compartir el enlace. Puedes copiar la dirección de esta página.');}
+});
+const fav=document.querySelector<HTMLButtonElement>('.favorite-button');
 const slug=fav?.dataset.studioSlug;
 let currentUser=null;
 let isFavorite=false;
-const paintFavorite=()=>{if(!fav)return;fav.textContent=isFavorite?'♥ Guardado':'♡ Guardar';fav.setAttribute('aria-pressed',String(isFavorite));};
-const loadFavorite=async()=>{if(!currentUser||!slug)return;const {data,error}=await supabase.from('favorites').select('studio_slug').eq('user_id',currentUser.id).eq('studio_slug',slug).maybeSingle();if(!error){isFavorite=!!data;paintFavorite();}};
-const applyAuth=async(session)=>{const signedIn=!!session?.user;currentUser=session?.user||null;if(signedIn)await loadFavorite();else{isFavorite=false;paintFavorite();}};
-window.addEventListener('yamaa-auth',(e)=>applyAuth(e.detail.session));
-fav?.addEventListener('click',async()=>{if(!currentUser){window.location.href='/registro';return;}fav.disabled=true;if(isFavorite){const {error}=await supabase.from('favorites').delete().eq('user_id',currentUser.id).eq('studio_slug',slug);if(!error)isFavorite=false;}else{const {error}=await supabase.from('favorites').insert({user_id:currentUser.id,studio_slug:slug});if(!error)isFavorite=true;}paintFavorite();fav.disabled=false;});
+let supabase;
+const paintFavorite=()=>{if(!fav)return;fav.setAttribute('aria-pressed',String(isFavorite));fav.setAttribute('aria-label',isFavorite?'Quitar estudio de favoritos':'Guardar estudio');};
+const loadFavorite=async()=>{if(!currentUser||!slug||!supabase)return;const {data,error}=await supabase.from('favorites').select('studio_slug').eq('user_id',currentUser.id).eq('studio_slug',slug).maybeSingle();if(!error){isFavorite=!!data;paintFavorite();}};
+const applyAuth=async(session)=>{currentUser=session?.user||null;if(currentUser)await loadFavorite();else{isFavorite=false;paintFavorite();}};
+const authReady=(async()=>{if(!import.meta.env.PUBLIC_SUPABASE_URL||!import.meta.env.PUBLIC_SUPABASE_ANON_KEY)return;supabase=(await import('../../lib/supabase.js')).supabase;const {data}=await supabase.auth.getSession();await applyAuth(data.session);supabase.auth.onAuthStateChange((_event,session)=>{setTimeout(()=>{applyAuth(session).catch(()=>{});},0);});})().catch(()=>{});
+fav?.addEventListener('click',async()=>{fav.disabled=true;try{await authReady;if(!currentUser||!supabase){window.location.href='/login';return;}const {error}=isFavorite?await supabase.from('favorites').delete().eq('user_id',currentUser.id).eq('studio_slug',slug):await supabase.from('favorites').insert({user_id:currentUser.id,studio_slug:slug});if(error)throw error;isFavorite=!isFavorite;paintFavorite();notify(isFavorite?'Estudio guardado en favoritos.':'Estudio eliminado de favoritos.');}catch{notify('No pudimos actualizar tus favoritos. Intenta de nuevo.');}finally{fav.disabled=false;}});
 document.querySelectorAll('[data-outbound-kind]').forEach((link)=>link.addEventListener('click',()=>{
   const detail={studioSlug:slug,kind:link.getAttribute('data-outbound-kind'),href:link.getAttribute('href')};
   window.dispatchEvent(new CustomEvent('yamaa-outbound',{detail}));
