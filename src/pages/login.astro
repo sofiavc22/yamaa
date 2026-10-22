@@ -1,9 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
+import GoogleSignIn from '../components/GoogleSignIn.astro';
 ---
 <Base title="Iniciar sesión | Yamaa">
 <main class="shell auth"><div class="eyebrow">Yamaa</div><h1>Bienvenida de nuevo</h1><p class="muted">Inicia sesión para ver la información completa de los estudios y tus favoritos.</p>
-<form class="panel auth-form" id="login-form"><label>Correo electrónico<input type="email" name="email" autocomplete="email" required /></label><label>Contraseña<input type="password" name="password" autocomplete="current-password" required /></label><button class="btn primary full" type="submit">Iniciar sesión</button><p class="auth-message" id="auth-message" aria-live="polite"></p><p class="auth-switch">¿Aún no tienes cuenta? <a href="/registro">Crea una gratis</a></p></form></main>
+<form class="panel auth-form" id="login-form"><GoogleSignIn /><div class="auth-divider"><span>o continúa con tu correo</span></div><label>Correo electrónico<input type="email" name="email" autocomplete="email" required /></label><label>Contraseña<input type="password" name="password" autocomplete="current-password" required /></label><button class="btn primary full" type="submit">Iniciar sesión</button><p class="auth-message" id="auth-message" aria-live="polite"></p><p class="auth-switch">¿Aún no tienes cuenta? <a href="/registro">Crea una gratis</a></p></form></main>
 <script>
 import { supabase } from '../lib/supabase.js';
 const form=document.querySelector('#login-form');const message=document.querySelector('#auth-message');

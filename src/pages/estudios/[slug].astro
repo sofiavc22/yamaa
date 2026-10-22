@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import StudioMap from '../../components/StudioMap.astro';
 import studios from '../../data/studios.json';
 export function getStaticPaths(){return studios.map(studio=>({params:{slug:studio.slug},props:{studio}}))}
 const {studio}=Astro.props;
@@ -54,7 +55,7 @@ const structuredData={
     <div class="detail-main">
       <section class="detail-section"><div class="section-label">Lo esencial</div><h2>Sobre {studio.name}</h2><p class="detail-intro">{studio.summary || `Estudio de ${studio.type.toLowerCase()} en ${studio.zone}, Ciudad de México. En Yamaa reunimos información práctica para ayudarte a decidir dónde practicar antes de contactar al estudio.`}</p></section>
       <section class="detail-section"><div class="section-label">Práctica</div><h2>Clases y estilos</h2><div class="chips">{studio.modalities?.map(m=><span class="chip">{m}</span>)}</div></section>
-      <section class="detail-section location-section"><div class="section-label">Ubicación</div><h2>{studio.zone}, CDMX</h2><p class="muted">{studio.address || 'Consulta la ubicación exacta en Google Maps.'}</p><a class="inline-action" href={maps} target="_blank" rel="noopener">Ver ubicación en Google Maps ↗</a></section>
+      <section class="detail-section location-section"><div class="section-label">Ubicación</div><h2>{studio.zone}, CDMX</h2><StudioMap studio={studio} /></section>
       <section class="visit-details"><div class="section-label">Información para planear tu visita</div><h2>Horarios, precios y reservas</h2><div class="visit-facts">
         <div class="visit-fact"><h3>Horarios</h3><p>{studio.scheduleSummary || 'Consulta los horarios vigentes directamente con el estudio.'}</p>{studio.scheduleUrl && <a class="inline-action" href={studio.scheduleUrl} target="_blank" rel="noopener" data-outbound-kind="schedule">Ver horarios oficiales ↗</a>}</div>
         <div class="visit-fact"><h3>Precios</h3><p>{studio.pricingSummary || 'Pregunta por la clase de prueba, clases individuales y paquetes disponibles.'}</p>{studio.pricingUrl && <a class="inline-action" href={studio.pricingUrl} target="_blank" rel="noopener" data-outbound-kind="pricing">Consultar precios oficiales ↗</a>}</div>

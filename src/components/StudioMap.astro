@@ -1,0 +1,17 @@
+---
+const { studio } = Astro.props;
+const query = [studio.name, studio.address, studio.zone, 'Ciudad de México', 'México'].filter(Boolean).join(', ');
+const params = new URLSearchParams({api:'1',query});
+const maps = `https://www.google.com/maps/search/?${params}`;
+const directions = `https://www.google.com/maps/dir/?${new URLSearchParams({api:'1',destination:query})}`;
+const apiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_EMBED_KEY;
+const embed = apiKey ? `https://www.google.com/maps/embed/v1/place?${new URLSearchParams({key:apiKey,q:query,language:'es',region:'MX'})}` : null;
+---
+<div class="studio-map-block">
+  {embed && <iframe class="studio-map-frame" src={embed} title={`Ubicación de ${studio.name} en Google Maps`} loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>}
+  <div class="studio-map-address">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 0 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+    <div><strong>{studio.name}</strong><p>{studio.address || studio.zone}</p><span>{studio.zone}, Ciudad de México</span></div>
+  </div>
+  <div class="studio-map-actions"><a class="btn primary" href={directions} target="_blank" rel="noopener" data-outbound-kind="directions">Cómo llegar ↗</a><a class="map-link" href={maps} target="_blank" rel="noopener" data-outbound-kind="maps">Abrir Google Maps ↗</a></div>
+</div>

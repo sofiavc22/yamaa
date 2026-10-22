@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import StudioCard from '../components/StudioCard.astro';
 import studios from '../data/studios.json';
 const featured=studios.slice(0,6);
-const filters=['Cerca de mí','Principiantes','Vinyasa','Hot yoga','Relajarme','Algo intenso'];
 const zones=['Roma Norte','Condesa','Polanco','Del Valle','Coyoacán','Santa Fe'];
 const structuredData={
   '@context':'https://schema.org',
@@ -15,36 +14,50 @@ const structuredData={
 ---
 <Base structuredData={structuredData}>
 <main>
-  <section class="shell hero-v2">
-    <div class="hero-copy">
-      <div class="eyebrow">La guía de yoga en México</div>
-      <h1>Encuentra dónde practicar yoga.</h1>
-      <p>Estudios y clases en Ciudad de México, organizados para que encuentres el lugar que va contigo.</p>
-    </div>
-    <div class="search search-v2">
-      <div><small>Ubicación</small><span>¿Dónde quieres practicar?</span></div>
-      <div><small>Qué buscas</small><span>Principiantes, Vinyasa, relajarte…</span></div>
-      <a class="btn primary" href="/cdmx">Buscar</a>
-    </div>
+  <section class="shell explore-hero">
+    <h1>Encuentra clases de yoga cerca de ti</h1>
   </section>
+  <div class="discovery-sticky">
+    <div class="shell">
+    <form class="wellness-search" action="/cdmx" role="search">
+      <label><span>¿Dónde practicamos?</span><select name="zona" aria-label="Zona"><option value="">Toda la Ciudad de México</option>{[...new Set(studios.map(s=>s.zone))].map(z=><option value={z}>{z}</option>)}</select></label>
+      <label><span>Tu práctica</span><select name="estilo" aria-label="Estilo de yoga"><option value="">Explora a tu ritmo</option>{['Vinyasa','Hatha','Rocket','Restaurativo','Yin'].map(f=><option value={f}>{f}</option>)}</select></label>
+      <button class="search-submit" type="submit" aria-label="Buscar estudios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><span>Buscar</span></button>
+    </form>
+    <nav class="practice-tabs category-tabs" aria-label="Explora Yamaa">
+      {[
+        {label:'Estudios',icon:'⌂',id:'estudios'},
+        {label:'Retiros',icon:'☼',id:'retiros'},
+        {label:'Experiencias',icon:'✳',id:'experiencias'},
+        {label:'Certificaciones',icon:'◇',id:'certificaciones'}
+      ].map((category,i)=><button type="button" class:list={['practice-tab',i===0&&'active']} data-category={category.id} aria-pressed={i===0?'true':'false'}><span class="category-icon" aria-hidden="true">{category.icon}</span><span>{category.label}</span></button>)}
+    </nav>
+    </div>
+  </div>
 
-  <section class="shell discover-strip">
-    <div class="chips filters">{filters.map(f=><a class="chip" href="/cdmx">{f}</a>)}</div>
-  </section>
-
-  <section class="shell section studios-first">
+  <section class="shell section studios-first" data-studios-content>
     <div class="section-head">
-      <div><div class="kicker">Descubre</div><h2>Estudios de yoga en CDMX</h2></div>
-      <a class="text-link" href="/cdmx">Ver los 38 estudios →</a>
+      <div><h2>Clases de Yoga en CDMX</h2></div>
+      <a class="text-link" href="/cdmx">Ver todos →</a>
     </div>
-    <div class="grid">{featured.map(s=><StudioCard studio={s}/>)}</div>
+    <div class="city-carousel" aria-label="Estudios de yoga en CDMX" tabindex="0">{featured.map(s=><StudioCard studio={s}/>)}</div>
+  </section>
+
+  <section class="shell section monterrey-section" data-studios-content>
+    <div class="section-head"><h2>Clases de Yoga en Monterrey</h2></div>
+    <div class="city-coming"><span class="coming-mark" aria-hidden="true">✳</span><div><h3>Próximamente en Monterrey</h3><p>Estamos preparando esta selección de estudios.</p></div></div>
+  </section>
+
+  <section class="shell section category-empty" hidden aria-live="polite">
+    <h2 id="category-heading"></h2>
+    <p class="muted">Estamos preparando esta selección para ti. Vuelve pronto para descubrir más.</p>
   </section>
 
   <section class="shell section zones-light">
     <div class="section-head">
       <div><div class="kicker">Explora por zona</div><h2>Yoga cerca de ti</h2></div>
     </div>
-    <div class="zone-pills">{zones.map(z=><a href="/cdmx">{z}<span>→</span></a>)}</div>
+    <div class="zone-pills">{zones.map(z=><a href={`/cdmx?zona=${encodeURIComponent(z)}`}>{z}<span>→</span></a>)}</div>
   </section>
 
   <section id="guias" class="shell section guides">
@@ -57,3 +70,18 @@ const structuredData={
   </section>
 </main>
 </Base>
+
+<script>
+const categoryNames={retiros:'Retiros de Yoga',experiencias:'Experiencias de Yoga',certificaciones:'Certificaciones de Yoga'};
+document.querySelectorAll('[data-category]').forEach(button=>{
+  button.addEventListener('click',()=>{
+    const category=button.getAttribute('data-category');
+    document.querySelectorAll('[data-category]').forEach(tab=>{const active=tab===button;tab.classList.toggle('active',active);tab.setAttribute('aria-pressed',String(active));});
+    document.querySelectorAll('[data-studios-content]').forEach(section=>section.toggleAttribute('hidden',category!=='estudios'));
+    const empty=document.querySelector('.category-empty');
+    empty?.toggleAttribute('hidden',category==='estudios');
+    const heading=document.querySelector('#category-heading');
+    if(heading)heading.textContent=categoryNames[category]||'';
+  });
+});
+</script>

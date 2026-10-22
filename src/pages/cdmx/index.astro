@@ -43,9 +43,10 @@ const structuredData = {
       </div>
     </section>
 
+    <div class="shell" id="search-summary" hidden><p aria-live="polite"></p><a class="text-link" href="/cdmx">Ver todos los estudios →</a></div>
     <div class="shell zone-directory">
       {groupedStudios.map(({ zone, studios: zoneStudios }) => (
-        <section class="zone-section" id={slugify(zone)}>
+        <section class="zone-section" data-zone={zone} id={slugify(zone)}>
           <div class="zone-heading"><div><div class="eyebrow">Yoga en {zone}</div><h2>{zoneStudios.length} {zoneStudios.length === 1 ? 'estudio' : 'estudios'} para comparar</h2></div><a class="back-link" href="#top">Volver arriba ↑</a></div>
           <div class="grid">{zoneStudios.map((studio) => <StudioCard studio={studio} />)}</div>
         </section>
@@ -60,3 +61,33 @@ const structuredData = {
     </section>
   </main>
 </Base>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const zone = params.get('zona');
+const style = params.get('estilo');
+const normalize = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+if (zone || style) {
+  let count = 0;
+  document.querySelectorAll('.zone-section').forEach(section => {
+    let visible = 0;
+    section.querySelectorAll('.studio-card').forEach(card => {
+      const matches = (!zone || section.getAttribute('data-zone') === zone) && (!style || normalize(card.getAttribute('data-modalities') || '').includes(normalize(style)));
+      card.toggleAttribute('hidden', !matches);
+      if (matches) visible++;
+    });
+    section.toggleAttribute('hidden', visible === 0);
+    const zoneLink = document.querySelector(`.zone-index a[href="#${section.id}"]`);
+    if (zoneLink) {
+      zoneLink.toggleAttribute('hidden', visible === 0);
+      const badge = zoneLink.querySelector('span');
+      if (badge) badge.textContent = String(visible);
+    }
+    const heading = section.querySelector('h2');
+    if (heading) heading.textContent = `${visible} ${visible === 1 ? 'estudio' : 'estudios'} para explorar`;
+    count += visible;
+  });
+  const summary = document.querySelector('#search-summary');
+  if (summary) { summary.removeAttribute('hidden'); summary.querySelector('p').textContent = `${count} estudios${zone ? ' en ' + zone : ''}${style ? ' · ' + style : ''}${count === 0 ? '. Prueba otra zona o estilo.' : ''}`; }
+}
+</script>
