@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import GoogleSignIn from '../components/GoogleSignIn.astro';
 import StudioCard from '../components/StudioCard.astro';
 import studios from '../data/studios.json';
 ---
@@ -21,6 +22,7 @@ import studios from '../data/studios.json';
         <p id="sheet-message" class="auth-message" aria-live="polite"></p>
       </form>
       <div class="sheet-divider"><span>o</span></div>
+      <GoogleSignIn />
       <p class="sheet-register">¿Es tu primera vez en Yamaa? <a href="/registro">Crea una cuenta</a></p>
     </dialog>
     <div class="grid" id="favorites-grid" hidden>{studios.map(studio=><div data-favorite-slug={studio.slug} hidden><StudioCard studio={studio}/></div>)}</div>
