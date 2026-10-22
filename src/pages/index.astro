@@ -21,12 +21,17 @@ const structuredData={
       <label><span>Tu práctica</span><select name="estilo" aria-label="Estilo de yoga"><option value="">Explora a tu ritmo</option>{['Vinyasa','Hatha','Rocket','Restaurativo','Yin'].map(f=><option value={f}>{f}</option>)}</select></label>
       <button class="search-submit" type="submit" aria-label="Buscar estudios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><span>Buscar</span></button>
     </form>
-    <nav class="practice-tabs" aria-label="Explora por práctica">
-      {['Todos','Vinyasa','Hatha','Restaurativo','Rocket','Yin'].map((f,i)=><a class:list={['practice-tab',i===0&&'active']} href={i===0?'/cdmx':`/cdmx?estilo=${f}`}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">{i===0?<><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></>:<><path d="M12 20C4 18 2 12 4 7c5 0 8 5 8 13Zm0 0c8-2 10-8 8-13-5 0-8 5-8 13Z"/><path d="M12 15c-4-5-3-9 0-12 3 3 4 7 0 12Z"/></>}</svg><span>{f}</span></a>)}
+    <nav class="practice-tabs category-tabs" aria-label="Explora Yamaa">
+      {[
+        {label:'Estudios',icon:'⌂',id:'estudios'},
+        {label:'Retiros',icon:'☼',id:'retiros'},
+        {label:'Experiencias',icon:'✳',id:'experiencias'},
+        {label:'Certificaciones',icon:'◇',id:'certificaciones'}
+      ].map((category,i)=><button type="button" class:list={['practice-tab',i===0&&'active']} data-category={category.id} aria-pressed={i===0?'true':'false'}><span class="category-icon" aria-hidden="true">{category.icon}</span><span>{category.label}</span></button>)}
     </nav>
   </section>
 
-  <section class="shell section studios-first">
+  <section class="shell section studios-first" data-studios-content>
     <div class="section-head">
       <div><h2>Clases de Yoga en CDMX</h2></div>
       <a class="text-link" href="/cdmx">Ver todos →</a>
@@ -34,9 +39,14 @@ const structuredData={
     <div class="city-carousel" aria-label="Estudios de yoga en CDMX" tabindex="0">{featured.map(s=><StudioCard studio={s}/>)}</div>
   </section>
 
-  <section class="shell section monterrey-section">
+  <section class="shell section monterrey-section" data-studios-content>
     <div class="section-head"><h2>Clases de Yoga en Monterrey</h2></div>
     <div class="city-coming"><span class="coming-mark" aria-hidden="true">✳</span><div><h3>Próximamente en Monterrey</h3><p>Estamos preparando esta selección de estudios.</p></div></div>
+  </section>
+
+  <section class="shell section category-empty" hidden aria-live="polite">
+    <h2 id="category-heading"></h2>
+    <p class="muted">Estamos preparando esta selección para ti. Vuelve pronto para descubrir más.</p>
   </section>
 
   <section class="shell section zones-light">
@@ -56,3 +66,18 @@ const structuredData={
   </section>
 </main>
 </Base>
+
+<script>
+const categoryNames={retiros:'Retiros de Yoga',experiencias:'Experiencias de Yoga',certificaciones:'Certificaciones de Yoga'};
+document.querySelectorAll('[data-category]').forEach(button=>{
+  button.addEventListener('click',()=>{
+    const category=button.getAttribute('data-category');
+    document.querySelectorAll('[data-category]').forEach(tab=>{const active=tab===button;tab.classList.toggle('active',active);tab.setAttribute('aria-pressed',String(active));});
+    document.querySelectorAll('[data-studios-content]').forEach(section=>section.toggleAttribute('hidden',category!=='estudios'));
+    const empty=document.querySelector('.category-empty');
+    empty?.toggleAttribute('hidden',category==='estudios');
+    const heading=document.querySelector('#category-heading');
+    if(heading)heading.textContent=categoryNames[category]||'';
+  });
+});
+</script>
