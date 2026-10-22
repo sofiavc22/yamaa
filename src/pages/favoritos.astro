@@ -77,5 +77,6 @@ async function loadFavorites() {
   document.querySelector('#favorites-grid')?.removeAttribute('hidden');
   if(message) message.textContent = count ? `${count} estudios guardados para tu próxima práctica.` : 'Aún no tienes favoritos. Abre un estudio y toca Guardar para encontrarlo aquí.';
 }
+window.addEventListener('yamaa-favorites-changed',()=>{loadFavorites().catch(()=>{});});
 loadFavorites().catch(()=>{const message=document.querySelector('#favorites-message');if(message)message.textContent='No pudimos cargar tus favoritos. Vuelve a intentarlo.';});
 </script>
