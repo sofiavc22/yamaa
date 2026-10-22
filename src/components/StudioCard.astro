@@ -1,25 +1,29 @@
 ---
-const {studio}=Astro.props;
+const {studio,listing=false}=Astro.props;
 const initials=studio.name.split(' ').filter(Boolean).slice(0,2).map((w)=>w[0]).join('');
 const cover=studio.images?.find((image)=>image.kind==='cover' && image.authorized && image.url);
+const photos=cover?[cover,...(studio.images||[]).filter(image=>image!==cover&&image.authorized&&image.url)]:[];
 ---
-<article class="studio-card" data-modalities={studio.modalities?.join(" ") || "Yoga"}>
+<article class:list={["studio-card",listing&&"listing-card"]} data-zone={studio.zone} data-modalities={studio.modalities?.join(" ") || "Yoga"}>
+{listing && photos.length>1 ? <>
+  <div class="card-photo-carousel" tabindex="0" aria-label={`Fotos de ${studio.name}, desliza para ver más`}>
+    {photos.map((photo,index)=><a href={`/estudios/${studio.slug}`} aria-label={`Ver ${studio.name}, foto ${index+1}`}><img src={photo.url} alt={photo.alt||`Espacio de ${studio.name}`} loading="lazy"/></a>)}
+  </div>
+  <div class="card-photo-dots" aria-hidden="true">{photos.map((_,index)=><span class:list={[index===0&&'active']}></span>)}</div>
+</> : <a class="studio-card-link" href={`/estudios/${studio.slug}`}><div class:list={["studio-photo",!cover&&"placeholder"]}>{cover?<img src={cover.url} alt={cover.alt||`Espacio de ${studio.name}`} loading="lazy"/>:<span class="placeholder-mark">{initials}</span>}{!cover&&<span class="photo-status">Foto próximamente</span>}</div></a>}
 <a class="studio-card-link" href={`/estudios/${studio.slug}`}>
-  <div class:list={["studio-photo",!cover&&"placeholder"]}>
-    {cover ? <img src={cover.url} alt={cover.alt || `Espacio de ${studio.name}`} loading="lazy"/> : <span class="placeholder-mark">{initials}</span>}
-
-    {!cover && <span class="photo-status">Foto próximamente</span>}
-  </div>
-  <div class="studio-copy">
-    <div class="studio-topline"><h3>{studio.name}</h3></div>
-    <div class="meta">{studio.zone}, CDMX</div>
-    <div class="tags">{studio.modalities?.slice(0,3).join(' · ') || 'Yoga'}</div>
-  </div>
+  <div class="studio-copy"><div class="studio-topline"><h3>{studio.name}</h3></div><div class="meta">{studio.zone}, CDMX</div><div class="tags">{studio.modalities?.slice(0,3).join(' · ')||'Yoga'}</div>{listing&&<div class="listing-price">{studio.pricingSummary||'Consulta horarios y precios'}<span>Ver estudio →</span></div>}</div>
 </a>
 <button class="card-heart" type="button" data-save-studio={studio.slug} data-studio-name={studio.name} aria-label={`Guardar ${studio.name} en favoritos`} aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.8c-2.5-2.6-6.2-1.6-8.5 1-2.3-2.6-6-3.6-8.5-1C-1 9.5 7 16.5 12 21c5-4.5 13-11.5 8.5-16.2Z"/></svg></button>
 <p class="card-favorite-message sr-only" role="status"></p>
 </article>
 <script>
+document.querySelectorAll<HTMLElement>('.card-photo-carousel').forEach(track=>{
+ const dots=track.parentElement?.querySelectorAll('.card-photo-dots span');
+ track.addEventListener('scroll',()=>{const index=Math.round(track.scrollLeft/track.clientWidth);dots?.forEach((dot,i)=>dot.classList.toggle('active',i===index));},{passive:true});
+ track.addEventListener('keydown',event=>{if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();track.scrollBy({left:(event.key==='ArrowRight'?1:-1)*track.clientWidth,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}});
+});
+
 const buttons=[...document.querySelectorAll<HTMLButtonElement>('[data-save-studio]')];
 const saved=new Set<string>();
 let userId:string|null=null;

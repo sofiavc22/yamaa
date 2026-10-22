@@ -3,11 +3,10 @@ import Base from '../../layouts/Base.astro';
 import StudioCard from '../../components/StudioCard.astro';
 import studios from '../../data/studios.json';
 
+const allStyles=[...new Map(studios.flatMap(studio=>studio.modalities||[]).map(style=>[style.toLocaleLowerCase('es'),style])).values()].sort((a,b)=>a.localeCompare(b,'es'));
 const zoneOrder = ['Roma Norte', 'Condesa', 'Polanco', 'Del Valle', 'Escandón', 'Coyoacán', 'Santa Fe'];
-const slugify = (value) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-const groupedStudios = zoneOrder
-  .map((zone) => ({ zone, studios: studios.filter((studio) => studio.zone === zone) }))
-  .filter((group) => group.studios.length > 0);
+
+
 
 const faqs = [
   { question: '¿Cuánto cuesta una clase de yoga en CDMX?', answer: 'El precio depende del estudio, la modalidad y el tipo de paquete. En cada ficha mostramos la información pública disponible o un enlace a la tarifa oficial para que confirmes el precio vigente antes de reservar.' },
@@ -28,66 +27,65 @@ const structuredData = {
 ---
 
 <Base title="Clases y estudios de yoga en CDMX: precios y horarios | Yamaa" description={`Compara ${studios.length} estudios de yoga en CDMX por colonia y estilo. Consulta ubicación, horarios, precios publicados y enlaces para reservar.`} structuredData={structuredData}>
-  <main id="top">
-    <section class="shell city-hero">
-      <div class="eyebrow">Guía de yoga en Ciudad de México</div>
-      <h1 class="page-title">Clases y estudios de yoga en CDMX</h1>
-      <p class="city-lead">Compara {studios.length} estudios en siete zonas de la ciudad. Revisa estilos de yoga, ubicación, horarios y precios publicados antes de elegir dónde practicar.</p>
-      <nav class="zone-index" aria-label="Explorar estudios por zona">
-        {groupedStudios.map(({ zone, studios: zoneStudios }) => <a class="chip" href={`#${slugify(zone)}`}>{zone} <span>{zoneStudios.length}</span></a>)}
-      </nav>
-      <div class="city-help">
-        <div><strong>1. Elige una zona</strong><span>Empieza por la colonia que te resulte más práctica.</span></div>
-        <div><strong>2. Compara estilos</strong><span>Vinyasa, Hatha, Power, restaurativo y más.</span></div>
-        <div><strong>3. Confirma y reserva</strong><span>Usa el sitio, Instagram o WhatsApp oficial del estudio.</span></div>
+  <main id="top" class="city-results-page">
+    <header class="results-sticky">
+      <div class="shell results-search-row">
+        <a class="results-back" href="/" aria-label="Volver al inicio"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7"/></svg></a>
+        <button type="button" class="results-search-pill" data-open-filters><strong>Yoga en Ciudad de México</strong><span id="results-search-caption">Todas las zonas · Todos los estilos</span></button>
+        <button type="button" class="results-filter-button" data-open-filters aria-label="Abrir filtros"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="9" cy="18" r="2"/></svg><span id="results-filter-badge" hidden></span></button>
       </div>
+      <nav class="shell results-filter-chips" aria-label="Filtrar por estilo de yoga">
+        {['Todos','Vinyasa','Hatha','Restaurativo','Rocket','Yin','Ashtanga'].map((style,index)=><a class="chip" href={index===0?'/cdmx':`/cdmx?estilo=${encodeURIComponent(style)}`} data-style-filter={index===0?'':style} aria-current={index===0?'true':undefined}>{style}</a>)}
+      </nav>
+    </header>
+    <section class="shell results-content" aria-labelledby="city-results-title">
+      <h1 id="city-results-title">{studios.length} estudios de yoga en CDMX</h1>
+      <div class="results-count sr-only" role="status" aria-live="polite"></div>
+      <div class="results-empty" hidden><h2>No encontramos estudios con esos filtros</h2><p>Prueba con otra zona o estilo para encontrar tu próxima práctica.</p><a class="btn" href="/cdmx">Quitar filtros</a></div>
+      <div class="grid results-grid">{studios.map(studio=><StudioCard studio={studio} listing={true}/>)}</div>
     </section>
-
-    <div class="shell" id="search-summary" hidden><p aria-live="polite"></p><a class="text-link" href="/cdmx">Ver todos los estudios →</a></div>
-    <div class="shell zone-directory">
-      {groupedStudios.map(({ zone, studios: zoneStudios }) => (
-        <section class="zone-section" data-zone={zone} id={slugify(zone)}>
-          <div class="zone-heading"><div><div class="eyebrow">Yoga en {zone}</div><h2>{zoneStudios.length} {zoneStudios.length === 1 ? 'estudio' : 'estudios'} para comparar</h2></div><a class="back-link" href="#top">Volver arriba ↑</a></div>
-          <div class="grid">{zoneStudios.map((studio) => <StudioCard studio={studio} />)}</div>
-        </section>
-      ))}
-    </div>
+    <a class="results-map-button" href="https://www.google.com/maps/search/?api=1&query=estudios+de+yoga+Ciudad+de+Mexico" target="_blank" rel="noopener" aria-label="Ver estudios de la zona en Google Maps, abre otra pestaña"><span>Mapa</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2V5Zm6-2v16m6-14v16"/></svg></a>
+    <dialog class="results-filter-sheet" aria-labelledby="results-filter-title">
+      <form action="/cdmx" method="get">
+        <header><button type="button" class="results-close" aria-label="Cerrar filtros">×</button><h2 id="results-filter-title">Encuentra tu práctica</h2></header>
+        <label>¿En qué zona?<select name="zona" aria-label="Zona"><option value="">Toda la Ciudad de México</option>{zoneOrder.map(zone=><option value={zone}>{zone}</option>)}</select></label>
+        <label>Estilo de yoga<select name="estilo" aria-label="Estilo de yoga"><option value="">Todos los estilos</option>{allStyles.map(style=><option value={style}>{style}</option>)}</select></label>
+        <label>Nombre del estudio<input type="search" name="q" placeholder="Busca tu estudio" autocomplete="off"/></label>
+        <footer><a href="/cdmx">Quitar filtros</a><button class="btn primary" type="submit">Ver estudios</button></footer>
+      </form>
+    </dialog>
 
     <section class="city-faq">
       <div class="shell">
         <div class="eyebrow">Antes de reservar</div><h2>Preguntas sobre clases de yoga en CDMX</h2>
-        <div class="faq-grid">{faqs.map((faq) => <article><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</div>
+        <div class="results-faq-list">{faqs.map(faq=><details><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</div>
       </div>
     </section>
   </main>
 </Base>
 
 <script>
-const params = new URLSearchParams(window.location.search);
-const zone = params.get('zona');
-const style = params.get('estilo');
-const normalize = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-if (zone || style) {
-  let count = 0;
-  document.querySelectorAll('.zone-section').forEach(section => {
-    let visible = 0;
-    section.querySelectorAll('.studio-card').forEach(card => {
-      const matches = (!zone || section.getAttribute('data-zone') === zone) && (!style || normalize(card.getAttribute('data-modalities') || '').includes(normalize(style)));
-      card.toggleAttribute('hidden', !matches);
-      if (matches) visible++;
-    });
-    section.toggleAttribute('hidden', visible === 0);
-    const zoneLink = document.querySelector(`.zone-index a[href="#${section.id}"]`);
-    if (zoneLink) {
-      zoneLink.toggleAttribute('hidden', visible === 0);
-      const badge = zoneLink.querySelector('span');
-      if (badge) badge.textContent = String(visible);
-    }
-    const heading = section.querySelector('h2');
-    if (heading) heading.textContent = `${visible} ${visible === 1 ? 'estudio' : 'estudios'} para explorar`;
-    count += visible;
-  });
-  const summary = document.querySelector('#search-summary');
-  if (summary) { summary.removeAttribute('hidden'); summary.querySelector('p').textContent = `${count} estudios${zone ? ' en ' + zone : ''}${style ? ' · ' + style : ''}${count === 0 ? '. Prueba otra zona o estilo.' : ''}`; }
-}
+const params=new URLSearchParams(window.location.search);
+const zone=params.get('zona')||'';const style=params.get('estilo')||'';const query=params.get('q')||'';
+const normalize=(value:string)=>value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+let count=0;
+document.querySelectorAll<HTMLElement>('.results-grid .studio-card').forEach(card=>{
+ const matches=(!zone||card.dataset.zone===zone)&&(!style||normalize(card.dataset.modalities||'').includes(normalize(style)))&&(!query||normalize(card.querySelector('h3')?.textContent||'').includes(normalize(query)));
+ card.hidden=!matches;if(matches)count++;
+});
+const title=document.querySelector('#city-results-title');
+const summary=`${count} ${count===1?'estudio de yoga':'estudios de yoga'} ${zone?'en '+zone:'en CDMX'}`;
+if(title)title.textContent=summary;
+const status=document.querySelector('.results-count');if(status)status.textContent=summary;
+document.querySelector('.results-empty')?.toggleAttribute('hidden',count>0);
+const caption=document.querySelector('#results-search-caption');if(caption)caption.textContent=[zone||'Todas las zonas',style||'Todos los estilos',query].filter(Boolean).join(' · ');
+const badge=document.querySelector('#results-filter-badge');const activeCount=[zone,style,query].filter(Boolean).length;if(badge&&activeCount){badge.textContent=String(activeCount);badge.removeAttribute('hidden');}
+document.querySelectorAll<HTMLAnchorElement>('[data-style-filter]').forEach(link=>{const value=link.dataset.styleFilter||'';const next=new URLSearchParams(params);if(value)next.set('estilo',value);else next.delete('estilo');link.href='/cdmx'+(next.size?'?'+next:'');if(normalize(value)===normalize(style))link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});
+const map=document.querySelector<HTMLAnchorElement>('.results-map-button');if(map)map.href='https://www.google.com/maps/search/?'+new URLSearchParams({api:'1',query:['estudios de yoga',style,zone,'Ciudad de México'].filter(Boolean).join(' ')});
+const sheet=document.querySelector<HTMLDialogElement>('.results-filter-sheet');
+const form=sheet?.querySelector('form');
+for(const name of ['zona','estilo','q']){const input=form?.elements.namedItem(name);if(input instanceof HTMLInputElement||input instanceof HTMLSelectElement){const value=params.get(name)||'';if(input instanceof HTMLSelectElement&&value){const option=[...input.options].find(option=>normalize(option.value)===normalize(value));if(option)input.value=option.value;else{input.add(new Option(value,value));input.value=value;}}else input.value=value;}}
+document.querySelectorAll('[data-open-filters]').forEach(button=>button.addEventListener('click',()=>sheet?.showModal()));
+document.querySelector('.results-close')?.addEventListener('click',()=>sheet?.close());
+sheet?.addEventListener('click',event=>{if(event.target===sheet){const box=sheet.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)sheet.close();}});
 </script>
