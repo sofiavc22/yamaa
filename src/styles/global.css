@@ -41,3 +41,7 @@ body:has(.favorites-page)>.nav,body:has(.favorites-page)>.footer{display:none}.f
 
 /* Main discovery categories */
 .category-tabs{border-bottom:0;gap:10px;padding:6px 0 12px;margin-top:20px}.category-tabs .practice-tab{flex-direction:row;gap:8px;min-height:46px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font:inherit;font-size:14px;box-shadow:0 2px 4px #23392c0a;white-space:nowrap}.category-tabs .practice-tab.active{background:var(--warm);border-color:#cdd6ce;box-shadow:inset 0 1px 5px #284f4616}.category-tabs .practice-tab:hover{border-color:#a7b7ab}.category-icon{font-size:23px;line-height:1;color:var(--brand)}.category-empty{min-height:260px}.category-empty p{font-size:15px;line-height:1.6;max-width:420px}
+
+/* Keep search and discovery categories in reach while scrolling. */
+.discovery-sticky{position:sticky;top:0;z-index:30;background:#fff;padding-top:10px;border-bottom:1px solid var(--line)}.discovery-sticky .wellness-search{margin-top:0}.discovery-sticky .category-tabs{margin-top:12px;padding-bottom:12px;margin-bottom:0}.explore-hero{padding-bottom:0}.studios-first{scroll-margin-top:175px}
+@media(min-width:1000px){.discovery-sticky{padding-top:16px}.discovery-sticky .category-tabs{margin-top:16px}}

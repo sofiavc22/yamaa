@@ -16,6 +16,9 @@ const structuredData={
 <main>
   <section class="shell explore-hero">
     <h1>Encuentra clases de yoga cerca de ti</h1>
+  </section>
+  <div class="discovery-sticky">
+    <div class="shell">
     <form class="wellness-search" action="/cdmx" role="search">
       <label><span>¿Dónde practicamos?</span><select name="zona" aria-label="Zona"><option value="">Toda la Ciudad de México</option>{[...new Set(studios.map(s=>s.zone))].map(z=><option value={z}>{z}</option>)}</select></label>
       <label><span>Tu práctica</span><select name="estilo" aria-label="Estilo de yoga"><option value="">Explora a tu ritmo</option>{['Vinyasa','Hatha','Rocket','Restaurativo','Yin'].map(f=><option value={f}>{f}</option>)}</select></label>
@@ -29,7 +32,8 @@ const structuredData={
         {label:'Certificaciones',icon:'◇',id:'certificaciones'}
       ].map((category,i)=><button type="button" class:list={['practice-tab',i===0&&'active']} data-category={category.id} aria-pressed={i===0?'true':'false'}><span class="category-icon" aria-hidden="true">{category.icon}</span><span>{category.label}</span></button>)}
     </nav>
-  </section>
+    </div>
+  </div>
 
   <section class="shell section studios-first" data-studios-content>
     <div class="section-head">
