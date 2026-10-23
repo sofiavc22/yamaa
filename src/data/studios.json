@@ -37,7 +37,8 @@
         "source": "Instagram oficial de Mūla Yoga Shala",
         "authorized": true
       }
-    ]
+    ],
+    "firstClassPrice": 300
   },
   {
     "name": "Con Pausa",
@@ -75,7 +76,8 @@
         "source": "Instagram oficial de Con Pausa",
         "authorized": true
       }
-    ]
+    ],
+    "firstClassPrice": 300
   },
   {
     "name": "Gita Studio",
@@ -124,7 +126,8 @@
         "source": "Material oficial de Gita Studio",
         "authorized": true
       }
-    ]
+    ],
+    "firstClassPrice": 250
   },
   {
     "name": "Atma Yoga & Energy Center",
@@ -163,7 +166,8 @@
         "source": "Material oficial de Atma Yoga & Energy Center",
         "authorized": true
       }
-    ]
+    ],
+    "firstClassPrice": 300
   },
   {
     "name": "Power Flow Yoga",
@@ -179,7 +183,8 @@
     ],
     "instagram": "https://www.instagram.com/powerflowyogacdmx/?hl=es-la",
     "whatsapp": "",
-    "images": []
+    "images": [],
+    "firstClassDonation": true
   },
   {
     "name": "Kurunta Yoga by Ana Sordo",
@@ -206,7 +211,8 @@
     "beginnerNote": "El estudio presenta Air Yoga como una práctica disponible desde nivel principiante hasta avanzado.",
     "verifiedAt": "2026-10-20",
     "verificationSource": "Sitio oficial de Kurunta Yoga",
-    "images": []
+    "images": [],
+    "firstClassPrice": 300
   },
   {
     "name": "Taller Wellness",
@@ -234,7 +240,8 @@
     ],
     "instagram": "https://www.instagram.com/centro_budista/",
     "whatsapp": "525555254023",
-    "images": []
+    "images": [],
+    "firstClassPrice": 150
   },
   {
     "name": "THE MAT MX",
@@ -248,7 +255,8 @@
     ],
     "instagram": "https://www.instagram.com/thematmx/",
     "whatsapp": "525537589176",
-    "images": []
+    "images": [],
+    "firstClassPrice": 350
   },
   {
     "name": "Bodai Yoga Condesa",
@@ -261,20 +269,8 @@
     ],
     "instagram": "https://www.instagram.com/bodaiyoga/",
     "whatsapp": "525536594811",
-    "images": []
-  },
-  {
-    "name": "Yoga en Síntesis Condesa",
-    "slug": "yoga-en-sintesis-condesa",
-    "zone": "Condesa",
-    "type": "Estudio de yoga",
-    "address": "Atlixco 72, Condesa",
-    "modalities": [
-      "Yoga"
-    ],
-    "instagram": "https://yogaensintesis.com",
-    "whatsapp": "525537343703",
-    "images": []
+    "images": [],
+    "firstClassPrice": 270
   },
   {
     "name": "Mukta Yoga Vinyasa",
@@ -287,34 +283,8 @@
     ],
     "instagram": "https://www.instagram.com/muktayoga.vinyasa/?hl=es",
     "whatsapp": "525560610108",
-    "images": []
-  },
-  {
-    "name": "YOGA42",
-    "slug": "yoga42",
-    "zone": "Condesa",
-    "type": "Estudio de yoga",
-    "address": "Zamora 169, Condesa",
-    "modalities": [
-      "Yoga"
-    ],
-    "instagram": "https://www.instagram.com/coachingyoga42/",
-    "whatsapp": "525543482089",
-    "images": []
-  },
-  {
-    "name": "Origen Estudio",
-    "slug": "origen-estudio",
-    "zone": "Condesa",
-    "type": "Yoga / Pilates",
-    "address": "Cuernavaca 85, Condesa",
-    "modalities": [
-      "Yoga",
-      "Pilates"
-    ],
-    "instagram": "https://www.instagram.com/thisisorigenstudio/?hl=es",
-    "whatsapp": "525533980669",
-    "images": []
+    "images": [],
+    "firstClassPrice": 330
   },
   {
     "name": "Sat Nam Yoga y Pilates",
@@ -329,7 +299,8 @@
     ],
     "instagram": "https://www.instagram.com/satnam.yoga.pilates/?hl=es",
     "whatsapp": "525565741897",
-    "images": []
+    "images": [],
+    "firstClassPrice": 200
   },
   {
     "name": "Duna Studio",
@@ -356,22 +327,8 @@
     "bookingUrl": "https://dunastudio.space/",
     "verifiedAt": "2026-10-20",
     "verificationSource": "Sitio y términos oficiales de Duna Studio",
-    "images": []
-  },
-  {
-    "name": "MAT Barre Studio",
-    "slug": "mat-barre-studio",
-    "zone": "Condesa",
-    "type": "Estudio mixto",
-    "address": "",
-    "modalities": [
-      "Yoga",
-      "Pilates",
-      "Barre"
-    ],
-    "instagram": "https://www.instagram.com/mat.barre?igsh=b3ViODg3eGc4ZzZs&utm_source=qr",
-    "whatsapp": "525561888535",
-    "images": []
+    "images": [],
+    "firstClassPrice": 250
   },
   {
     "name": "AgoraLucis",
@@ -384,20 +341,8 @@
     ],
     "instagram": "https://www.instagram.com/agoralucis/",
     "whatsapp": "525522544381",
-    "images": []
-  },
-  {
-    "name": "Ganesha",
-    "slug": "ganesha",
-    "zone": "Polanco",
-    "type": "Estudio de yoga",
-    "address": "Lope de Vega 111, Polanco/Granada",
-    "modalities": [
-      "Yoga"
-    ],
-    "instagram": "https://www.instagram.com/ganesh.center/",
-    "whatsapp": "525579426613",
-    "images": []
+    "images": [],
+    "firstClassPrice": 335
   },
   {
     "name": "Iyengar Yoga Center",
@@ -410,7 +355,8 @@
     ],
     "instagram": "https://www.instagram.com/iyengar_yoga_center/",
     "whatsapp": "525561010784",
-    "images": []
+    "images": [],
+    "firstClassPrice": 420
   },
   {
     "name": "Gurukul Yoga Studio Polanco",
@@ -441,7 +387,8 @@
     ],
     "instagram": "https://www.instagram.com/gayoyogawellness/",
     "whatsapp": "525630012024",
-    "images": []
+    "images": [],
+    "firstClassPrice": 340
   },
   {
     "name": "Light On Yoga",
@@ -456,20 +403,8 @@
     ],
     "instagram": "https://www.instagram.com/lightonstudiosmx/",
     "whatsapp": "525628120008",
-    "images": []
-  },
-  {
-    "name": "KO Horacio Polanco",
-    "slug": "ko-horacio-polanco",
-    "zone": "Polanco",
-    "type": "Estudio mixto",
-    "address": "",
-    "modalities": [
-      "Yoga + entrenamiento"
-    ],
-    "instagram": "https://www.instagram.com/ilivekomx/?hl=es",
-    "whatsapp": "933534297",
-    "images": []
+    "images": [],
+    "firstClassPrice": 320
   },
   {
     "name": "FIRA Wellness Club",
@@ -482,7 +417,8 @@
     ],
     "instagram": "https://www.instagram.com/firawellnessclub/",
     "whatsapp": "525529858570",
-    "images": []
+    "images": [],
+    "firstClassPrice": 350
   },
   {
     "name": "Estudio Bengala Polanco",
@@ -497,22 +433,8 @@
     ],
     "instagram": "https://www.instagram.com/bengalaestudio/",
     "whatsapp": "525534817699",
-    "images": []
-  },
-  {
-    "name": "Coven Wellness Club",
-    "slug": "coven-wellness-club",
-    "zone": "Polanco",
-    "type": "Wellness / yoga",
-    "address": "",
-    "modalities": [
-      "Yoga",
-      "Barre",
-      "Pilates"
-    ],
-    "instagram": "https://www.instagram.com/coven.wellness_club/",
-    "whatsapp": "",
-    "images": []
+    "images": [],
+    "firstClassPrice": 350
   },
   {
     "name": "Origen Estudio Polanco",
@@ -540,7 +462,8 @@
     ],
     "instagram": "https://www.instagram.com/onepercentyogamx/",
     "whatsapp": "525564906300",
-    "images": []
+    "images": [],
+    "firstClassPrice": 333
   },
   {
     "name": "SoulStudio Barre & Yoga Masaryk",
@@ -554,7 +477,8 @@
     ],
     "instagram": "https://www.instagram.com/soulstudiobarre/?hl=es",
     "whatsapp": "",
-    "images": []
+    "images": [],
+    "firstClassPrice": 250
   },
   {
     "name": "KoKo Yoga Del Valle",
@@ -568,7 +492,8 @@
     ],
     "instagram": "https://www.instagram.com/kokoyogamx",
     "whatsapp": "525545740558",
-    "images": []
+    "images": [],
+    "firstClassPrice": 300
   },
   {
     "name": "Yoga Espacio Del Valle",
@@ -582,7 +507,8 @@
     ],
     "instagram": "",
     "whatsapp": "525540213958",
-    "images": []
+    "images": [],
+    "firstClassPrice": 240
   },
   {
     "name": "Dharma Yoga Studio",
@@ -597,7 +523,8 @@
     ],
     "instagram": "https://www.instagram.com/dharma.yoga.studio/",
     "whatsapp": "525517028281",
-    "images": []
+    "images": [],
+    "firstClassPrice": 220
   },
   {
     "name": "Metta Yoga",
@@ -611,7 +538,8 @@
     ],
     "instagram": "https://www.instagram.com/mettayoga.mx/",
     "whatsapp": "525542265007",
-    "images": []
+    "images": [],
+    "firstClassPrice": 200
   },
   {
     "name": "Aera Studio",
@@ -626,7 +554,8 @@
     ],
     "instagram": "https://www.instagram.com/aerastudio.mx/",
     "whatsapp": "525526898793",
-    "images": []
+    "images": [],
+    "firstClassPrice": 150
   },
   {
     "name": "Bodai Yoga Del Valle",
@@ -641,7 +570,8 @@
     ],
     "instagram": "https://www.instagram.com/bodaiyoga/",
     "whatsapp": "525536594811",
-    "images": []
+    "images": [],
+    "firstClassPrice": 250
   },
   {
     "name": "Yoga Espacio Coyoacán",
@@ -656,7 +586,8 @@
     ],
     "instagram": "https://www.instagram.com/clasesyogaespacio/",
     "whatsapp": "525611647858",
-    "images": []
+    "images": [],
+    "firstClassPrice": 240
   },
   {
     "name": "YOGA CALIENTE - Hot Yoga Studio Santa Fe",
@@ -670,6 +601,7 @@
     ],
     "instagram": "https://www.instagram.com/yogacaliente.cdmx/?hl=es",
     "whatsapp": "525528662142",
-    "images": []
+    "images": [],
+    "firstClassPrice": 300
   }
 ]
