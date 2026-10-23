@@ -117,9 +117,18 @@ let isFavorite=false;
 let supabase;
 const paintFavorite=()=>{if(!fav)return;fav.setAttribute('aria-pressed',String(isFavorite));fav.setAttribute('aria-label',isFavorite?'Quitar estudio de favoritos':'Guardar estudio');};
 const loadFavorite=async()=>{if(!currentUser||!slug||!supabase)return;const {data,error}=await supabase.from('favorites').select('studio_slug').eq('user_id',currentUser.id).eq('studio_slug',slug).maybeSingle();if(!error){isFavorite=!!data;paintFavorite();}};
-const applyAuth=async(session)=>{currentUser=session?.user||null;if(currentUser)await loadFavorite();else{isFavorite=false;paintFavorite();}};
+const accessLinks=[...document.querySelectorAll<HTMLAnchorElement>('[data-outbound-kind]')];
+const loginTarget='/login?next='+encodeURIComponent(window.location.pathname);
+const originalLinks=accessLinks.map(link=>({link,href:link.getAttribute('href')||'',target:link.getAttribute('target')}));
+const updateAccess=()=>originalLinks.forEach(({link,href,target})=>{
+ link.href=currentUser?href:loginTarget;
+ if(currentUser&&target)link.setAttribute('target',target);else link.removeAttribute('target');
+ if(!currentUser)link.setAttribute('aria-label',link.textContent?.trim()+' · Inicia sesión o crea una cuenta');else link.removeAttribute('aria-label');
+});
+updateAccess();
+const applyAuth=async(session)=>{currentUser=session?.user||null;updateAccess();if(currentUser)await loadFavorite();else{isFavorite=false;paintFavorite();}};
 const authReady=(async()=>{if(!import.meta.env.PUBLIC_SUPABASE_URL||!import.meta.env.PUBLIC_SUPABASE_ANON_KEY)return;supabase=(await import('../../lib/supabase.js')).supabase;const {data}=await supabase.auth.getSession();await applyAuth(data.session);supabase.auth.onAuthStateChange((_event,session)=>{setTimeout(()=>{applyAuth(session).catch(()=>{});},0);});})().catch(()=>{});
-fav?.addEventListener('click',async()=>{fav.disabled=true;try{await authReady;if(!currentUser||!supabase){window.location.href='/login';return;}const {error}=isFavorite?await supabase.from('favorites').delete().eq('user_id',currentUser.id).eq('studio_slug',slug):await supabase.from('favorites').insert({user_id:currentUser.id,studio_slug:slug});if(error)throw error;isFavorite=!isFavorite;paintFavorite();notify(isFavorite?'Estudio guardado en favoritos.':'Estudio eliminado de favoritos.');}catch{notify('No pudimos actualizar tus favoritos. Intenta de nuevo.');}finally{fav.disabled=false;}});
+fav?.addEventListener('click',async()=>{fav.disabled=true;try{await authReady;if(!currentUser||!supabase){window.location.href=loginTarget;return;}const {error}=isFavorite?await supabase.from('favorites').delete().eq('user_id',currentUser.id).eq('studio_slug',slug):await supabase.from('favorites').insert({user_id:currentUser.id,studio_slug:slug});if(error)throw error;isFavorite=!isFavorite;paintFavorite();notify(isFavorite?'Estudio guardado en favoritos.':'Estudio eliminado de favoritos.');}catch{notify('No pudimos actualizar tus favoritos. Intenta de nuevo.');}finally{fav.disabled=false;}});
 document.querySelectorAll('[data-outbound-kind]').forEach((link)=>link.addEventListener('click',()=>{
   const detail={studioSlug:slug,kind:link.getAttribute('data-outbound-kind'),href:link.getAttribute('href')};
   window.dispatchEvent(new CustomEvent('yamaa-outbound',{detail}));

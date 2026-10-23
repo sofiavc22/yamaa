@@ -3,6 +3,7 @@
   <p class="google-message" role="status" hidden></p>
 </div>
 <script>
+import { authDestination } from '../lib/authDestination.js';
 document.querySelectorAll('.google-signin').forEach(button=>{
   button.addEventListener('click',async()=>{
     const message=button.parentElement?.querySelector('.google-message');
@@ -11,7 +12,7 @@ document.querySelectorAll('.google-signin').forEach(button=>{
     if(button instanceof HTMLButtonElement)button.disabled=true;
     try{
       const {supabase}=await import('../lib/supabase.js');
-      const {error}=await supabase.auth.signInWithOAuth({provider:'google',options:{redirectTo:window.location.origin+'/cdmx'}});
+      const {error}=await supabase.auth.signInWithOAuth({provider:'google',options:{redirectTo:window.location.origin+authDestination()}});
       if(error)showMessage('No pudimos iniciar con Google. Intenta de nuevo o usa tu correo.');
     }catch{showMessage('No pudimos conectar con Google. Intenta de nuevo o usa tu correo.');}
     finally{if(button instanceof HTMLButtonElement)button.disabled=false;}

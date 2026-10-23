@@ -7,7 +7,11 @@ import GoogleSignIn from '../components/GoogleSignIn.astro';
 <form class="panel auth-form" id="login-form"><GoogleSignIn /><div class="auth-divider"><span>o continúa con tu correo</span></div><label>Correo electrónico<input type="email" name="email" autocomplete="email" required /></label><label>Contraseña<input type="password" name="password" autocomplete="current-password" required /></label><button class="btn primary full" type="submit">Iniciar sesión</button><p class="auth-message" id="auth-message" aria-live="polite"></p><p class="auth-switch">¿Aún no tienes cuenta? <a href="/registro">Crea una gratis</a></p></form></main>
 <script>
 import { supabase } from '../lib/supabase.js';
+import { authDestination } from '../lib/authDestination.js';
+const destination=authDestination();
+const switchLink=document.querySelector('.auth-switch a');
+if(switchLink) switchLink.setAttribute('href','/registro?next='+encodeURIComponent(destination));
 const form=document.querySelector('#login-form');const message=document.querySelector('#auth-message');
-form?.addEventListener('submit',async(e)=>{e.preventDefault();message.textContent='Iniciando sesión…';const data=new FormData(form);const email=String(data.get('email')||'');const password=String(data.get('password')||'');const {error}=await supabase.auth.signInWithPassword({email,password});if(error){message.textContent='No pudimos iniciar sesión. Revisa tu correo y contraseña.';return;}window.location.href='/cdmx';});
+form?.addEventListener('submit',async(e)=>{e.preventDefault();message.textContent='Iniciando sesión…';const data=new FormData(form);const email=String(data.get('email')||'');const password=String(data.get('password')||'');const {error}=await supabase.auth.signInWithPassword({email,password});if(error){message.textContent='No pudimos iniciar sesión. Revisa tu correo y contraseña.';return;}window.location.href=destination;});
 </script>
 </Base>

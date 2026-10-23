@@ -7,7 +7,11 @@ import GoogleSignIn from '../components/GoogleSignIn.astro';
 <form class="panel auth-form" id="signup-form"><GoogleSignIn /><div class="auth-divider"><span>o continúa con tu correo</span></div><label>Correo electrónico<input type="email" name="email" autocomplete="email" required /></label><label>Contraseña<input type="password" name="password" autocomplete="new-password" minlength="8" required /></label><button class="btn primary full" type="submit">Crear cuenta gratis</button><p class="auth-message" id="auth-message" aria-live="polite"></p><p class="auth-switch">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p></form></main>
 <script>
 import { supabase } from '../lib/supabase.js';
+import { authDestination } from '../lib/authDestination.js';
+const destination=authDestination();
+const switchLink=document.querySelector('.auth-switch a');
+if(switchLink) switchLink.setAttribute('href','/login?next='+encodeURIComponent(destination));
 const form=document.querySelector('#signup-form'); const message=document.querySelector('#auth-message');
-form?.addEventListener('submit',async(e)=>{e.preventDefault();message.textContent='Creando tu cuenta…';const data=new FormData(form);const email=String(data.get('email')||'');const password=String(data.get('password')||'');const {data:result,error}=await supabase.auth.signUp({email,password,options:{emailRedirectTo:window.location.origin+'/cdmx'}});if(error){message.textContent=error.message;return;}if(result.session){window.location.href='/cdmx';return;}message.textContent='Revisa tu correo para confirmar tu cuenta. Después podrás iniciar sesión.';});
+form?.addEventListener('submit',async(e)=>{e.preventDefault();message.textContent='Creando tu cuenta…';const data=new FormData(form);const email=String(data.get('email')||'');const password=String(data.get('password')||'');const {data:result,error}=await supabase.auth.signUp({email,password,options:{emailRedirectTo:window.location.origin+destination}});if(error){message.textContent=error.message;return;}if(result.session){window.location.href=destination;return;}message.textContent='Revisa tu correo para confirmar tu cuenta. Después podrás iniciar sesión.';});
 </script>
 </Base>
