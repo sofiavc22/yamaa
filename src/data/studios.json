@@ -183,7 +183,20 @@
     ],
     "instagram": "https://www.instagram.com/powerflowyogacdmx/?hl=es-la",
     "whatsapp": "",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/power-flow-yoga/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Interior de Power Flow Yoga con piso de madera y personas preparándose para una clase"
+      },
+      {
+        "url": "/images/studios/power-flow-yoga/class.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Clase grupal de yoga en Power Flow Yoga"
+      }
+    ],
     "firstClassDonation": true
   },
   {
