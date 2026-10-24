@@ -602,7 +602,26 @@
     ],
     "instagram": "https://www.instagram.com/lightonstudiosmx/",
     "whatsapp": "525628120008",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/light-on-yoga/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Clase grupal de yoga en una terraza de Light On Yoga"
+      },
+      {
+        "url": "/images/studios/light-on-yoga/class.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Sesión guiada en el salón de Light On Yoga junto a ventanales"
+      },
+      {
+        "url": "/images/studios/light-on-yoga/reception.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Recepción de Light On Yoga con plantas y luz natural"
+      }
+    ],
     "firstClassPrice": 320
   },
   {
