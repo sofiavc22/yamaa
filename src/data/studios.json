@@ -729,7 +729,20 @@
     ],
     "instagram": "https://www.instagram.com/onepercentyogamx/",
     "whatsapp": "525564906300",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/one-percent-yoga/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Salón de One Percent Yoga con tapetes e iluminación cálida y violeta"
+      },
+      {
+        "url": "/images/studios/one-percent-yoga/group.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Grupo de personas junto a los ventanales de One Percent Yoga"
+      }
+    ],
     "firstClassPrice": 333
   },
   {
