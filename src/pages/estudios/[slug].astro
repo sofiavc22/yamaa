@@ -13,7 +13,8 @@ const authorizedImages=(studio.images || []).filter((image)=>image.authorized &&
 const cover=authorizedImages.find((image)=>image.kind==='cover') || authorizedImages[0];
 const gallery=cover?[cover,...authorizedImages.filter((image)=>image!==cover)]:[];
 const bookingTarget=studio.bookingUrl||wa||website||instagram||'#enlaces';
-const bookingLabel=studio.bookingUrl?'Reservar clase':wa?'Consultar disponibilidad':website||instagram?'Contactar al estudio':'Ver contacto';
+const bookingLabel='Contactar al estudio';
+const firstVisitPrice=typeof studio.firstClassPrice==='number'?new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}).format(studio.firstClassPrice)+' MXN':null;
 const title=studio.seoTitle || `${studio.name} — Yoga en ${studio.zone} | Yamaa`;
 const description=studio.seoDescription || `Conoce ${studio.name} en ${studio.zone}, CDMX: estilos de yoga, ubicación y enlaces oficiales para planear tu visita.`;
 const verifiedLabel=studio.verifiedAt
@@ -88,7 +89,7 @@ const structuredData={
   </div>
   </div>
   <aside class="studio-booking-bar" aria-label="Contactar y reservar">
-    <div class="studio-booking-inner"><div class="studio-booking-copy"><strong>{studio.pricingSummary||'Encuentra tu próxima clase'}</strong><span>{studio.pricingSummary?'Confirma la tarifa con el estudio':'Consulta horarios y precios con el estudio'}</span></div><a class="btn primary" href={bookingTarget} target={bookingTarget.startsWith('#')?undefined:'_blank'} rel={bookingTarget.startsWith('#')?undefined:'noopener'} data-outbound-kind={studio.bookingUrl?'booking':'contact'}>{bookingLabel} ↗</a></div>
+    <div class="studio-booking-inner"><div class="studio-booking-copy"><strong>{studio.firstClassDonation?'Donativo':firstVisitPrice||'Consulta la tarifa'}</strong><span>Tu primera visita</span></div><a class="btn primary" href={bookingTarget} target={bookingTarget.startsWith('#')?undefined:'_blank'} rel={bookingTarget.startsWith('#')?undefined:'noopener'} data-outbound-kind={studio.bookingUrl?'booking':'contact'}>{bookingLabel}</a></div>
   </aside>
 </main>
 <script>
