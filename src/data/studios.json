@@ -325,7 +325,26 @@
     ],
     "instagram": "https://www.instagram.com/bodaiyoga/",
     "whatsapp": "525536594811",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/bodai-condesa/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Clase grupal en el salón de Bodai Yoga Condesa con piso de madera y luz natural"
+      },
+      {
+        "url": "/images/studios/bodai-condesa/room.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Personas practicando en el salón de Bodai Yoga Condesa"
+      },
+      {
+        "url": "/images/studios/bodai-condesa/aerial.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Práctica de yoga con telas en Bodai Yoga Condesa"
+      }
+    ],
     "firstClassPrice": 270
   },
   {
