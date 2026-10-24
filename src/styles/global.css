@@ -74,4 +74,4 @@ body:has(.city-results-page)>.nav{display:none}.results-sticky{position:sticky;t
 
 .studio-social-row{display:flex;align-items:center;gap:32px;padding:24px 0;border-bottom:1px solid var(--line)}.studio-social-row a{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink);min-height:44px}.studio-social-row a>span{font-size:26px;line-height:1}.studio-social-row a:hover{text-decoration:underline}.studio-social-row a:focus-visible{outline:2px solid var(--brand);outline-offset:5px;border-radius:6px}
 
-.studio-contact-note{margin:12px 0 24px;color:var(--muted);font-size:12px;line-height:1.6;font-weight:400}
+.studio-booking-bar .studio-contact-note{max-width:1140px;margin:10px auto 0;color:var(--muted);font-size:11px;line-height:1.4;font-weight:400;text-align:center}
