@@ -258,7 +258,26 @@
     ],
     "instagram": "https://www.instagram.com/centro_budista/",
     "whatsapp": "525555254023",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/centro-budista/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Sala de meditación del Centro Budista de la Ciudad con piso de madera y cojines"
+      },
+      {
+        "url": "/images/studios/centro-budista/group.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Sesión grupal en el Centro Budista de la Ciudad"
+      },
+      {
+        "url": "/images/studios/centro-budista/space.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Espacio de meditación con cojines y altar en el Centro Budista de la Ciudad"
+      }
+    ],
     "firstClassPrice": 150
   },
   {
