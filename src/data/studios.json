@@ -979,7 +979,26 @@
     ],
     "instagram": "https://www.instagram.com/yogacaliente.cdmx/?hl=es",
     "whatsapp": "525528662142",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/yoga-caliente-santa-fe/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Salón de Yoga Caliente Santa Fe con tapetes, bloques y espejos"
+      },
+      {
+        "url": "/images/studios/yoga-caliente-santa-fe/group.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Grupo de practicantes en Yoga Caliente Santa Fe"
+      },
+      {
+        "url": "/images/studios/yoga-caliente-santa-fe/reception.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Recepción de Yoga Caliente Santa Fe con banca y letrero del estudio"
+      }
+    ],
     "firstClassPrice": 300
   }
 ]
