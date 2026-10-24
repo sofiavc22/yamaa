@@ -224,7 +224,26 @@
     "beginnerNote": "El estudio presenta Air Yoga como una práctica disponible desde nivel principiante hasta avanzado.",
     "verifiedAt": "2026-10-20",
     "verificationSource": "Sitio oficial de Kurunta Yoga",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/kurunta-yoga/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Interior de Kurunta Yoga con piso de madera, ventanales y cuerdas para practicar"
+      },
+      {
+        "url": "/images/studios/kurunta-yoga/class-1.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Práctica grupal con soportes en Kurunta Yoga"
+      },
+      {
+        "url": "/images/studios/kurunta-yoga/class-2.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Clase de yoga con cuerdas y telas en Kurunta Yoga"
+      }
+    ],
     "firstClassPrice": 300
   },
   {
