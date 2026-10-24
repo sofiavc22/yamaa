@@ -52,7 +52,7 @@ const structuredData = {
         <fieldset class="filter-group"><legend>Estilo de Yoga</legend><div class="filter-options">{['',...allStyles].map(style=><label class="filter-choice"><input type="radio" name="estilo" value={style} checked={!style}/><span>{style||'Todos los estilos'}</span></label>)}</div></fieldset>
         <fieldset class="filter-group"><legend>Precio de tu primera visita</legend><p class="filter-help">Por persona, en MXN. Distribución de los precios disponibles.</p>
         <div class="price-histogram" aria-hidden="true">{Array.from({length:14},(_,i)=>{const n=studios.filter(s=>typeof s.firstClassPrice==='number'&&s.firstClassPrice>=150+i*20&&s.firstClassPrice<170+i*20).length;return <span data-bin={150+i*20} style={`height:${Math.max(4,n*12)}px`}></span>})}</div>
-        <div class="price-sliders"><label>Mínimo<input type="range" name="min" min="150" max="420" step="5" value="150"/></label><label>Máximo<input type="range" name="max" min="150" max="420" step="5" value="420"/></label></div>
+        <div class="price-sliders"><label><span class="sr-only">Precio mínimo</span><input type="range" name="min" min="150" max="420" step="5" value="150"/></label><label><span class="sr-only">Precio máximo</span><input type="range" name="max" min="150" max="420" step="5" value="420"/></label></div>
         <div class="price-values"><output id="min-price">$150 MXN</output><output id="max-price">$420 MXN</output></div>
         <label class="filter-check"><input type="checkbox" name="donativo" value="1"/>Solo clases con donativo</label>
         <p class="filter-help">Al ajustar el rango se muestran solo estudios con precio confirmado.</p></fieldset>
@@ -103,6 +103,7 @@ const draft=()=>{const p=new URLSearchParams(new FormData(form!) as any);for(con
 const preview=()=>{
  if(!form||!min||!max)return;
  const p=draft();const n=cards.filter(card=>matches(card,p)).length;
+ const slider=form.querySelector<HTMLElement>('.price-sliders');slider?.style.setProperty('--range-start',((Number(min.value)-150)/270*100)+'%');slider?.style.setProperty('--range-end',((Number(max.value)-150)/270*100)+'%');
  const button=document.querySelector('#show-filter-results');if(button)button.textContent=`Mostrar ${n} ${n===1?'estudio':'estudios'}`;
  document.querySelector('#min-price')!.textContent='$'+min.value+' MXN';document.querySelector('#max-price')!.textContent='$'+max.value+' MXN';
  document.querySelectorAll<HTMLElement>('[data-bin]').forEach(bar=>bar.classList.toggle('out-of-range',priceActive&&(Number(bar.dataset.bin)+20<Number(min.value)||Number(bar.dataset.bin)>Number(max.value))));
