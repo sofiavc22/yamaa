@@ -470,7 +470,26 @@
     ],
     "instagram": "https://www.instagram.com/agoralucis/",
     "whatsapp": "525522544381",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/agoralucis/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Clase grupal de yoga en el salón luminoso de AgoraLucis"
+      },
+      {
+        "url": "/images/studios/agoralucis/class.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Práctica de equilibrio en AgoraLucis junto a amplios ventanales"
+      },
+      {
+        "url": "/images/studios/agoralucis/space.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Área con barra, asientos y vista a un jardín en AgoraLucis"
+      }
+    ],
     "firstClassPrice": 335
   },
   {
