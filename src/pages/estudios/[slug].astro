@@ -12,7 +12,7 @@ const instagram=studio.instagram?.includes('instagram.com') ? studio.instagram :
 const authorizedImages=(studio.images || []).filter((image)=>image.authorized && image.url);
 const cover=authorizedImages.find((image)=>image.kind==='cover') || authorizedImages[0];
 const gallery=cover?[cover,...authorizedImages.filter((image)=>image!==cover)]:[];
-const bookingTarget=studio.bookingUrl||wa||website||instagram||'#enlaces';
+const bookingTarget=studio.bookingUrl||wa||website||instagram||'#ubicacion';
 const bookingLabel='Contactar al estudio';
 const firstVisitPrice=typeof studio.firstClassPrice==='number'?new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}).format(studio.firstClassPrice)+' MXN':null;
 const title=studio.seoTitle || `${studio.name} — Yoga en ${studio.zone} | Yamaa`;
@@ -83,8 +83,6 @@ const structuredData={
     </div>
     <aside class="detail-aside">
       {wa && <div class="contact-card"><div class="section-label">Contacto</div><h3>¿Quieres practicar aquí?</h3><p>Pregunta directamente al estudio por clases, disponibilidad y reservas.</p><a class="btn primary full" href={wa} target="_blank" rel="noopener" data-outbound-kind="whatsapp">Contactar al estudio</a></div>}
-      <div class="link-card" id="enlaces"><div class="section-label">Enlaces oficiales</div>{studio.bookingUrl && <a href={studio.bookingUrl} target="_blank" rel="noopener" data-outbound-kind="booking">Reservar <span>↗</span></a>}<a href={maps} target="_blank" rel="noopener" data-outbound-kind="maps">Google Maps <span>↗</span></a></div>
-      <div class="trust-note"><strong>Información confirmada</strong><p>Yamaa reúne información pública y oficial del estudio.{verifiedLabel && <> Verificada el <time datetime={studio.verifiedAt}>{verifiedLabel}</time>.</>}</p>{studio.verificationSource && <small>Fuente: {studio.verificationSource}</small>}</div>
     </aside>
   </div>
   </div>
