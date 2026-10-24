@@ -703,7 +703,20 @@
     ],
     "instagram": "https://www.instagram.com/thisisorigenestudio/",
     "whatsapp": "525572208071",
-    "images": []
+    "images": [
+      {
+        "url": "/images/studios/origen-polanco/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Salón de Origen Estudio Polanco con tapetes y piso de madera"
+      },
+      {
+        "url": "/images/studios/origen-polanco/sign.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Letrero iluminado de Origen Estudio"
+      }
+    ]
   },
   {
     "name": "One Percent Yoga",
