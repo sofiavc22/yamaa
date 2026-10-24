@@ -928,7 +928,20 @@
     ],
     "instagram": "https://www.instagram.com/bodaiyoga/",
     "whatsapp": "525536594811",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/bodai-del-valle/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Práctica de relajación con cojines y cuencos en Bodai Yoga Del Valle"
+      },
+      {
+        "url": "/images/studios/bodai-del-valle/group.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Grupo reunido en el salón de Bodai Yoga Del Valle"
+      }
+    ],
     "firstClassPrice": 250
   },
   {
