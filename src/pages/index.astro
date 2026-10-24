@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import StudioCard from '../components/StudioCard.astro';
 import studios from '../data/studios.json';
-const featured=studios.slice(0,6);
+const featured=studios;
 const zones=['Roma Norte','Condesa','Polanco','Del Valle','Coyoacán','Santa Fe'];
 const structuredData={
   '@context':'https://schema.org',
@@ -72,6 +72,13 @@ const structuredData={
 </Base>
 
 <script>
+const carousel=document.querySelector<HTMLElement>('.studios-first .city-carousel');
+if(carousel){
+ const cards=[...carousel.children];
+ for(let i=cards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[cards[i],cards[j]]=[cards[j],cards[i]];}
+ cards.forEach((card,index)=>{card.toggleAttribute('hidden',index>=6);carousel.appendChild(card);});
+}
+
 const categoryNames={retiros:'Retiros de Yoga',experiencias:'Experiencias de Yoga',certificaciones:'Certificaciones de Yoga'};
 document.querySelectorAll('[data-category]').forEach(button=>{
   button.addEventListener('click',()=>{
