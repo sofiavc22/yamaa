@@ -809,7 +809,20 @@
     ],
     "instagram": "",
     "whatsapp": "525540213958",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/yoga-espacio-del-valle/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Clase grupal en Yoga Espacio Del Valle con tapetes y soportes"
+      },
+      {
+        "url": "/images/studios/yoga-espacio-del-valle/entrance.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Fachada con el letrero de Yoga Espacio"
+      }
+    ],
     "firstClassPrice": 240
   },
   {
