@@ -10,7 +10,7 @@
       "Hatha Vinyasa",
       "Vinyasa",
       "Rocket",
-      "restaurativo"
+      "Restaurativo"
     ],
     "instagram": "https://www.instagram.com/mula.yogashala/",
     "whatsapp": "",
@@ -49,8 +49,8 @@
     "modalities": [
       "Vinyasa",
       "Dharma",
-      "Air Yoga",
-      "sound bath"
+      "Yoga Aéreo",
+      "Sound Bath"
     ],
     "instagram": "https://www.instagram.com/conpausamx/",
     "whatsapp": "525523223239",
@@ -86,10 +86,10 @@
     "type": "Estudio de yoga",
     "address": "Av. Chapultepec 360, Roma Norte",
     "modalities": [
-      "Power",
+      "Power Yoga",
       "Rocket",
       "Hatha",
-      "breathwork"
+      "Breathwork"
     ],
     "instagram": "https://www.instagram.com/gita.studio.mx/",
     "whatsapp": "525651105809",
@@ -136,11 +136,11 @@
     "type": "Estudio de yoga",
     "address": "Av. Yucatán 69, Roma Norte",
     "modalities": [
-      "Power",
+      "Power Yoga",
       "Ashtanga",
       "Rocket",
       "Hatha",
-      "meditación"
+      "Meditación"
     ],
     "instagram": "https://www.instagram.com/atmayogamx/?hl=es",
     "whatsapp": "525585784540",
@@ -176,7 +176,7 @@
     "type": "Estudio de yoga",
     "address": "Uruapan 17, Roma Norte",
     "modalities": [
-      "Power",
+      "Power Yoga",
       "Rocket",
       "Vinyasa",
       "Hatha"
@@ -193,7 +193,7 @@
     "type": "Estudio de yoga",
     "address": "Guanajuato 114, Roma Norte",
     "modalities": [
-      "Air Yoga",
+      "Yoga Aéreo",
       "Wall Yoga",
       "Kurunta Yoga"
     ],
@@ -221,8 +221,8 @@
     "type": "Wellness / yoga",
     "address": "",
     "modalities": [
-      "Yoga restaurativo",
-      "meditación"
+      "Restaurativo",
+      "Meditación"
     ],
     "instagram": "https://www.instagram.com/tallerwellness/",
     "whatsapp": "",
@@ -236,7 +236,7 @@
     "address": "Jalapa 94, Roma Norte",
     "modalities": [
       "Yoga",
-      "meditación"
+      "Meditación"
     ],
     "instagram": "https://www.instagram.com/centro_budista/",
     "whatsapp": "525555254023",
@@ -251,7 +251,7 @@
     "address": "Roma Norte",
     "modalities": [
       "Hot Power Yoga",
-      "breathwork"
+      "Breathwork"
     ],
     "instagram": "https://www.instagram.com/thematmx/",
     "whatsapp": "525537589176",
@@ -294,7 +294,7 @@
     "address": "",
     "modalities": [
       "Hatha",
-      "meditación",
+      "Meditación",
       "Acro Yoga"
     ],
     "instagram": "https://www.instagram.com/satnam.yoga.pilates/?hl=es",
@@ -309,10 +309,7 @@
     "type": "Estudio mixto",
     "address": "Cda. de la Paz 15, Escandón I Sección",
     "modalities": [
-      "Yoga",
-      "Pilates Reformer",
-      "Pilates Mat",
-      "Sculpt"
+      "Yoga"
     ],
     "instagram": "https://www.instagram.com/hidunastudio_",
     "whatsapp": "525648022658",
@@ -366,8 +363,8 @@
     "address": "Lafontaine 78, Polanco",
     "modalities": [
       "Hatha",
-      "pranayama",
-      "meditación"
+      "Pranayama",
+      "Meditación"
     ],
     "instagram": "",
     "whatsapp": "525524818201",
@@ -381,9 +378,9 @@
     "address": "Av. Sudermann 249, Polanco",
     "modalities": [
       "Dharma",
-      "aéreo",
-      "restaurativo",
-      "sound healing"
+      "Yoga Aéreo",
+      "Restaurativo",
+      "Sound Healing"
     ],
     "instagram": "https://www.instagram.com/gayoyogawellness/",
     "whatsapp": "525630012024",
@@ -398,8 +395,8 @@
     "address": "Mariano Escobedo 543, Polanco",
     "modalities": [
       "Yoga",
-      "meditación",
-      "sound healing"
+      "Meditación",
+      "Sound Healing"
     ],
     "instagram": "https://www.instagram.com/lightonstudiosmx/",
     "whatsapp": "525628120008",
@@ -413,7 +410,7 @@
     "type": "Wellness",
     "address": "",
     "modalities": [
-      "Meditación + movimiento"
+      "Meditación"
     ],
     "instagram": "https://www.instagram.com/firawellnessclub/",
     "whatsapp": "525529858570",
@@ -443,8 +440,7 @@
     "type": "Yoga / Pilates",
     "address": "",
     "modalities": [
-      "Yoga",
-      "Pilates"
+      "Yoga"
     ],
     "instagram": "https://www.instagram.com/thisisorigenestudio/",
     "whatsapp": "525572208071",
@@ -457,8 +453,7 @@
     "type": "Yoga / Pilates",
     "address": "",
     "modalities": [
-      "Yoga",
-      "Pilates"
+      "Yoga"
     ],
     "instagram": "https://www.instagram.com/onepercentyogamx/",
     "whatsapp": "525564906300",
@@ -472,8 +467,7 @@
     "type": "Yoga / Barre",
     "address": "",
     "modalities": [
-      "Yoga",
-      "Barre"
+      "Yoga"
     ],
     "instagram": "https://www.instagram.com/soulstudiobarre/?hl=es",
     "whatsapp": "",
@@ -486,10 +480,7 @@
     "zone": "Del Valle",
     "type": "Estudio de yoga",
     "address": "San Francisco 233, Del Valle",
-    "modalities": [
-      "Varios estilos",
-      "Tai Chi"
-    ],
+    "modalities": [],
     "instagram": "https://www.instagram.com/kokoyogamx",
     "whatsapp": "525545740558",
     "images": [],
@@ -503,7 +494,7 @@
     "address": "Patricio Sanz 1011, Del Valle",
     "modalities": [
       "Yoga",
-      "meditación"
+      "Meditación"
     ],
     "instagram": "",
     "whatsapp": "525540213958",
@@ -519,7 +510,7 @@
     "modalities": [
       "Restaurativo",
       "Hatha",
-      "yoga suave"
+      "Yoga Suave"
     ],
     "instagram": "https://www.instagram.com/dharma.yoga.studio/",
     "whatsapp": "525517028281",
@@ -548,9 +539,7 @@
     "type": "Estudio mixto",
     "address": "",
     "modalities": [
-      "Yoga",
-      "Pilates reformer",
-      "fitness"
+      "Yoga"
     ],
     "instagram": "https://www.instagram.com/aerastudio.mx/",
     "whatsapp": "525526898793",
@@ -581,7 +570,7 @@
     "address": "Miguel Ángel de Quevedo 969, El Rosedal",
     "modalities": [
       "Yoga",
-      "restaurativo",
+      "Restaurativo",
       "Vinyasa"
     ],
     "instagram": "https://www.instagram.com/clasesyogaespacio/",
@@ -597,7 +586,7 @@
     "address": "Guillermo González Camarena 900 Local 8, Santa Fe",
     "modalities": [
       "Hot Yoga",
-      "estilo Bikram"
+      "Bikram"
     ],
     "instagram": "https://www.instagram.com/yogacaliente.cdmx/?hl=es",
     "whatsapp": "525528662142",
