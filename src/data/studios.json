@@ -635,7 +635,26 @@
     ],
     "instagram": "https://www.instagram.com/firawellnessclub/",
     "whatsapp": "525529858570",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/fira-wellness/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Salón de FIRA Wellness Club con iluminación rosa y tapetes preparados"
+      },
+      {
+        "url": "/images/studios/fira-wellness/room.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Sala de FIRA Wellness Club con ventanales y vista a los árboles"
+      },
+      {
+        "url": "/images/studios/fira-wellness/class.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Clase grupal en FIRA Wellness Club con iluminación roja"
+      }
+    ],
     "firstClassPrice": 350
   },
   {
