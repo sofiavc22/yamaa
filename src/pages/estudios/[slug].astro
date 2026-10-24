@@ -72,7 +72,7 @@ const structuredData={
     </header>
   <div class="detail-grid">
     <div class="detail-main">
-      <section class="detail-section"><div class="section-label">Lo esencial</div><h2>Sobre {studio.name}</h2><p class="detail-intro">{studio.summary || `${studio.type} en ${studio.zone}, Ciudad de México. En Yamaa reunimos información práctica para ayudarte a decidir dónde practicar antes de contactar al estudio.`}</p></section>
+      {(instagram||website)&&<nav class="studio-social-row" aria-label="Redes y sitio web del estudio">{instagram&&<a href={instagram} target="_blank" rel="noopener" data-outbound-kind="instagram"><span aria-hidden="true">📷</span>Instagram</a>}{website&&<a href={website} target="_blank" rel="noopener" data-outbound-kind="website"><span aria-hidden="true">🌐</span>Sitio web</a>}</nav>}
       <section class="detail-section" id="practica"><div class="section-label">Práctica</div><h2>Clases y estilos</h2><div class="chips">{studio.modalities?.map(m=><span class="chip">{m}</span>)}</div></section>
       <section class="detail-section location-section" id="ubicacion"><div class="section-label">Ubicación</div><h2>{studio.zone}, CDMX</h2><StudioMap studio={studio} /></section>
       <section class="visit-details" id="visita"><div class="section-label">Información para planear tu visita</div><h2>Horarios, precios y reservas</h2><div class="visit-facts">
@@ -83,7 +83,7 @@ const structuredData={
     </div>
     <aside class="detail-aside">
       {wa && <div class="contact-card"><div class="section-label">Contacto</div><h3>¿Quieres practicar aquí?</h3><p>Pregunta directamente al estudio por clases, disponibilidad y reservas.</p><a class="btn primary full" href={wa} target="_blank" rel="noopener" data-outbound-kind="whatsapp">Contactar al estudio</a></div>}
-      <div class="link-card" id="enlaces"><div class="section-label">Enlaces oficiales</div>{studio.bookingUrl && <a href={studio.bookingUrl} target="_blank" rel="noopener" data-outbound-kind="booking">Reservar <span>↗</span></a>}{instagram && <a href={instagram} target="_blank" rel="noopener" data-outbound-kind="instagram">Instagram <span>↗</span></a>}{website && <a href={website} target="_blank" rel="noopener" data-outbound-kind="website">Sitio web <span>↗</span></a>}<a href={maps} target="_blank" rel="noopener" data-outbound-kind="maps">Google Maps <span>↗</span></a></div>
+      <div class="link-card" id="enlaces"><div class="section-label">Enlaces oficiales</div>{studio.bookingUrl && <a href={studio.bookingUrl} target="_blank" rel="noopener" data-outbound-kind="booking">Reservar <span>↗</span></a>}<a href={maps} target="_blank" rel="noopener" data-outbound-kind="maps">Google Maps <span>↗</span></a></div>
       <div class="trust-note"><strong>Información confirmada</strong><p>Yamaa reúne información pública y oficial del estudio.{verifiedLabel && <> Verificada el <time datetime={studio.verifiedAt}>{verifiedLabel}</time>.</>}</p>{studio.verificationSource && <small>Fuente: {studio.verificationSource}</small>}</div>
     </aside>
   </div>
