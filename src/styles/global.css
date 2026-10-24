@@ -92,3 +92,5 @@ body:has(.city-results-page)>.nav{display:none}.results-sticky{position:sticky;t
 .price-sliders input[type=range]:focus-visible::-webkit-slider-thumb{outline:3px solid var(--brand);outline-offset:3px}
 .price-sliders input[type=range]:focus-visible::-moz-range-thumb{outline:3px solid var(--brand);outline-offset:3px}
 .price-sliders:has(input:disabled){opacity:.4}
+
+.discovery-sticky .wellness-search{margin-left:auto;margin-right:auto}.discovery-sticky .category-tabs{justify-content:safe center}
