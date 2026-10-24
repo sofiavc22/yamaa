@@ -503,7 +503,20 @@
     ],
     "instagram": "https://www.instagram.com/iyengar_yoga_center/",
     "whatsapp": "525561010784",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/iyengar-yoga-center/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Práctica grupal de yoga Iyengar con bloques y tapetes"
+      },
+      {
+        "url": "/images/studios/iyengar-yoga-center/rest.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Práctica de descanso con soportes y cinturones de yoga"
+      }
+    ],
     "firstClassPrice": 420
   },
   {
