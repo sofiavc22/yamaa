@@ -756,7 +756,20 @@
     ],
     "instagram": "https://www.instagram.com/soulstudiobarre/?hl=es",
     "whatsapp": "",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/soulstudio-masaryk/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Salón de SoulStudio Masaryk preparado con tapetes y accesorios"
+      },
+      {
+        "url": "/images/studios/soulstudio-masaryk/room.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Interior de SoulStudio Masaryk con espejos e iluminación cálida"
+      }
+    ],
     "firstClassPrice": 250
   },
   {
