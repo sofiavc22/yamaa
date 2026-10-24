@@ -73,6 +73,7 @@ const structuredData={
   <div class="detail-grid">
     <div class="detail-main">
       {(instagram||website)&&<nav class="studio-social-row" aria-label="Redes y sitio web del estudio">{instagram&&<a href={instagram} target="_blank" rel="noopener" data-outbound-kind="instagram"><span aria-hidden="true">📷</span>Instagram</a>}{website&&<a href={website} target="_blank" rel="noopener" data-outbound-kind="website"><span aria-hidden="true">🌐</span>Sitio web</a>}</nav>}
+      <p class="studio-contact-note">Yamaa no realiza cobros ni procesa reservas. Te conectamos directamente con el estudio.</p>
       <section class="detail-section" id="practica"><div class="section-label">Práctica</div><h2>Clases y estilos</h2><div class="chips">{studio.modalities?.map(m=><span class="chip">{m}</span>)}</div></section>
       <section class="detail-section location-section" id="ubicacion"><div class="section-label">Ubicación</div><h2>{studio.zone}, CDMX</h2><StudioMap studio={studio} /></section>
       <section class="visit-details" id="visita"><div class="section-label">Información para planear tu visita</div><h2>Horarios, precios y reservas</h2><div class="visit-facts">
