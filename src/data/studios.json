@@ -532,7 +532,26 @@
     ],
     "instagram": "",
     "whatsapp": "525524818201",
-    "images": []
+    "images": [
+      {
+        "url": "/images/studios/gurukul-polanco/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Clase grupal de yoga en Gurukul Yoga Studio Polanco"
+      },
+      {
+        "url": "/images/studios/gurukul-polanco/breathing.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Práctica de respiración en grupo en Gurukul Yoga Studio Polanco"
+      },
+      {
+        "url": "/images/studios/gurukul-polanco/rest.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Personas descansando sobre tapetes en Gurukul Yoga Studio Polanco"
+      }
+    ]
   },
   {
     "name": "Gayo Yoga & Wellness",
