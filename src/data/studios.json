@@ -838,7 +838,20 @@
     ],
     "instagram": "https://www.instagram.com/dharma.yoga.studio/",
     "whatsapp": "525517028281",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/dharma-yoga/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Práctica de yoga sobre un tapete en Dharma Yoga Studio"
+      },
+      {
+        "url": "/images/studios/dharma-yoga/entrance.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Entrada de Dharma Yoga Studio con emblema dorado sobre pared verde"
+      }
+    ],
     "firstClassPrice": 220
   },
   {
