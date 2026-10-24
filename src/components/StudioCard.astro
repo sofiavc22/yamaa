@@ -5,7 +5,7 @@ const initials=studio.name.split(' ').filter(Boolean).slice(0,2).map((w)=>w[0]).
 const cover=studio.images?.find((image)=>image.kind==='cover' && image.authorized && image.url);
 const photos=cover?[cover,...(studio.images||[]).filter(image=>image!==cover&&image.authorized&&image.url)]:[];
 ---
-<article class:list={["studio-card",listing&&"listing-card"]} data-zone={studio.zone} data-modalities={studio.modalities?.join(" ") || "Yoga"}>
+<article class:list={["studio-card",listing&&"listing-card"]} data-price={studio.firstClassPrice} data-donation={studio.firstClassDonation?"true":undefined} data-zone={studio.zone} data-modalities={studio.modalities?.join(" ") || "Yoga"}>
 {listing && photos.length>1 ? <>
   <div class="card-photo-carousel" tabindex="0" aria-label={`Fotos de ${studio.name}, desliza para ver más`}>
     {photos.map((photo,index)=><a href={`/estudios/${studio.slug}`} aria-label={`Ver ${studio.name}, foto ${index+1}`}><img src={photo.url} alt={photo.alt||`Espacio de ${studio.name}`} loading="lazy"/></a>)}
