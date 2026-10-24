@@ -247,20 +247,6 @@
     "firstClassPrice": 300
   },
   {
-    "name": "Taller Wellness",
-    "slug": "taller-wellness",
-    "zone": "Roma Norte",
-    "type": "Wellness / yoga",
-    "address": "",
-    "modalities": [
-      "Restaurativo",
-      "Meditación"
-    ],
-    "instagram": "https://www.instagram.com/tallerwellness/",
-    "whatsapp": "",
-    "images": []
-  },
-  {
     "name": "Centro Budista de la Ciudad",
     "slug": "centro-budista-de-la-ciudad",
     "zone": "Roma Norte",
