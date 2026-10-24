@@ -437,7 +437,26 @@
     "bookingUrl": "https://dunastudio.space/",
     "verifiedAt": "2026-10-20",
     "verificationSource": "Sitio y términos oficiales de Duna Studio",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/duna-studio/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Vista superior de una práctica grupal sobre tapetes en Duna Studio"
+      },
+      {
+        "url": "/images/studios/duna-studio/class.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Personas practicando sobre tapetes en Duna Studio"
+      },
+      {
+        "url": "/images/studios/duna-studio/room.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Sala con equipos reformer, plantas y ventanales en Duna Studio"
+      }
+    ],
     "firstClassPrice": 250
   },
   {
