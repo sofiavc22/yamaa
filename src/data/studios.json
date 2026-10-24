@@ -292,7 +292,26 @@
     ],
     "instagram": "https://www.instagram.com/thematmx/",
     "whatsapp": "525537589176",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/the-mat-mx/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Interior de THE MAT MX con iluminación cálida, espejos y cuencos"
+      },
+      {
+        "url": "/images/studios/the-mat-mx/room.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Sala de THE MAT MX preparada con tapetes e iluminación tenue"
+      },
+      {
+        "url": "/images/studios/the-mat-mx/entrance.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Entrada de THE MAT MX y recepción del estudio"
+      }
+    ],
     "firstClassPrice": 350
   },
   {
