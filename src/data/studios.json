@@ -358,7 +358,26 @@
     ],
     "instagram": "https://www.instagram.com/muktayoga.vinyasa/?hl=es",
     "whatsapp": "525560610108",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/mukta-yoga/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Recepción de Mukta Yoga con luz natural, plantas y banca de madera"
+      },
+      {
+        "url": "/images/studios/mukta-yoga/class.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Clase grupal de yoga en Mukta Yoga Vinyasa"
+      },
+      {
+        "url": "/images/studios/mukta-yoga/rest.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Práctica de relajación con soportes en Mukta Yoga Vinyasa"
+      }
+    ],
     "firstClassPrice": 330
   },
   {
