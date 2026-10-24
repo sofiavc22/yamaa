@@ -893,7 +893,26 @@
     ],
     "instagram": "https://www.instagram.com/aerastudio.mx/",
     "whatsapp": "525526898793",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/aera-studio/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Salón de Aera Studio con tapetes preparados, espejos y techo de tela blanca"
+      },
+      {
+        "url": "/images/studios/aera-studio/class.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Clase grupal de yoga frente a los espejos de Aera Studio"
+      },
+      {
+        "url": "/images/studios/aera-studio/room.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Interior de Aera Studio con accesorios y acceso a la recepción"
+      }
+    ],
     "firstClassPrice": 150
   },
   {
