@@ -393,7 +393,26 @@
     ],
     "instagram": "https://www.instagram.com/satnam.yoga.pilates/?hl=es",
     "whatsapp": "525565741897",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/sat-nam/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Salón de Sat Nam Yoga y Pilates preparado con tapetes junto a ventanales y espejos"
+      },
+      {
+        "url": "/images/studios/sat-nam/meditation.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Práctica de meditación grupal en Sat Nam Yoga y Pilates"
+      },
+      {
+        "url": "/images/studios/sat-nam/group.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Sesión guiada con un grupo de practicantes en Sat Nam Yoga y Pilates"
+      }
+    ],
     "firstClassPrice": 200
   },
   {
