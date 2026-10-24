@@ -670,7 +670,26 @@
     ],
     "instagram": "https://www.instagram.com/bengalaestudio/",
     "whatsapp": "525534817699",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/bengala-polanco/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Práctica grupal con sillas en el salón de Estudio Bengala Polanco"
+      },
+      {
+        "url": "/images/studios/bengala-polanco/class.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Clase grupal de yoga frente a los espejos de Estudio Bengala Polanco"
+      },
+      {
+        "url": "/images/studios/bengala-polanco/props.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Práctica de yoga con cinturones en Estudio Bengala Polanco"
+      }
+    ],
     "firstClassPrice": 350
   },
   {
