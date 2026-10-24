@@ -866,7 +866,20 @@
     ],
     "instagram": "https://www.instagram.com/mettayoga.mx/",
     "whatsapp": "525542265007",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/metta-yoga/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Práctica grupal de meditación en el salón de Metta Yoga"
+      },
+      {
+        "url": "/images/studios/metta-yoga/class.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Clase de yoga con cojines y soportes en Metta Yoga"
+      }
+    ],
     "firstClassPrice": 200
   },
   {
