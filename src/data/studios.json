@@ -957,7 +957,14 @@
     ],
     "instagram": "https://www.instagram.com/clasesyogaespacio/",
     "whatsapp": "525611647858",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/yoga-espacio-coyoacan/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Práctica de yoga junto a una pared amarilla en Yoga Espacio Coyoacán"
+      }
+    ],
     "firstClassPrice": 240
   },
   {
