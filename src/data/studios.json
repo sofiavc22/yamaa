@@ -567,7 +567,26 @@
     ],
     "instagram": "https://www.instagram.com/gayoyogawellness/",
     "whatsapp": "525630012024",
-    "images": [],
+    "images": [
+      {
+        "url": "/images/studios/gayo-yoga/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Salón de Gayo Yoga & Wellness preparado con tapetes, bloques y cojines"
+      },
+      {
+        "url": "/images/studios/gayo-yoga/class.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Clase grupal frente a los espejos de Gayo Yoga & Wellness"
+      },
+      {
+        "url": "/images/studios/gayo-yoga/aerial.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Práctica con telas en Gayo Yoga & Wellness"
+      }
+    ],
     "firstClassPrice": 340
   },
   {
