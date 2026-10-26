@@ -1083,184 +1083,265 @@
   {
     "name": "Miranda Yoga Flow Estudio",
     "slug": "miranda-yoga-flow-estudio",
-    "zone": "Zona por confirmar",
+    "zone": "Postes Cuates",
     "city": "Guadalajara",
     "state": "Jalisco",
     "cityPath": "/guadalajara",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "Av. Puerto Melaque 1093A, Postes Cuates, 44350 Guadalajara, Jal.",
     "mapsUrl": "https://maps.app.goo.gl/DYjDdTS49xEYvd2P8",
-    "modalities": ["Restaurativo", "Hatha", "Tantra", "Vinyasa", "Aero"],
+    "modalities": [
+      "Restaurativo",
+      "Hatha",
+      "Tantra",
+      "Vinyasa",
+      "Aero"
+    ],
     "instagram": "https://www.instagram.com/mirandayogaflowestudio/",
-    "whatsapp": "523311535153"
+    "whatsapp": "523311535153",
+    "locationVerifiedAt": "2026-10-26",
+    "locationSourceUrl": "https://maps.app.goo.gl/DYjDdTS49xEYvd2P8"
   },
   {
-    "name": "Apurva Centro de Yoga",
+    "name": "Apurva Centro de Yoga — Independencia",
     "slug": "apurva-centro-de-yoga",
-    "zone": "Zona por confirmar",
+    "zone": "Independencia",
     "city": "Guadalajara",
     "state": "Jalisco",
     "cityPath": "/guadalajara",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "Calz. Independencia Norte 1773, Independencia, 44290 Guadalajara, Jal.",
     "mapsUrl": "https://maps.app.goo.gl/Bqhqu2tEyBBGEK3s9",
-    "modalities": ["Flow", "Restaurativo", "Holístico", "Funcional", "Hatha", "Vinyasa", "Power", "Infantil", "Meditación"],
+    "modalities": [
+      "Flow",
+      "Restaurativo",
+      "Holístico",
+      "Funcional",
+      "Hatha",
+      "Vinyasa",
+      "Power",
+      "Infantil",
+      "Meditación"
+    ],
     "website": "https://www.apurvacentrodeyoga.com/clases",
     "whatsapp": "523312891113",
-    "firstClassPrice": 310
+    "firstClassPrice": 310,
+    "locationVerifiedAt": "2026-10-26",
+    "locationSourceUrl": "https://maps.app.goo.gl/Bqhqu2tEyBBGEK3s9"
   },
   {
     "name": "Khimú Studio Yoga",
     "slug": "khimu-studio-yoga",
-    "zone": "Zona por confirmar",
+    "zone": "Balcones de Oblatos",
     "city": "Guadalajara",
     "state": "Jalisco",
     "cityPath": "/guadalajara",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "Av. Circunvalación Oblatos 2959, Balcones de Oblatos, 44720 Guadalajara, Jal.",
     "mapsUrl": "https://maps.app.goo.gl/ej5XAd5kJrqoHdLZ9",
-    "modalities": ["Yoga"],
+    "modalities": [
+      "Yoga"
+    ],
     "instagram": "https://www.instagram.com/khimustudio/reels/",
     "whatsapp": "523319049324",
-    "firstClassPrice": 90
+    "firstClassPrice": 90,
+    "locationVerifiedAt": "2026-10-26",
+    "locationSourceUrl": "https://maps.app.goo.gl/ej5XAd5kJrqoHdLZ9"
   },
   {
     "name": "Casa Yoga Guadalajara",
     "slug": "casa-yoga-guadalajara",
-    "zone": "Zona por confirmar",
+    "zone": "Americana",
     "city": "Guadalajara",
     "state": "Jalisco",
     "cityPath": "/guadalajara",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "Calle Argentina 463, Americana, 44160 Guadalajara, Jal.",
     "mapsUrl": "https://maps.app.goo.gl/oBXwc67pSUWJk9nx5",
-    "modalities": ["Terapéutico", "Hatha"],
+    "modalities": [
+      "Terapéutico",
+      "Hatha"
+    ],
     "whatsapp": "523338255299",
-    "bookingUrl": "https://web.bewe.co/casa-yoga"
+    "bookingUrl": "https://web.bewe.co/casa-yoga",
+    "website": "https://casayogagdl.com/",
+    "locationVerifiedAt": "2026-10-26",
+    "locationSourceUrl": "https://maps.app.goo.gl/oBXwc67pSUWJk9nx5"
   },
   {
     "name": "Tribu Distrito",
     "slug": "tribu-distrito",
-    "zone": "Zona por confirmar",
+    "zone": "Americana",
     "city": "Guadalajara",
     "state": "Jalisco",
     "cityPath": "/guadalajara",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "C. Manuel López Cotilla 1235, Americana, 44160 Guadalajara, Jal.",
     "mapsUrl": "https://maps.app.goo.gl/UP2ncng3rPpSSXwS7",
-    "modalities": ["Dharma", "Kundalini", "Ashtanga Vinyasa", "Soul", "Bhakti"],
+    "modalities": [
+      "Dharma",
+      "Kundalini",
+      "Ashtanga Vinyasa",
+      "Soul",
+      "Bhakti"
+    ],
     "instagram": "https://www.instagram.com/distritoyoga/",
     "website": "https://www.tribudistritoyoga.com",
     "whatsapp": "523332364407",
-    "firstClassPrice": 200
+    "firstClassPrice": 200,
+    "locationVerifiedAt": "2026-10-26",
+    "locationSourceUrl": "https://maps.app.goo.gl/UP2ncng3rPpSSXwS7"
   },
   {
     "name": "Red Gfu Guadalajara",
     "slug": "red-gfu-guadalajara",
-    "zone": "Zona por confirmar",
+    "zone": "Americana",
     "city": "Guadalajara",
     "state": "Jalisco",
     "cityPath": "/guadalajara",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "Calle Efraín González Luna 1903, Americana, 44160 Guadalajara, Jal.",
     "mapsUrl": "https://maps.app.goo.gl/Hbj5cCADb7L5g4yd9",
-    "modalities": ["Yoga"],
+    "modalities": [
+      "Yoga"
+    ],
     "instagram": "https://www.facebook.com/YogaGuadalajaraGFU/?locale=es_LA",
     "website": "https://www.redgfuguadalajara.com",
-    "whatsapp": "523321566091"
+    "whatsapp": "523321566091",
+    "locationVerifiedAt": "2026-10-26",
+    "locationSourceUrl": "https://maps.app.goo.gl/Hbj5cCADb7L5g4yd9"
   },
   {
     "name": "Pasaje Yoga",
     "slug": "pasaje-yoga",
-    "zone": "Zona por confirmar",
+    "zone": "Americana",
     "city": "Guadalajara",
     "state": "Jalisco",
     "cityPath": "/guadalajara",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "Av. de la Paz 2121A, Americana, Lafayette, 44160 Guadalajara, Jal.",
     "mapsUrl": "https://maps.app.goo.gl/KynnSotzxVXVqx3i9",
-    "modalities": ["Hatha", "Vinyasa", "Dharma", "Restaurativo"],
+    "modalities": [
+      "Hatha",
+      "Vinyasa",
+      "Dharma",
+      "Restaurativo"
+    ],
     "instagram": "https://www.instagram.com/pasaje.yoga/",
     "website": "https://www.pasajeyoga.com",
-    "whatsapp": "3314097798",
-    "firstClassPrice": 95
+    "whatsapp": "523314097798",
+    "firstClassPrice": 95,
+    "locationVerifiedAt": "2026-10-26",
+    "locationSourceUrl": "https://maps.app.goo.gl/KynnSotzxVXVqx3i9"
   },
   {
     "name": "Kalki",
     "slug": "kalki",
-    "zone": "Zona por confirmar",
+    "zone": "Lafayette",
     "city": "Guadalajara",
     "state": "Jalisco",
     "cityPath": "/guadalajara",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "Manuel M. Diéguez 18, segundo piso, Americana, Lafayette, 44160 Guadalajara, Jal.",
     "mapsUrl": "https://maps.app.goo.gl/b7RfthHxHbfXv7os7",
-    "modalities": ["Hatha", "Dharma", "Rocket", "Pranayama"],
+    "modalities": [
+      "Hatha",
+      "Dharma",
+      "Rocket",
+      "Pranayama"
+    ],
     "instagram": "https://www.instagram.com/kalki.mx/",
     "website": "https://kalkistudio.fitcolatam.com",
-    "whatsapp": "4423868832",
-    "firstClassPrice": 275
+    "whatsapp": "524423868832",
+    "firstClassPrice": 275,
+    "locationVerifiedAt": "2026-10-26",
+    "locationSourceUrl": "https://maps.app.goo.gl/b7RfthHxHbfXv7os7"
   },
   {
     "name": "Árbol de Yoga",
     "slug": "arbol-de-yoga",
-    "zone": "Zona por confirmar",
+    "zone": "Arcos Vallarta",
     "city": "Guadalajara",
     "state": "Jalisco",
     "cityPath": "/guadalajara",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "C. Lope de Vega 121, Arcos Vallarta, 44130 Guadalajara, Jal.",
     "mapsUrl": "https://maps.app.goo.gl/g67A9bgEvhR6sBQ78",
-    "modalities": ["Vinyasa", "Hatha", "Yin", "Inversión"],
+    "modalities": [
+      "Vinyasa",
+      "Hatha",
+      "Yin",
+      "Inversión"
+    ],
     "instagram": "https://www.instagram.com/arboldelyoga",
     "website": "https://www.arboldelyogahome.com",
     "whatsapp": "523317129594",
-    "firstClassPrice": 200
+    "firstClassPrice": 200,
+    "locationVerifiedAt": "2026-10-26",
+    "locationSourceUrl": "https://maps.app.goo.gl/g67A9bgEvhR6sBQ78"
   },
   {
     "name": "Sunlight Yoga",
     "slug": "sunlight-yoga",
-    "zone": "Zona por confirmar",
+    "zone": "Vallarta Norte",
     "city": "Guadalajara",
     "state": "Jalisco",
     "cityPath": "/guadalajara",
     "type": "Estudio de yoga",
-    "address": "",
-    "mapsUrl": "https://maps.app.goo.gl/1aUNayoYPAQbe9Cn7",
-    "modalities": ["Yoga"],
+    "address": "C. Aníbal 119, Vallarta Norte, 44690 Guadalajara, Jal.",
+    "mapsUrl": "https://maps.app.goo.gl/1aUNayoYPAQbe9Cn9",
+    "modalities": [
+      "Yoga"
+    ],
     "instagram": "https://www.instagram.com/sunlightyogagdl/",
-    "whatsapp": "5213334100884"
+    "whatsapp": "523334100884",
+    "locationVerifiedAt": "2026-10-26",
+    "locationSourceUrl": "https://maps.app.goo.gl/1aUNayoYPAQbe9Cn9"
   },
   {
     "name": "Centro de Kundalini Yoga",
     "slug": "centro-de-kundalini-yoga",
-    "zone": "Zona por confirmar",
+    "zone": "Americana",
     "city": "Guadalajara",
     "state": "Jalisco",
     "cityPath": "/guadalajara",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "Oficinas operativas: Manuel M. Diéguez 113A, Americana, 44160 Guadalajara, Jal.",
     "mapsUrl": "https://maps.app.goo.gl/xtsXpwpCm2SXJcws6",
-    "modalities": ["Kundalini"],
+    "modalities": [
+      "Kundalini"
+    ],
     "instagram": "https://www.instagram.com/kundaliniyogagdl/",
     "website": "https://www.kundaliniyogagdl.com.mx",
     "whatsapp": "523318472732",
-    "firstClassPrice": 200
+    "firstClassPrice": 200,
+    "scheduleSummary": "Confirma los horarios y la sede de tu clase directamente con el centro. La ubicación publicada corresponde a sus oficinas operativas.",
+    "locationVerifiedAt": "2026-10-26",
+    "locationSourceUrl": "https://maps.app.goo.gl/xtsXpwpCm2SXJcws6"
   },
   {
-    "name": "Centro Apurva Yoga",
+    "name": "Centro Apurva Yoga — Ladrón de Guevara",
     "slug": "centro-apurva-yoga",
-    "zone": "Zona por confirmar",
+    "zone": "Ladrón de Guevara",
     "city": "Guadalajara",
     "state": "Jalisco",
     "cityPath": "/guadalajara",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "C. Luis Pérez Verdía 600, Ladrón de Guevara, 44600 Guadalajara, Jal.",
     "mapsUrl": "https://maps.app.goo.gl/A9zQ2hkWiNqXC4w18",
-    "modalities": ["Flow", "Vinyasa", "Power", "Restaurativo", "Meditación", "Acro"],
+    "modalities": [
+      "Flow",
+      "Vinyasa",
+      "Power",
+      "Restaurativo",
+      "Meditación",
+      "Acro"
+    ],
     "instagram": "https://www.instagram.com/centroapurvayoga/",
     "website": "https://www.apurvacentrodeyoga.com",
     "whatsapp": "523312891113",
-    "firstClassPrice": 310
+    "firstClassPrice": 310,
+    "locationVerifiedAt": "2026-10-26",
+    "locationSourceUrl": "https://maps.app.goo.gl/A9zQ2hkWiNqXC4w18"
   }
 ]
