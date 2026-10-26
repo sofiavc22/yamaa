@@ -7,6 +7,7 @@ export function GET() {
   const pages = [
     { loc: `${site}/` },
     { loc: `${site}/cdmx` },
+    { loc: `${site}/guadalajara` },
     ...studios.map((studio) => ({ loc: `${site}/estudios/${studio.slug}`, lastmod: studio.verifiedAt }))
   ];
   const urls = pages.map(({ loc, lastmod }) => `<url><loc>${escapeXml(loc)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`).join('');

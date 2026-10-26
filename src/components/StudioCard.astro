@@ -4,6 +4,7 @@ const firstClassPrice=typeof studio.firstClassPrice==='number'&&Number.isFinite(
 const initials=studio.name.split(' ').filter(Boolean).slice(0,2).map((w)=>w[0]).join('');
 const cover=studio.images?.find((image)=>image.kind==='cover' && image.authorized && image.url);
 const photos=cover?[cover,...(studio.images||[]).filter(image=>image!==cover&&image.authorized&&image.url)]:[];
+const city=studio.city||'Ciudad de México';
 ---
 <article class:list={["studio-card",listing&&"listing-card"]} data-price={studio.firstClassPrice} data-donation={studio.firstClassDonation?"true":undefined} data-zone={studio.zone} data-modalities={studio.modalities?.join(" ") || "Yoga"}>
 {listing && photos.length>1 ? <>
@@ -13,7 +14,7 @@ const photos=cover?[cover,...(studio.images||[]).filter(image=>image!==cover&&im
   <div class="card-photo-dots" aria-hidden="true">{photos.map((_,index)=><span class:list={[index===0&&'active']}></span>)}</div>
 </> : <a class="studio-card-link" href={`/estudios/${studio.slug}`}><div class:list={["studio-photo",!cover&&"placeholder"]}>{cover?<img src={cover.url} alt={cover.alt||`Espacio de ${studio.name}`} loading="lazy"/>:<span class="placeholder-mark">{initials}</span>}{!cover&&<span class="photo-status">Foto próximamente</span>}</div></a>}
 <a class="studio-card-link" href={`/estudios/${studio.slug}`}>
-  <div class="studio-copy"><div class="studio-topline"><h3>{studio.name}</h3></div><div class="meta">{studio.zone}, CDMX</div>{studio.firstClassDonation?<div class="meta">Primera clase · Donativo</div>:firstClassPrice&&<div class="meta">Tu primera clase desde {firstClassPrice} MXN</div>}</div>
+  <div class="studio-copy"><div class="studio-topline"><h3>{studio.name}</h3></div><div class="meta">{studio.zone}, {city}</div>{studio.firstClassDonation?<div class="meta">Primera clase · Donativo</div>:firstClassPrice&&<div class="meta">Tu primera clase desde {firstClassPrice} MXN</div>}</div>
 </a>
 <button class="card-heart" type="button" data-save-studio={studio.slug} data-studio-name={studio.name} aria-label={`Guardar ${studio.name} en favoritos`} aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 4.8c-2.5-2.6-6.2-1.6-8.5 1-2.3-2.6-6-3.6-8.5-1C-1 9.5 7 16.5 12 21c5-4.5 13-11.5 8.5-16.2Z"/></svg></button>
 <p class="card-favorite-message sr-only" role="status"></p>

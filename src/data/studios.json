@@ -1000,5 +1000,45 @@
       }
     ],
     "firstClassPrice": 300
+  },
+  {
+    "name": "Dhakatha Yoga",
+    "slug": "dhakatha-yoga",
+    "zone": "Camino Real",
+    "city": "Zapopan",
+    "state": "Jalisco",
+    "cityPath": "/guadalajara",
+    "type": "Estudio de yoga",
+    "address": "Plaza Los Candados, Av. Niño Obrero 476, Local 20, piso 1, Camino Real, 45040 Zapopan, Jal.",
+    "mapsUrl": "https://maps.app.goo.gl/4Td2oZhZMFDQcYJV8",
+    "modalities": [
+      "Yin",
+      "Vinyasa",
+      "Ashtanga"
+    ],
+    "instagram": "https://www.instagram.com/dhakathayoga/?hl=es",
+    "whatsapp": "523313083468",
+    "images": [
+      {
+        "url": "/images/studios/dhakatha-yoga/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Clase grupal de yoga frente a los espejos de Dhakatha Yoga"
+      },
+      {
+        "url": "/images/studios/dhakatha-yoga/01.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Práctica grupal de equilibrio en Dhakatha Yoga"
+      },
+      {
+        "url": "/images/studios/dhakatha-yoga/02.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Clase de yoga en el salón luminoso de Dhakatha Yoga"
+      }
+    ],
+    "verifiedAt": "2026-10-26",
+    "verificationSource": "Información y fotografías proporcionadas para Yamaa"
   }
 ]

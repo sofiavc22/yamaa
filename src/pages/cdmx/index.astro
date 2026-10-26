@@ -1,7 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import StudioCard from '../../components/StudioCard.astro';
-import studios from '../../data/studios.json';
+import allStudios from '../../data/studios.json';
+const studios=allStudios.filter(studio=>!studio.city||studio.city==='Ciudad de México');
 
 const allStyles=[...new Map(studios.flatMap(studio=>studio.modalities||[]).map(style=>[style.toLocaleLowerCase('es'),style])).values()].sort((a,b)=>a.localeCompare(b,'es'));
 const zoneOrder = ['Roma Norte', 'Condesa', 'Polanco', 'Del Valle', 'Escandón', 'Coyoacán', 'Santa Fe'];

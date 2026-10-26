@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import StudioCard from '../../components/StudioCard.astro';
+import allStudios from '../../data/studios.json';
+
+const studios=allStudios.filter(studio=>studio.city==='Guadalajara'||studio.city==='Zapopan');
+const structuredData={
+  '@context':'https://schema.org',
+  '@graph':[
+    {'@type':'CollectionPage','@id':'https://www.clasedeyoga.com.mx/guadalajara#page',name:'Clases y estudios de yoga en Guadalajara y Zapopan',description:`Descubre ${studios.length} ${studios.length===1?'estudio':'estudios'} de yoga en Guadalajara y Zapopan.`,url:'https://www.clasedeyoga.com.mx/guadalajara',inLanguage:'es-MX'},
+    {'@type':'ItemList',name:'Estudios de yoga en Guadalajara y Zapopan',numberOfItems:studios.length,itemListElement:studios.map((studio,index)=>({'@type':'ListItem',position:index+1,name:studio.name,url:`https://www.clasedeyoga.com.mx/estudios/${studio.slug}`}))}
+  ]
+};
+---
+<Base title="Clases de yoga en Guadalajara y Zapopan | Yamaa" description="Encuentra estudios de yoga en Guadalajara y Zapopan, conoce sus estilos, ubicación y formas de contacto." structuredData={structuredData}>
+  <main class="city-results-page">
+    <header class="results-sticky">
+      <div class="shell results-search-row">
+        <a class="results-back" href="/" aria-label="Volver al inicio"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7"/></svg></a>
+        <div class="results-search-pill"><strong>Yoga en Guadalajara y Zapopan</strong><span>Estudios verificados por Yamaa</span></div>
+      </div>
+    </header>
+    <section class="shell results-content">
+      <h1>{studios.length} {studios.length===1?'estudio de yoga':'estudios de yoga'} en Guadalajara y Zapopan</h1>
+      <div class="results-grid">{studios.map(studio=><StudioCard studio={studio} listing />)}</div>
+    </section>
+  </main>
+</Base>
