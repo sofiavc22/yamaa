@@ -5,6 +5,13 @@ import studios from '../data/studios.json';
 const featured=studios.filter(studio=>!studio.city||studio.city==='Ciudad de México');
 const guadalajaraStudios=studios.filter(studio=>studio.city==='Guadalajara'||studio.city==='Zapopan');
 const zones=['Roma Norte','Condesa','Polanco','Del Valle','Coyoacán','Santa Fe'];
+const searchLocations=[
+  {name:'Ciudad de México',path:'/cdmx',aliases:['cdmx','mexico','ciudad de mexico']},
+  {name:'Guadalajara',path:'/guadalajara',aliases:['guadalajara','gdl']},
+  {name:'Zapopan',path:'/guadalajara',aliases:['zapopan']},
+  ...[...new Set(featured.map(studio=>studio.zone))].sort((a,b)=>a.localeCompare(b,'es')).map(name=>({name,path:'/cdmx',zone:name,city:'Ciudad de México'})),
+  ...[...new Set(guadalajaraStudios.map(studio=>studio.zone))].sort((a,b)=>a.localeCompare(b,'es')).map(name=>({name,path:'/guadalajara',zone:name,city:'Guadalajara y Zapopan'}))
+];
 const structuredData={
   '@context':'https://schema.org',
   '@graph':[
@@ -22,11 +29,11 @@ const structuredData={
   <div class="discovery-sticky">
     <div class="shell">
     <form class="wellness-search" action="/cdmx" role="search">
-      <label><span>¿Dónde practicamos?</span><input id="city-search" type="search" list="available-cities" placeholder="Toda la Ciudad de México" aria-label="Escribe una ciudad" autocomplete="off" /></label>
+      <label><span>¿Dónde practicamos?</span><input id="city-search" type="search" list="available-locations" placeholder="Ciudad o colonia" aria-label="Escribe una ciudad o colonia" autocomplete="off" data-locations={JSON.stringify(searchLocations)} /></label>
       <label><span>Tu práctica</span><select name="estilo" aria-label="Estilo de yoga"><option value="">Explora a tu ritmo</option>{['Vinyasa','Hatha','Rocket','Restaurativo','Yin'].map(f=><option value={f}>{f}</option>)}</select></label>
       <button class="search-submit" type="submit" aria-label="Buscar estudios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><span>Buscar</span></button>
     </form>
-    <datalist id="available-cities"><option value="Ciudad de México"/><option value="Guadalajara"/><option value="Zapopan"/></datalist>
+    <datalist id="available-locations">{searchLocations.map(location=><option value={location.name} label={location.city||'Ciudad'} />)}</datalist>
     <nav class="practice-tabs category-tabs" aria-label="Explora Yamaa">
       {[
         {label:'Estudios',icon:'⌂',id:'estudios'},
@@ -81,19 +88,18 @@ const structuredData={
 const cityForm=document.querySelector<HTMLFormElement>('.wellness-search');
 const cityInput=document.querySelector<HTMLInputElement>('#city-search');
 const normalizeCity=(value:string)=>value.trim().toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-const cityDestinations=[
- {name:'Ciudad de México',aliases:['cdmx','mexico','ciudad de mexico'],path:'/cdmx'},
- {name:'Guadalajara',aliases:['guadalajara','gdl'],path:'/guadalajara'},
- {name:'Zapopan',aliases:['zapopan'],path:'/guadalajara'}
-];
+type SearchLocation={name:string;path:string;zone?:string;aliases?:string[]};
+const searchLocations:SearchLocation[]=JSON.parse(cityInput?.dataset.locations||'[]');
 cityInput?.addEventListener('input',()=>cityInput.setCustomValidity(''));
 cityForm?.addEventListener('submit',event=>{
  const query=normalizeCity(cityInput?.value||'');
  if(!query)return;
- const match=cityDestinations.find(city=>city.aliases.some(alias=>alias===query))||cityDestinations.find(city=>city.aliases.some(alias=>alias.startsWith(query)));
- if(!match){event.preventDefault();cityInput?.setCustomValidity('Por ahora puedes buscar en Ciudad de México, Guadalajara o Zapopan.');cityInput?.reportValidity();return;}
+ const matches=(location:SearchLocation)=>[location.name,...(location.aliases||[])].map(normalizeCity);
+ const match=searchLocations.find(location=>matches(location).includes(query))||searchLocations.find(location=>matches(location).some(name=>name.startsWith(query)));
+ if(!match){event.preventDefault();cityInput?.setCustomValidity('No encontramos esa ciudad o colonia. Elige una de las sugerencias.');cityInput?.reportValidity();return;}
  event.preventDefault();
  const destination=new URL(match.path,window.location.origin);
+ if(match.zone)destination.searchParams.set('zona',match.zone);
  const style=cityForm.querySelector<HTMLSelectElement>('select[name="estilo"]')?.value;
  if(style)destination.searchParams.set('estilo',style);
  window.location.assign(destination.toString());
