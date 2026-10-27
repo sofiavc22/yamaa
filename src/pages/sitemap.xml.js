@@ -8,6 +8,10 @@ export function GET() {
     { loc: `${site}/` },
     { loc: `${site}/cdmx` },
     { loc: `${site}/guadalajara` },
+    { loc: `${site}/cdmx/roma-norte` },
+    { loc: `${site}/cdmx/polanco` },
+    { loc: `${site}/cdmx/del-valle` },
+    { loc: `${site}/guadalajara/americana` },
     ...studios.map((studio) => ({ loc: `${site}/estudios/${studio.slug}`, lastmod: studio.verifiedAt }))
   ];
   const urls = pages.map(({ loc, lastmod }) => `<url><loc>${escapeXml(loc)}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</url>`).join('');

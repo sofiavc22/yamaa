@@ -62,7 +62,7 @@ const structuredData={
     <div class="section-head">
       <div><div class="kicker">Explora por zona</div><h2>Yoga cerca de ti</h2></div>
     </div>
-    <div class="zone-pills">{zones.map(z=><a href={`/cdmx?zona=${encodeURIComponent(z)}`}>{z}<span>→</span></a>)}</div>
+    <div class="zone-pills">{zones.map(z=><a href={({'Roma Norte':'/cdmx/roma-norte','Polanco':'/cdmx/polanco','Del Valle':'/cdmx/del-valle'}[z]) || `/cdmx?zona=${encodeURIComponent(z)}`}>{z}<span>→</span></a>)}</div>
   </section>
 
   <section id="guias" class="shell section guides">
