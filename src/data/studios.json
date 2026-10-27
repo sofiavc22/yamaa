@@ -1361,6 +1361,26 @@
     "website": "https://www.apurvacentrodeyoga.com",
     "whatsapp": "523312891113",
     "firstClassPrice": 310,
+    "images": [
+      {
+        "url": "/images/studios/centro-apurva-yoga/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Clase grupal de yoga en Apurva Ladrón de Guevara frente a un mural"
+      },
+      {
+        "url": "/images/studios/centro-apurva-yoga/class.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Grupo practicando yoga en el salón de Apurva Ladrón de Guevara"
+      },
+      {
+        "url": "/images/studios/centro-apurva-yoga/entrance.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Fachada de Apurva Yoga en el número 600 de Ladrón de Guevara"
+      }
+    ],
     "locationVerifiedAt": "2026-10-26",
     "locationSourceUrl": "https://maps.app.goo.gl/A9zQ2hkWiNqXC4w18"
   }
