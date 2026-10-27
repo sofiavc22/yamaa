@@ -5,7 +5,7 @@ import allStudios from '../../data/studios.json';
 const studios=allStudios.filter(studio=>!studio.city||studio.city==='Ciudad de México');
 
 const allStyles=[...new Map(studios.flatMap(studio=>studio.modalities||[]).map(style=>[style.toLocaleLowerCase('es'),style])).values()].sort((a,b)=>a.localeCompare(b,'es'));
-const zoneOrder = ['Roma Norte', 'Condesa', 'Polanco', 'Del Valle', 'Escandón', 'Coyoacán', 'Santa Fe'];
+const zoneOrder = ['Roma Norte', 'Condesa', 'San Miguel Chapultepec', 'Polanco', 'Del Valle', 'Escandón', 'Coyoacán', 'Santa Fe'];
 
 
 
@@ -13,7 +13,7 @@ const faqs = [
   { question: '¿Cuánto cuesta una clase de yoga en CDMX?', answer: 'El precio depende del estudio, la modalidad y el tipo de paquete. En cada ficha mostramos la información pública disponible o un enlace a la tarifa oficial para que confirmes el precio vigente antes de reservar.' },
   { question: '¿Cómo encuentro horarios disponibles?', answer: 'Abre la ficha del estudio que te interesa. Cuando el estudio publica su calendario, encontrarás un enlace directo a sus horarios o sistema oficial de reservas.' },
   { question: '¿Hay clases para principiantes?', answer: 'Sí. Revisa las modalidades y la nota para principiantes de cada ficha. Si el nivel no está indicado, confirma directamente con el estudio antes de asistir.' },
-  { question: '¿Qué zona tiene más opciones?', answer: `En este directorio, Polanco, Roma Norte, Condesa y Del Valle concentran la mayor cantidad de fichas. En total puedes comparar ${studios.length} estudios en siete zonas de CDMX.` }
+  { question: '¿Qué zona tiene más opciones?', answer: `En este directorio, Polanco, Roma Norte, Del Valle y Condesa concentran la mayor cantidad de fichas. En total puedes comparar ${studios.length} estudios en ${zoneOrder.length} zonas de CDMX.` }
 ];
 
 const structuredData = {
