@@ -2,27 +2,116 @@
 import Base from '../../layouts/Base.astro';
 import StudioCard from '../../components/StudioCard.astro';
 import allStudios from '../../data/studios.json';
-
 const studios=allStudios.filter(studio=>studio.city==='Guadalajara'||studio.city==='Zapopan');
-const structuredData={
-  '@context':'https://schema.org',
-  '@graph':[
-    {'@type':'CollectionPage','@id':'https://www.clasedeyoga.com.mx/guadalajara#page',name:'Clases y estudios de yoga en Guadalajara y Zapopan',description:`Descubre ${studios.length} ${studios.length===1?'estudio':'estudios'} de yoga en Guadalajara y Zapopan.`,url:'https://www.clasedeyoga.com.mx/guadalajara',inLanguage:'es-MX'},
-    {'@type':'ItemList',name:'Estudios de yoga en Guadalajara y Zapopan',numberOfItems:studios.length,itemListElement:studios.map((studio,index)=>({'@type':'ListItem',position:index+1,name:studio.name,url:`https://www.clasedeyoga.com.mx/estudios/${studio.slug}`}))}
+
+const allStyles=[...new Map(studios.flatMap(studio=>studio.modalities||[]).map(style=>[style.toLocaleLowerCase('es'),style])).values()].sort((a,b)=>a.localeCompare(b,'es'));
+const zoneOrder = [...new Set(studios.map(studio=>studio.zone).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'es'));
+
+
+
+const faqs = [
+  { question: '¿Cuánto cuesta una clase de yoga en Guadalajara?', answer: 'El precio depende del estudio y la modalidad. En cada ficha mostramos el precio público disponible o un enlace a la tarifa oficial para que confirmes el costo vigente antes de reservar.' },
+  { question: '¿Cómo encuentro horarios disponibles?', answer: 'Abre la ficha del estudio que te interesa. Cuando el estudio publica su calendario, encontrarás un enlace directo a sus horarios o sistema oficial de reservas.' },
+  { question: '¿Hay clases para principiantes?', answer: 'Sí. Revisa las modalidades y la nota para principiantes de cada ficha. Si el nivel no está indicado, confirma directamente con el estudio antes de asistir.' },
+  { question: '¿Dónde puedo encontrar estudios?', answer: `Puedes explorar ${studios.length} estudios en Guadalajara y Zapopan y filtrar las opciones por zona y estilo.` }
+];
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'CollectionPage', '@id': 'https://www.clasedeyoga.com.mx/guadalajara#page', name: 'Clases y estudios de yoga en Guadalajara y Zapopan: precios y horarios', description: `Compara ${studios.length} estudios de yoga en Guadalajara y Zapopan por colonia, estilo, horarios y precios publicados.`, url: 'https://www.clasedeyoga.com.mx/guadalajara', inLanguage: 'es-MX' },
+    { '@type': 'ItemList', name: 'Estudios de yoga en Guadalajara y Zapopan', numberOfItems: studios.length, itemListElement: studios.map((studio, index) => ({ '@type': 'ListItem', position: index + 1, name: studio.name, url: `https://www.clasedeyoga.com.mx/estudios/${studio.slug}` })) },
+    { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.clasedeyoga.com.mx/' }, { '@type': 'ListItem', position: 2, name: 'Yoga en Guadalajara y Zapopan', item: 'https://www.clasedeyoga.com.mx/guadalajara' }] },
+    { '@type': 'FAQPage', mainEntity: faqs.map((faq) => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })) }
   ]
 };
 ---
-<Base title="Clases de yoga en Guadalajara y Zapopan | Yamaa" description="Encuentra estudios de yoga en Guadalajara y Zapopan, conoce sus estilos, ubicación y formas de contacto." structuredData={structuredData}>
-  <main class="city-results-page">
+
+<Base title="Clases y estudios de yoga en Guadalajara y Zapopan: precios y horarios | Yamaa" description={`Compara ${studios.length} estudios de yoga en Guadalajara y Zapopan por colonia y estilo. Consulta ubicación, horarios, precios publicados y enlaces para reservar.`} structuredData={structuredData}>
+  <main id="top" class="city-results-page">
     <header class="results-sticky">
       <div class="shell results-search-row">
         <a class="results-back" href="/" aria-label="Volver al inicio"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7"/></svg></a>
-        <div class="results-search-pill"><strong>Yoga en Guadalajara y Zapopan</strong><span>Estudios verificados por Yamaa</span></div>
+        <button type="button" class="results-search-pill" data-open-filters><strong>Yoga en Guadalajara y Zapopan</strong><span id="results-search-caption">Todas las zonas · Todos los estilos</span></button>
+        <button type="button" class="results-filter-button" data-open-filters aria-label="Abrir filtros"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="9" cy="18" r="2"/></svg><span id="results-filter-badge" hidden></span></button>
       </div>
+      <nav class="shell results-filter-chips" aria-label="Filtrar por estilo de yoga">
+        {['Todos','Vinyasa','Hatha','Restaurativo','Flow','Yin','Kundalini'].map((style,index)=><a class="chip" href={index===0?'/guadalajara':`/guadalajara?estilo=${encodeURIComponent(style)}`} data-style-filter={index===0?'':style} aria-current={index===0?'true':undefined}>{style}</a>)}
+      </nav>
     </header>
-    <section class="shell results-content">
-      <h1>{studios.length} {studios.length===1?'estudio de yoga':'estudios de yoga'} en Guadalajara y Zapopan</h1>
-      <div class="results-grid">{studios.map(studio=><StudioCard studio={studio} listing />)}</div>
+    <section class="shell results-content" aria-labelledby="city-results-title">
+      <h1 id="city-results-title">{studios.length} estudios de yoga en Guadalajara y Zapopan</h1>
+      <div class="results-count sr-only" role="status" aria-live="polite"></div>
+      <div class="results-empty" hidden><h2>No encontramos estudios con esos filtros</h2><p>Prueba con otra zona o estilo para encontrar tu próxima práctica.</p><a class="btn" href="/guadalajara">Quitar filtros</a></div>
+      <div class="grid results-grid">{studios.map(studio=><StudioCard studio={studio} listing={true}/>)}</div>
+    </section>
+    <dialog class="results-filter-sheet" aria-labelledby="results-filter-title">
+      <form action="/guadalajara" method="get">
+        <header><button type="button" class="results-close" aria-label="Cerrar filtros">×</button><h2 id="results-filter-title">Encuentra tu práctica</h2></header>
+        <div class="filter-scroll-body">
+        <fieldset class="filter-group"><legend>¿En qué zona?</legend><div class="filter-options">{['',...zoneOrder].map(zone=><label class="filter-choice"><input type="radio" name="zona" value={zone} checked={!zone}/><span>{zone||'Todas'}</span></label>)}</div></fieldset>
+        <fieldset class="filter-group"><legend>Estilo de Yoga</legend><div class="filter-options">{['',...allStyles].map(style=><label class="filter-choice"><input type="radio" name="estilo" value={style} checked={!style}/><span>{style||'Todos los estilos'}</span></label>)}</div></fieldset>
+        <fieldset class="filter-group"><legend>Precio de tu primera visita</legend><p class="filter-help">Por persona, en MXN. Distribución de los precios disponibles.</p>
+        <div class="price-histogram" aria-hidden="true">{Array.from({length:11},(_,i)=>{const n=studios.filter(s=>typeof s.firstClassPrice==='number'&&s.firstClassPrice>=90+i*20&&s.firstClassPrice<(i===10?311:110+i*20)).length;return <span data-bin={90+i*20} style={`height:${Math.max(4,n*12)}px`}></span>})}</div>
+        <div class="price-sliders"><label><span class="sr-only">Precio mínimo</span><input type="range" name="min" min="90" max="310" step="5" value="90"/></label><label><span class="sr-only">Precio máximo</span><input type="range" name="max" min="90" max="310" step="5" value="310"/></label></div>
+        <div class="price-values"><output id="min-price">$90 MXN</output><output id="max-price">$310 MXN</output></div>
+        <p class="filter-help">Al ajustar el rango se muestran solo estudios con precio confirmado.</p></fieldset>
+        <label>Nombre del estudio<input type="search" name="q" placeholder="Busca tu estudio" autocomplete="off"/></label>
+        </div>
+        <footer><button type="button" class="filter-reset">Quitar filtros</button><button class="btn primary" type="submit" id="show-filter-results">Mostrar estudios</button></footer>
+      </form>
+    </dialog>
+
+    <section class="city-faq">
+      <div class="shell">
+        <div class="eyebrow">Antes de reservar</div><h2>Preguntas sobre clases de yoga en Guadalajara y Zapopan</h2>
+        <div class="results-faq-list">{faqs.map(faq=><details><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</div>
+      </div>
     </section>
   </main>
 </Base>
+
+<script>
+const params=new URLSearchParams(window.location.search);
+const normalize=(value:string)=>value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const cards=[...document.querySelectorAll<HTMLElement>('.results-grid .studio-card')];
+const matches=(card:HTMLElement,p:URLSearchParams)=>{
+ const zone=p.get('zona')||'',style=p.get('estilo')||'',query=p.get('q')||'';
+ const price=card.dataset.price?Number(card.dataset.price):null;
+ return (!zone||card.dataset.zone===zone)&&(!style||normalize(card.dataset.modalities||'').includes(normalize(style)))&&(!query||normalize(card.querySelector('h3')?.textContent||'').includes(normalize(query)))&&(!p.has('min')&&!p.has('max')||(price!==null&&price>=Number(p.get('min')||90)&&price<=Number(p.get('max')||310)));
+};
+const count=cards.filter(card=>{const visible=matches(card,params);card.hidden=!visible;return visible;}).length;
+const zone=params.get('zona')||'',style=params.get('estilo')||'',query=params.get('q')||'';
+const summary=`${count} ${count===1?'estudio de yoga':'estudios de yoga'} ${zone?'en '+zone:'en Guadalajara y Zapopan'}`;
+const title=document.querySelector('#city-results-title');if(title)title.textContent=summary;
+const status=document.querySelector('.results-count');if(status)status.textContent=summary;
+document.querySelector('.results-empty')?.toggleAttribute('hidden',count>0);
+const caption=document.querySelector('#results-search-caption');if(caption)caption.textContent=[zone||'Todas las zonas',style||'Todos los estilos',query,params.has('min')||params.has('max')?'$'+(params.get('min')||90)+'–$'+(params.get('max')||310):''].filter(Boolean).join(' · ');
+const badge=document.querySelector('#results-filter-badge');const activeCount=[zone,style,query,params.has('min')||params.has('max')].filter(Boolean).length;if(badge&&activeCount){badge.textContent=String(activeCount);badge.removeAttribute('hidden');}
+document.querySelectorAll<HTMLAnchorElement>('[data-style-filter]').forEach(link=>{const value=link.dataset.styleFilter||'';const next=new URLSearchParams(params);if(value)next.set('estilo',value);else next.delete('estilo');link.href='/guadalajara'+(next.size?'?'+next:'');if(normalize(value)===normalize(style))link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});
+const sheet=document.querySelector<HTMLDialogElement>('.results-filter-sheet');
+const form=sheet?.querySelector('form');
+const min=form?.querySelector<HTMLInputElement>('[name=min]');const max=form?.querySelector<HTMLInputElement>('[name=max]');
+let priceActive=params.has('min')||params.has('max');
+form?.querySelectorAll<HTMLInputElement>('input').forEach(input=>{
+ const value=params.get(input.name);
+ if(input.type==='radio')input.checked=normalize(input.value)===normalize(value||'');
+ else if(input.type==='checkbox')input.checked=params.has(input.name);
+ else if(value!==null)input.value=value;
+});
+const draft=()=>{const p=new URLSearchParams(new FormData(form!) as any);for(const [key,value] of [...p])if(!value)p.delete(key);if(!priceActive){p.delete('min');p.delete('max');}return p;};
+const preview=()=>{
+ if(!form||!min||!max)return;
+ const p=draft();const n=cards.filter(card=>matches(card,p)).length;
+ const slider=form.querySelector<HTMLElement>('.price-sliders');slider?.style.setProperty('--range-start',((Number(min.value)-90)/220*100)+'%');slider?.style.setProperty('--range-end',((Number(max.value)-90)/220*100)+'%');
+ const button=document.querySelector('#show-filter-results');if(button)button.textContent=`Mostrar ${n} ${n===1?'estudio':'estudios'}`;
+ document.querySelector('#min-price')!.textContent='$'+min.value+' MXN';document.querySelector('#max-price')!.textContent='$'+max.value+' MXN';
+ document.querySelectorAll<HTMLElement>('[data-bin]').forEach(bar=>bar.classList.toggle('out-of-range',priceActive&&(Number(bar.dataset.bin)+20<Number(min.value)||Number(bar.dataset.bin)>Number(max.value))));
+};
+form?.addEventListener('input',event=>{if(event.target===min||event.target===max){priceActive=true;if(Number(min!.value)>Number(max!.value)){if(event.target===min)max!.value=min!.value;else min!.value=max!.value;}}preview();});
+form?.addEventListener('submit',event=>{event.preventDefault();const p=draft();window.location.href='/guadalajara'+(p.size?'?'+p:'');});
+document.querySelector('.filter-reset')?.addEventListener('click',()=>{form?.reset();priceActive=false;preview();});
+document.querySelectorAll('[data-open-filters]').forEach(button=>button.addEventListener('click',()=>{preview();sheet?.showModal();}));
+document.querySelector('.results-close')?.addEventListener('click',()=>sheet?.close());
+sheet?.addEventListener('click',event=>{if(event.target===sheet){const box=sheet.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)sheet.close();}});
+</script>
