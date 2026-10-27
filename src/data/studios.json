@@ -1099,6 +1099,26 @@
     ],
     "instagram": "https://www.instagram.com/mirandayogaflowestudio/",
     "whatsapp": "523311535153",
+    "images": [
+      {
+        "url": "/images/studios/miranda-yoga-flow-estudio/cover.jpg",
+        "kind": "cover",
+        "authorized": true,
+        "alt": "Clase grupal de yoga en Miranda Yoga Flow Estudio"
+      },
+      {
+        "url": "/images/studios/miranda-yoga-flow-estudio/class.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Participantes de Miranda Yoga Flow Estudio practicando sobre tapetes"
+      },
+      {
+        "url": "/images/studios/miranda-yoga-flow-estudio/aerial.jpg",
+        "kind": "gallery",
+        "authorized": true,
+        "alt": "Espacio de yoga aéreo con hamacas y luz violeta en Miranda Yoga Flow Estudio"
+      }
+    ],
     "locationVerifiedAt": "2026-10-26",
     "locationSourceUrl": "https://maps.app.goo.gl/DYjDdTS49xEYvd2P8"
   },
