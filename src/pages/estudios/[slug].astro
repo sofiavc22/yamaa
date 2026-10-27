@@ -20,6 +20,11 @@ const gallery=cover?[cover,...authorizedImages.filter((image)=>image!==cover)]:[
 const bookingTarget=studio.bookingUrl||wa||website||instagram||'#ubicacion';
 const bookingLabel='Contactar al estudio';
 const firstVisitPrice=typeof studio.firstClassPrice==='number'?new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}).format(studio.firstClassPrice)+' MXN':null;
+const pricingDetails=firstVisitPrice
+  ? `Tu primera vez por ${firstVisitPrice}. ${studio.pricingSummary || 'Confirma la tarifa vigente y las condiciones directamente con el estudio.'}`
+  : studio.firstClassDonation
+    ? 'La primera visita es por donativo. Confirma el monto sugerido y las condiciones directamente con el estudio.'
+    : studio.pricingSummary || 'Pregunta por la clase de prueba, clases individuales y paquetes disponibles.';
 const introduction=studio.summary || studioIntroductions[studio.slug];
 const titleCandidate=`${studio.name} — Yoga en ${studio.zone} | Yamaa`;
 const title=studio.seoTitle || (titleCandidate.length>65 ? `${studio.name} | Yamaa` : titleCandidate);
@@ -86,7 +91,7 @@ const structuredData={
       <section class="detail-section location-section" id="ubicacion"><div class="section-label">Ubicación</div><h2>{studio.zone}, {cityLabel}</h2><StudioMap studio={studio} /></section>
       <section class="visit-details" id="visita"><div class="section-label">Información para planear tu visita</div><h2>Horarios, precios y reservas</h2><div class="visit-facts">
         <div class="visit-fact"><h3>Horarios</h3><p>{studio.scheduleSummary || 'Consulta los horarios vigentes directamente con el estudio.'}</p>{studio.scheduleUrl && <a class="inline-action" href={studio.scheduleUrl} target="_blank" rel="noopener" data-outbound-kind="schedule">Ver horarios oficiales ↗</a>}</div>
-        <div class="visit-fact"><h3>Precios</h3><p>{studio.pricingSummary || 'Pregunta por la clase de prueba, clases individuales y paquetes disponibles.'}</p>{studio.pricingUrl && <a class="inline-action" href={studio.pricingUrl} target="_blank" rel="noopener" data-outbound-kind="pricing">Consultar precios oficiales ↗</a>}</div>
+        <div class="visit-fact"><h3>Precios</h3><p>{pricingDetails}</p>{studio.pricingUrl && <a class="inline-action" href={studio.pricingUrl} target="_blank" rel="noopener" data-outbound-kind="pricing">Consultar precios oficiales ↗</a>}</div>
         {studio.beginnerNote && <div class="visit-fact"><h3>Para principiantes</h3><p>{studio.beginnerNote}</p></div>}
       </div></section>
     </div>
