@@ -22,10 +22,11 @@ const structuredData={
   <div class="discovery-sticky">
     <div class="shell">
     <form class="wellness-search" action="/cdmx" role="search">
-      <label><span>¿Dónde practicamos?</span><select name="zona" aria-label="Zona"><option value="">Toda la Ciudad de México</option>{[...new Set(featured.map(s=>s.zone))].map(z=><option value={z}>{z}</option>)}</select></label>
+      <label><span>¿Dónde practicamos?</span><input id="city-search" type="search" list="available-cities" placeholder="Toda la Ciudad de México" aria-label="Escribe una ciudad" autocomplete="off" /></label>
       <label><span>Tu práctica</span><select name="estilo" aria-label="Estilo de yoga"><option value="">Explora a tu ritmo</option>{['Vinyasa','Hatha','Rocket','Restaurativo','Yin'].map(f=><option value={f}>{f}</option>)}</select></label>
       <button class="search-submit" type="submit" aria-label="Buscar estudios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><span>Buscar</span></button>
     </form>
+    <datalist id="available-cities"><option value="Ciudad de México"/><option value="Guadalajara"/><option value="Zapopan"/></datalist>
     <nav class="practice-tabs category-tabs" aria-label="Explora Yamaa">
       {[
         {label:'Estudios',icon:'⌂',id:'estudios'},
@@ -77,6 +78,26 @@ const structuredData={
 </Base>
 
 <script>
+const cityForm=document.querySelector<HTMLFormElement>('.wellness-search');
+const cityInput=document.querySelector<HTMLInputElement>('#city-search');
+const normalizeCity=(value:string)=>value.trim().toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+const cityDestinations=[
+ {name:'Ciudad de México',aliases:['cdmx','mexico','ciudad de mexico'],path:'/cdmx'},
+ {name:'Guadalajara',aliases:['guadalajara','gdl'],path:'/guadalajara'},
+ {name:'Zapopan',aliases:['zapopan'],path:'/guadalajara'}
+];
+cityInput?.addEventListener('input',()=>cityInput.setCustomValidity(''));
+cityForm?.addEventListener('submit',event=>{
+ const query=normalizeCity(cityInput?.value||'');
+ if(!query)return;
+ const match=cityDestinations.find(city=>city.aliases.some(alias=>alias===query))||cityDestinations.find(city=>city.aliases.some(alias=>alias.startsWith(query)));
+ if(!match){event.preventDefault();cityInput?.setCustomValidity('Por ahora puedes buscar en Ciudad de México, Guadalajara o Zapopan.');cityInput?.reportValidity();return;}
+ event.preventDefault();
+ const destination=new URL(match.path,window.location.origin);
+ const style=cityForm.querySelector<HTMLSelectElement>('select[name="estilo"]')?.value;
+ if(style)destination.searchParams.set('estilo',style);
+ window.location.assign(destination.toString());
+});
 const carousel=document.querySelector<HTMLElement>('.studios-first .city-carousel');
 if(carousel){
  const cards=[...carousel.children];

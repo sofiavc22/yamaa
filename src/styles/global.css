@@ -97,6 +97,10 @@ body:has(.city-results-page)>.nav{display:none}.results-sticky{position:sticky;t
 /* Presentación editorial de cada estudio, separada de los datos de visita. */
 .studio-overview{max-width:760px;margin:0 auto 38px;text-align:left}
 
+.wellness-search input[type=search]{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font-size:13px;padding:2px 0;appearance:none;-webkit-appearance:none}
+.wellness-search input[type=search]::placeholder{color:var(--muted);opacity:1}
+.wellness-search label:focus-within{border-radius:18px;outline:2px solid var(--brand);outline-offset:2px}
+
 /* Home discovery: mobile proportions closer to a compact two-card shelf. */
 @media(max-width:599px){
   body:has(.explore-hero) .discovery-sticky{padding-top:8px}
