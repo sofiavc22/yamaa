@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import StudioCard from '../../components/StudioCard.astro';
+import allStudios from '../../data/studios.json';
+
+export function getStaticPaths() {
+  const zones = [
+  {
+    city: 'cdmx', slug: 'roma-norte', name: 'Roma Norte', cityName: 'CDMX',
+    intro: 'Compara los estudios de yoga que tenemos registrados en Roma Norte. En esta zona encontrarás fichas con Vinyasa, Hatha, Rocket, yoga aéreo y meditación, entre otras prácticas. Cada tarjeta te lleva a la ubicación y a los canales oficiales del estudio para confirmar horarios, niveles y disponibilidad.',
+    guide: 'Si buscas una práctica dinámica, revisa las fichas que registran Vinyasa, Rocket o Power Yoga. Si prefieres explorar otras opciones, también hay estudios con restaurativo, meditación o yoga aéreo. Las modalidades exactas pueden variar por sede y por fecha; confirma la clase antes de reservar.'
+  },
+  {
+    city: 'cdmx', slug: 'polanco', name: 'Polanco', cityName: 'CDMX',
+    intro: 'Explora los estudios de yoga registrados en Polanco y compara sus modalidades y formas de contacto. Entre las opciones publicadas en Yamaa aparecen Iyengar, Hatha, Dharma, yoga aéreo, Kundalini y meditación. Algunas fichas todavía no tienen dirección completa, así que conviene confirmar la sede antes de asistir.',
+    guide: 'Empieza por la modalidad que te interesa y abre cada ficha para revisar la dirección disponible y los enlaces del estudio. Si una ficha no muestra una calle y número, consulta esa información directamente antes de planear el traslado.'
+  },
+  {
+    city: 'cdmx', slug: 'del-valle', name: 'Del Valle', cityName: 'CDMX',
+    intro: 'Encuentra estudios de yoga registrados en la colonia Del Valle. Las fichas reúnen opciones de Hatha, restaurativo, yoga suave, Basic Flow y meditación, según la información disponible de cada espacio. Puedes comparar modalidades, revisar las direcciones registradas y contactar a los estudios para confirmar horarios.',
+    guide: 'Para elegir una clase, revisa primero los estilos de cada ficha y después confirma con el estudio el nivel y la programación. No todas las opciones tienen dirección completa publicada en Yamaa; verifica la sede antes de acudir.'
+  },
+  {
+    city: 'guadalajara', slug: 'americana', name: 'Americana', cityName: 'Guadalajara',
+    intro: 'Compara los estudios de yoga que tenemos registrados en la colonia Americana de Guadalajara. Entre sus modalidades figuran Hatha, yoga terapéutico, Dharma, Kundalini, Ashtanga Vinyasa y restaurativo. Consulta las fichas para revisar su ubicación y contactar directamente a cada espacio.',
+    guide: 'Las opciones de esta zona abarcan distintos estilos, así que vale la pena revisar la modalidad concreta antes de reservar. En el caso del Centro de Kundalini Yoga, la dirección publicada corresponde a oficinas operativas: confirma la sede de tu clase con el centro.'
+  }
+  ];
+  return zones.map((zone) => ({ params: { city: zone.city, zone: zone.slug }, props: { zone } }));
+}
+
+const { zone } = Astro.props;
+const cityStudios = allStudios.filter((studio) => zone.city === 'cdmx'
+  ? (!studio.city || studio.city === 'Ciudad de México')
+  : studio.city === 'Guadalajara');
+const studios = cityStudios.filter((studio) => studio.zone === zone.name);
+const pricedCount = studios.filter((studio) => typeof studio.firstClassPrice === 'number').length;
+const modalityCounts = new Map();
+studios.flatMap((studio) => studio.modalities || []).forEach((modality) => modalityCounts.set(modality, (modalityCounts.get(modality) || 0) + 1));
+const modalities = [...modalityCounts.keys()].filter((modality) => modality !== 'Yoga')
+  .sort((a, b) => modalityCounts.get(b) - modalityCounts.get(a) || a.localeCompare(b, 'es')).slice(0, 10);
+const cityPath = `/${zone.city}`;
+const pagePath = `${cityPath}/${zone.slug}`;
+const pageUrl = `https://www.clasedeyoga.com.mx${pagePath}`;
+const title = `Yoga en ${zone.name}, ${zone.cityName}: ${studios.length} estudios | Yamaa`;
+const description = `Compara ${studios.length} estudios de yoga en ${zone.name}, ${zone.cityName}. Revisa estilos, ubicación, precios publicados y enlaces oficiales antes de reservar.`;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'CollectionPage', '@id': `${pageUrl}#page`, name: title, description, url: pageUrl, inLanguage: 'es-MX' },
+    { '@type': 'ItemList', name: `Estudios de yoga en ${zone.name}`, numberOfItems: studios.length, itemListElement: studios.map((studio, index) => ({ '@type': 'ListItem', position: index + 1, name: studio.name, url: `https://www.clasedeyoga.com.mx/estudios/${studio.slug}` })) },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.clasedeyoga.com.mx/' },
+      { '@type': 'ListItem', position: 2, name: `Yoga en ${zone.cityName}`, item: `https://www.clasedeyoga.com.mx${cityPath}` },
+      { '@type': 'ListItem', position: 3, name: zone.name, item: pageUrl }
+    ] }
+  ]
+};
+---
+
+<Base title={title} description={description} structuredData={structuredData}>
+  <main class="zone-page">
+    <div class="shell">
+      <nav class="zone-breadcrumbs" aria-label="Ruta de navegación"><a href="/">Inicio</a><span aria-hidden="true">›</span><a href={cityPath}>Yoga en {zone.cityName}</a><span aria-hidden="true">›</span><span aria-current="page">{zone.name}</span></nav>
+      <header class="zone-hero">
+        <div class="eyebrow">Explora por zona</div>
+        <h1>Clases de yoga en {zone.name}, {zone.cityName}</h1>
+        <p>{zone.intro}</p>
+        <div class="zone-facts"><strong>{studios.length} {studios.length === 1 ? 'estudio' : 'estudios'}</strong><span>{pricedCount} con precio de primera visita registrado</span></div>
+      </header>
+      <section class="zone-guide" aria-labelledby="zone-guide-title"><h2 id="zone-guide-title">Cómo elegir tu práctica aquí</h2><p>{zone.guide}</p>{modalities.length > 0 && <div class="chips" aria-label="Modalidades registradas en la zona">{modalities.map((modality) => <span class="chip">{modality}</span>)}</div>}</section>
+      <section class="zone-list" aria-labelledby="zone-list-title"><h2 id="zone-list-title">Estudios en {zone.name}</h2><p>Abre una ficha para ver la información disponible y consultar el canal oficial del estudio.</p><div class="grid results-grid">{studios.map((studio) => <StudioCard studio={studio} listing={true} />)}</div></section>
+      <div class="zone-back"><a class="btn" href={cityPath}>Ver todos los estudios de {zone.cityName}</a></div>
+    </div>
+  </main>
+</Base>
