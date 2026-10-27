@@ -54,7 +54,7 @@ const structuredData={
   ]
 };
 ---
-<Base title={title} description={description} structuredData={structuredData}>
+<Base title={title} description={description} structuredData={structuredData} shareImage={cover?.url} shareImageAlt={cover ? cover.alt || `Fotografía de ${studio.name}` : undefined}>
 <main class="studio-experience" data-studio-title={studio.name} data-share-url={pageUrl}>
   <section class="studio-visual" aria-label={`Fotografías de ${studio.name}`}>
     <div class="studio-overlay-nav">
