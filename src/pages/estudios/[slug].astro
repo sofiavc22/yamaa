@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import StudioMap from '../../components/StudioMap.astro';
 import studios from '../../data/studios.json';
+import { studioIntroductions } from '../../data/studioIntroductions.js';
 export function getStaticPaths(){return studios.map(studio=>({params:{slug:studio.slug},props:{studio}}))}
 const {studio}=Astro.props;
 const city=studio.city||'Ciudad de México';
@@ -19,8 +20,11 @@ const gallery=cover?[cover,...authorizedImages.filter((image)=>image!==cover)]:[
 const bookingTarget=studio.bookingUrl||wa||website||instagram||'#ubicacion';
 const bookingLabel='Contactar al estudio';
 const firstVisitPrice=typeof studio.firstClassPrice==='number'?new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}).format(studio.firstClassPrice)+' MXN':null;
-const title=studio.seoTitle || `${studio.name} — Yoga en ${studio.zone} | Yamaa`;
-const description=studio.seoDescription || `Conoce ${studio.name} en ${studio.zone}, ${cityLabel}: estilos de yoga, ubicación y enlaces oficiales para planear tu visita.`;
+const introduction=studio.summary || studioIntroductions[studio.slug];
+const titleCandidate=`${studio.name} — Yoga en ${studio.zone} | Yamaa`;
+const title=studio.seoTitle || (titleCandidate.length>65 ? `${studio.name} | Yamaa` : titleCandidate);
+const firstSentence=introduction?.match(/^.*?[.!?](?:\s|$)/)?.[0].trim() || '';
+const description=studio.seoDescription || (firstSentence.length>125 ? firstSentence : `${firstSentence} Consulta ubicación y contacto en Yamaa.`);
 const verifiedLabel=studio.verifiedAt
   ? new Intl.DateTimeFormat('es-MX',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(`${studio.verifiedAt}T00:00:00Z`))
   : '';
@@ -74,6 +78,7 @@ const structuredData={
       <div class="studio-quick-facts"><a href="#ubicacion"><span>Ubicación</span><strong>{studio.zone}</strong></a><a href="#practica"><span>Tu práctica</span><strong>{studio.modalities?.[0]||'Yoga'}</strong></a><a href="#visita"><span>Planea tu visita</span><strong>Horarios y precios</strong></a></div>
       <p class="studio-action-message" role="status"></p>
     </header>
+  <section class="detail-section studio-overview" aria-labelledby="studio-overview-title"><h2 id="studio-overview-title">Conoce el estudio</h2><p>{introduction}</p></section>
   <div class="detail-grid">
     <div class="detail-main">
       {(instagram||website)&&<nav class="studio-social-row" aria-label="Redes y sitio web del estudio">{instagram&&<a href={instagram} target="_blank" rel="noopener" data-outbound-kind="instagram"><span aria-hidden="true">📷</span>Instagram</a>}{website&&<a href={website} target="_blank" rel="noopener" data-outbound-kind="website"><span aria-hidden="true">🌐</span>Sitio web</a>}</nav>}
