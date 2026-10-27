@@ -96,6 +96,26 @@ body:has(.city-results-page)>.nav{display:none}.results-sticky{position:sticky;t
 .discovery-sticky .wellness-search{margin-left:auto;margin-right:auto}.discovery-sticky .category-tabs{justify-content:safe center}
 /* Presentación editorial de cada estudio, separada de los datos de visita. */
 .studio-overview{max-width:760px;margin:0 auto 38px;text-align:left}
+
+/* Home discovery: mobile proportions closer to a compact two-card shelf. */
+@media(max-width:599px){
+  body:has(.explore-hero) .discovery-sticky{padding-top:8px}
+  body:has(.explore-hero) .wellness-search{grid-template-columns:minmax(0,1fr) 42px;padding:6px;border-radius:24px}
+  body:has(.explore-hero) .wellness-search label{padding:4px 12px}
+  body:has(.explore-hero) .wellness-search label>span{font-size:12px;margin-bottom:2px}
+  body:has(.explore-hero) .wellness-search select{font-size:13px}
+  body:has(.explore-hero) .search-submit{width:42px;height:42px}
+  body:has(.explore-hero) .category-tabs{margin-top:12px;padding:4px 0 10px}
+  body:has(.explore-hero) .category-tabs .practice-tab{min-height:39px;padding:7px 13px;font-size:13px}
+  body:has(.explore-hero) .category-icon{font-size:20px}
+  body:has(.explore-hero) .section[data-studios-content]{padding-top:20px;padding-bottom:20px}
+  body:has(.explore-hero) .section-head{margin-bottom:18px}
+  body:has(.explore-hero) .city-carousel{grid-auto-columns:46%;gap:12px}
+  body:has(.explore-hero) .city-carousel .studio-photo{border-radius:17px}
+  body:has(.explore-hero) .city-carousel .studio-topline h3{font-size:14px}
+  body:has(.explore-hero) .city-carousel .meta{font-size:12px;line-height:1.4}
+  body:has(.explore-hero) .bottom-nav{padding-top:9px;padding-bottom:calc(9px + env(safe-area-inset-bottom,0px))}
+}
 .studio-overview h2{font-size:clamp(22px,3vw,28px);line-height:1.2;margin:0 0 12px}
 .studio-overview p{font-size:16px;line-height:1.7;color:var(--muted);margin:0}
 /* Páginas de zonas con una guía breve antes de comparar estudios. */
