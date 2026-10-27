@@ -100,6 +100,12 @@ body:has(.city-results-page)>.nav{display:none}.results-sticky{position:sticky;t
 .wellness-search input[type=search]{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font-size:13px;padding:2px 0;appearance:none;-webkit-appearance:none}
 .wellness-search input[type=search]::placeholder{color:var(--muted);opacity:1}
 .wellness-search label:focus-within{border-radius:18px;outline:2px solid var(--brand);outline-offset:2px}
+.wellness-search{position:relative}
+.location-suggestions{position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:40;max-height:280px;overflow-y:auto;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 12px 30px #18291f24;padding:6px}
+.location-suggestions button{display:flex;flex-direction:column;align-items:flex-start;width:100%;gap:3px;border:0;border-radius:12px;background:#fff;color:var(--ink);padding:11px 14px;text-align:left}
+.location-suggestions button:hover,.location-suggestions button[aria-selected=true]{background:var(--warm)}
+.location-suggestions strong{font-size:14px;font-weight:600}
+.location-suggestions span{font-size:12px;color:var(--muted)}
 
 /* Home discovery: mobile proportions closer to a compact two-card shelf. */
 @media(max-width:599px){

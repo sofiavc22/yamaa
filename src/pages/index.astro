@@ -29,11 +29,11 @@ const structuredData={
   <div class="discovery-sticky">
     <div class="shell">
     <form class="wellness-search" action="/cdmx" role="search">
-      <label><span>¿Dónde practicamos?</span><input id="city-search" type="search" list="available-locations" placeholder="Ciudad o colonia" aria-label="Escribe una ciudad o colonia" autocomplete="off" data-locations={JSON.stringify(searchLocations)} /></label>
+      <label><span>¿Dónde practicamos?</span><input id="city-search" type="search" placeholder="Ciudad o colonia" role="combobox" aria-label="Escribe una ciudad o colonia" aria-autocomplete="list" aria-controls="location-suggestions" aria-expanded="false" autocomplete="off" data-locations={JSON.stringify(searchLocations)} /></label>
       <label><span>Tu práctica</span><select name="estilo" aria-label="Estilo de yoga"><option value="">Explora a tu ritmo</option>{['Vinyasa','Hatha','Rocket','Restaurativo','Yin'].map(f=><option value={f}>{f}</option>)}</select></label>
       <button class="search-submit" type="submit" aria-label="Buscar estudios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><span>Buscar</span></button>
+      <div id="location-suggestions" class="location-suggestions" role="listbox" aria-label="Ciudades y colonias sugeridas" hidden>{searchLocations.map((location,index)=><button type="button" id={`location-option-${index}`} role="option" aria-selected="false" data-location-index={index}><strong>{location.name}</strong><span>{location.city||'Ciudad'}</span></button>)}</div>
     </form>
-    <datalist id="available-locations">{searchLocations.map(location=><option value={location.name} label={location.city||'Ciudad'} />)}</datalist>
     <nav class="practice-tabs category-tabs" aria-label="Explora Yamaa">
       {[
         {label:'Estudios',icon:'⌂',id:'estudios'},
@@ -90,12 +90,53 @@ const cityInput=document.querySelector<HTMLInputElement>('#city-search');
 const normalizeCity=(value:string)=>value.trim().toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 type SearchLocation={name:string;path:string;zone?:string;aliases?:string[]};
 const searchLocations:SearchLocation[]=JSON.parse(cityInput?.dataset.locations||'[]');
-cityInput?.addEventListener('input',()=>cityInput.setCustomValidity(''));
+const suggestions=document.querySelector<HTMLElement>('#location-suggestions');
+const optionButtons=[...document.querySelectorAll<HTMLButtonElement>('[data-location-index]')];
+const matches=(location:SearchLocation)=>[location.name,...(location.aliases||[])].map(normalizeCity);
+let visibleOptions:HTMLButtonElement[]=[];
+let activeOption=-1;
+const setActiveOption=(index:number)=>{
+ activeOption=index;
+ optionButtons.forEach(button=>button.setAttribute('aria-selected',String(button===visibleOptions[index])));
+ if(index>=0)cityInput?.setAttribute('aria-activedescendant',visibleOptions[index].id);
+ else cityInput?.removeAttribute('aria-activedescendant');
+};
+const closeSuggestions=()=>{if(suggestions)suggestions.hidden=true;cityInput?.setAttribute('aria-expanded','false');setActiveOption(-1);};
+const updateSuggestions=()=>{
+ const query=normalizeCity(cityInput?.value||'');
+ visibleOptions=[];
+ optionButtons.forEach((button,index)=>{
+  const show=!!query&&matches(searchLocations[index]).some(name=>name.includes(query))&&visibleOptions.length<8;
+  button.hidden=!show;
+  if(show)visibleOptions.push(button);
+ });
+ if(suggestions)suggestions.hidden=visibleOptions.length===0;
+ cityInput?.setAttribute('aria-expanded',String(visibleOptions.length>0));
+ setActiveOption(-1);
+};
+cityInput?.addEventListener('input',()=>{cityInput.setCustomValidity('');updateSuggestions();});
+cityInput?.addEventListener('focus',updateSuggestions);
+cityInput?.addEventListener('keydown',event=>{
+ if(event.key==='Escape'){closeSuggestions();return;}
+ if(!visibleOptions.length)return;
+ if(event.key==='ArrowDown'||event.key==='ArrowUp'){
+  event.preventDefault();
+  setActiveOption(event.key==='ArrowDown'?(activeOption+1)%visibleOptions.length:(activeOption-1+visibleOptions.length)%visibleOptions.length);
+ }else if(event.key==='Enter'&&activeOption>=0){
+  event.preventDefault();
+  cityInput.value=searchLocations[Number(visibleOptions[activeOption].dataset.locationIndex)].name;
+  closeSuggestions();
+ }
+});
+optionButtons.forEach(button=>button.addEventListener('click',()=>{
+ if(cityInput)cityInput.value=searchLocations[Number(button.dataset.locationIndex)].name;
+ closeSuggestions();
+}));
+document.addEventListener('pointerdown',event=>{if(!cityForm?.contains(event.target as Node))closeSuggestions();});
 cityForm?.addEventListener('submit',event=>{
  const query=normalizeCity(cityInput?.value||'');
  if(!query)return;
- const matches=(location:SearchLocation)=>[location.name,...(location.aliases||[])].map(normalizeCity);
- const match=searchLocations.find(location=>matches(location).includes(query))||searchLocations.find(location=>matches(location).some(name=>name.startsWith(query)));
+ const match=searchLocations.find(location=>matches(location).includes(query))||searchLocations.find(location=>matches(location).some(name=>name.startsWith(query)))||searchLocations.find(location=>matches(location).some(name=>name.includes(query)));
  if(!match){event.preventDefault();cityInput?.setCustomValidity('No encontramos esa ciudad o colonia. Elige una de las sugerencias.');cityInput?.reportValidity();return;}
  event.preventDefault();
  const destination=new URL(match.path,window.location.origin);
