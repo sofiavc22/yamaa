@@ -78,8 +78,7 @@ const structuredData={
   <div class="shell studio-body">
     <header class="studio-summary">
       <h1>{studio.name}</h1>
-      <p>{studio.type} en {studio.zone}, {city}</p>
-      <p class="studio-summary-styles">{studio.modalities?.slice(0,3).join(' · ')}</p>
+      <p>Yoga en {studio.zone}, {city}</p>
       <div class="studio-quick-facts"><a href="#ubicacion"><span>Ubicación</span><strong>{studio.zone}</strong></a><a href="#practica"><span>Tu práctica</span><strong>{studio.modalities?.[0]||'Yoga'}</strong></a><a href="#visita"><span>Planea tu visita</span><strong>Horarios y precios</strong></a></div>
       <p class="studio-action-message" role="status"></p>
     </header>
