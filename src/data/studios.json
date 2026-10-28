@@ -4,7 +4,7 @@
     "slug": "mula-yoga-shala",
     "zone": "Roma Norte",
     "type": "Estudio de yoga",
-    "address": "Colima 220 Int. 406, Roma Norte",
+    "address": "Colima 220 Int. 406, Roma Norte, Cuauhtémoc, 06700 Ciudad de México, CDMX",
     "modalities": [
       "Dharma",
       "Hatha Vinyasa",
@@ -45,7 +45,7 @@
     "slug": "con-pausa",
     "zone": "Roma Norte",
     "type": "Estudio de yoga",
-    "address": "Colima 159 Piso 1, Roma Norte",
+    "address": "Colima 159 Piso 1, Roma Norte, Cuauhtémoc, 06700 Ciudad de México, CDMX",
     "modalities": [
       "Vinyasa",
       "Dharma",
@@ -84,7 +84,7 @@
     "slug": "gita-studio",
     "zone": "Roma Norte",
     "type": "Estudio de yoga",
-    "address": "Av. Chapultepec 360, Roma Norte",
+    "address": "Av. Chapultepec 360, Roma Norte, Cuauhtémoc, 06700 Ciudad de México, CDMX",
     "modalities": [
       "Power Yoga",
       "Rocket",
@@ -134,7 +134,7 @@
     "slug": "atma-yoga-energy-center",
     "zone": "Roma Norte",
     "type": "Estudio de yoga",
-    "address": "Av. Yucatán 69, Roma Norte",
+    "address": "Av. Yucatán 69, 2.º piso, Roma Norte, Cuauhtémoc, 06700 Ciudad de México, CDMX",
     "modalities": [
       "Power Yoga",
       "Ashtanga",
@@ -174,7 +174,7 @@
     "slug": "power-flow-yoga",
     "zone": "Roma Norte",
     "type": "Estudio de yoga",
-    "address": "Uruapan 17, Roma Norte",
+    "address": "Uruapan 17, Roma Norte, Cuauhtémoc, 06700 Ciudad de México, CDMX",
     "modalities": [
       "Power Yoga",
       "Rocket",
@@ -204,7 +204,7 @@
     "slug": "kurunta-yoga-by-ana-sordo",
     "zone": "Roma Norte",
     "type": "Estudio de yoga",
-    "address": "Guanajuato 114, Roma Norte",
+    "address": "Guanajuato 114, Roma Norte, Cuauhtémoc, 06700 Ciudad de México, CDMX",
     "modalities": [
       "Yoga Aéreo",
       "Wall Yoga",
@@ -251,7 +251,7 @@
     "slug": "centro-budista-de-la-ciudad",
     "zone": "Roma Norte",
     "type": "Centro budista / yoga",
-    "address": "Jalapa 94, Roma Norte",
+    "address": "Jalapa 94, Roma Norte, Cuauhtémoc, 06700 Ciudad de México, CDMX",
     "modalities": [
       "Yoga",
       "Meditación"
@@ -322,7 +322,7 @@
     "slug": "bodai-yoga-condesa",
     "zone": "Condesa",
     "type": "Estudio de yoga",
-    "address": "Ámsterdam 124 piso 5, Condesa",
+    "address": "Ámsterdam 124, piso 5, Condesa, Cuauhtémoc, 06100 Ciudad de México, CDMX",
     "modalities": [
       "Yoga"
     ],
@@ -355,7 +355,7 @@
     "slug": "mukta-yoga-vinyasa",
     "zone": "Condesa",
     "type": "Estudio de yoga",
-    "address": "Ámsterdam 171 int 101, Hipódromo",
+    "address": "Ámsterdam 171, int. 101, Hipódromo, Cuauhtémoc, 06170 Ciudad de México, CDMX",
     "modalities": [
       "Vinyasa"
     ],
@@ -388,7 +388,7 @@
     "slug": "sat-nam-yoga-y-pilates",
     "zone": "San Miguel Chapultepec",
     "type": "Yoga / Pilates",
-    "address": "Av. José Vasconcelos 207, San Miguel Chapultepec, CDMX",
+    "address": "Av. José Vasconcelos 207, primer piso, San Miguel Chapultepec II Sección, Miguel Hidalgo, 11850 Ciudad de México, CDMX",
     "modalities": [
       "Hatha",
       "Meditación",
@@ -423,7 +423,7 @@
     "slug": "duna-studio",
     "zone": "Escandón",
     "type": "Estudio mixto",
-    "address": "Cda. de la Paz 15, Escandón I Sección",
+    "address": "Cda. de la Paz 15, Escandón I Sección, Miguel Hidalgo, 11800 Ciudad de México, CDMX",
     "modalities": [
       "Yoga"
     ],
@@ -467,7 +467,7 @@
     "slug": "agoralucis",
     "zone": "Polanco",
     "type": "Yoga / wellness",
-    "address": "Lafontaine 78, Polanco",
+    "address": "Lafontaine 78, Polanco III Sección, Miguel Hidalgo, 11550 Ciudad de México, CDMX",
     "modalities": [
       "Yoga"
     ],
@@ -500,7 +500,7 @@
     "slug": "iyengar-yoga-center",
     "zone": "Polanco",
     "type": "Estudio de yoga",
-    "address": "Lafontaine 78, Polanco",
+    "address": "Lafontaine 78, Polanco III Sección, Miguel Hidalgo, 11540 Ciudad de México, CDMX",
     "modalities": [
       "Iyengar"
     ],
@@ -527,7 +527,7 @@
     "slug": "gurukul-yoga-studio-polanco",
     "zone": "Polanco",
     "type": "Estudio de yoga",
-    "address": "Lafontaine 78, Polanco",
+    "address": "Lafontaine 78, Polanco III Sección, Miguel Hidalgo, 11550 Ciudad de México, CDMX",
     "modalities": [
       "Hatha",
       "Pranayama",
@@ -561,7 +561,7 @@
     "slug": "gayo-yoga-wellness",
     "zone": "Polanco",
     "type": "Estudio de yoga",
-    "address": "Av. Sudermann 249, Polanco",
+    "address": "Av. Sudermann 249, segundo piso de Innovasport, Polanco V Sección, Miguel Hidalgo, 11560 Ciudad de México, CDMX",
     "modalities": [
       "Dharma",
       "Yoga Aéreo",
@@ -597,7 +597,7 @@
     "slug": "light-on-yoga",
     "zone": "Polanco",
     "type": "Yoga / Barre / Pilates",
-    "address": "Mariano Escobedo 543, Polanco",
+    "address": "Calz. Gral. Mariano Escobedo 543, Polanco V Sección, Miguel Hidalgo, 11570 Ciudad de México, CDMX",
     "modalities": [
       "Yoga",
       "Meditación",
@@ -632,7 +632,7 @@
     "slug": "fira-wellness-club",
     "zone": "Polanco",
     "type": "Wellness",
-    "address": "",
+    "address": "Av. Horacio 632, Polanco IV Sección, Miguel Hidalgo, 11510 Ciudad de México, CDMX",
     "modalities": [
       "Meditación"
     ],
@@ -665,7 +665,7 @@
     "slug": "estudio-bengala-polanco",
     "zone": "Polanco",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "Arquímedes 183, Polanco V Sección, Miguel Hidalgo, 11550 Ciudad de México, CDMX",
     "modalities": [
       "Bikram",
       "Kundalini",
@@ -700,7 +700,7 @@
     "slug": "origen-estudio-polanco",
     "zone": "Polanco",
     "type": "Yoga / Pilates",
-    "address": "",
+    "address": "Francisco Petrarca 139, Polanco V Sección, Miguel Hidalgo, 11560 Ciudad de México, CDMX",
     "modalities": [
       "Yoga"
     ],
@@ -726,7 +726,7 @@
     "slug": "one-percent-yoga",
     "zone": "Polanco",
     "type": "Yoga / Pilates",
-    "address": "",
+    "address": "Euler 152, interior 107, Polanco V Sección, Miguel Hidalgo, 11590 Ciudad de México, CDMX",
     "modalities": [
       "Yoga"
     ],
@@ -753,7 +753,7 @@
     "slug": "soulstudio-barre-yoga-masaryk",
     "zone": "Polanco",
     "type": "Yoga / Barre",
-    "address": "",
+    "address": "Av. Pdte. Masaryk 340, Polanco IV Sección, Miguel Hidalgo, 11550 Ciudad de México, CDMX",
     "modalities": [
       "Yoga"
     ],
@@ -780,7 +780,7 @@
     "slug": "koko-yoga-del-valle",
     "zone": "Del Valle",
     "type": "Estudio de yoga",
-    "address": "San Francisco 233, Del Valle",
+    "address": "San Francisco 233, Del Valle, Benito Juárez, 03100 Ciudad de México, CDMX",
     "modalities": [],
     "instagram": "https://www.instagram.com/kokoyogamx",
     "whatsapp": "525545740558",
@@ -805,7 +805,7 @@
     "slug": "yoga-espacio-del-valle",
     "zone": "Del Valle",
     "type": "Estudio de yoga",
-    "address": "Patricio Sanz 1011, Del Valle",
+    "address": "Patricio Sanz 1011, Del Valle Centro, Benito Juárez, 03100 Ciudad de México, CDMX",
     "modalities": [
       "Yoga",
       "Meditación"
@@ -833,7 +833,7 @@
     "slug": "dharma-yoga-studio",
     "zone": "Del Valle",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "Manuel López Cotilla 812, Del Valle, Benito Juárez, 03100 Ciudad de México, CDMX",
     "modalities": [
       "Restaurativo",
       "Hatha",
@@ -862,7 +862,7 @@
     "slug": "metta-yoga",
     "zone": "Del Valle",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "Gabriel Mancera 1045, local, Del Valle Centro, Benito Juárez, 03100 Ciudad de México, CDMX",
     "modalities": [
       "Restaurativo",
       "Hatha"
@@ -890,7 +890,7 @@
     "slug": "aera-studio",
     "zone": "Del Valle",
     "type": "Estudio mixto",
-    "address": "",
+    "address": "Adolfo Prieto 1312, Del Valle Centro, Benito Juárez, 03100 Ciudad de México, CDMX",
     "modalities": [
       "Yoga"
     ],
@@ -923,7 +923,7 @@
     "slug": "bodai-yoga-del-valle",
     "zone": "Del Valle",
     "type": "Estudio de yoga",
-    "address": "",
+    "address": "Amores 949, Del Valle Centro, Benito Juárez, 03100 Ciudad de México, CDMX",
     "modalities": [
       "Basic Flow",
       "Hatha",
@@ -952,7 +952,7 @@
     "slug": "yoga-espacio-coyoacan",
     "zone": "Coyoacán",
     "type": "Estudio de yoga",
-    "address": "Miguel Ángel de Quevedo 969, El Rosedal",
+    "address": "Av. Miguel Ángel de Quevedo 969, El Rosedal, Coyoacán, 04330 Ciudad de México, CDMX",
     "modalities": [
       "Yoga",
       "Restaurativo",
@@ -975,7 +975,7 @@
     "slug": "yoga-caliente-hot-yoga-studio-santa-fe",
     "zone": "Santa Fe",
     "type": "Estudio de yoga",
-    "address": "Guillermo González Camarena 900 Local 8, Santa Fe",
+    "address": "Guillermo González Camarena 900, local 8, Santa Fe, Álvaro Obregón, 01210 Ciudad de México, CDMX",
     "modalities": [
       "Hot Yoga",
       "Bikram"
