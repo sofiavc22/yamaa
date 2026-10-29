@@ -9,10 +9,10 @@ const city=studio.city||'Ciudad de México';
 <article class:list={["studio-card",listing&&"listing-card"]} data-price={studio.firstClassPrice} data-donation={studio.firstClassDonation?"true":undefined} data-zone={studio.zone} data-modalities={studio.modalities?.join(" ") || "Yoga"}>
 {listing && photos.length>1 ? <>
   <div class="card-photo-carousel" tabindex="0" aria-label={`Fotos de ${studio.name}, desliza para ver más`}>
-    {photos.map((photo,index)=><a href={`/estudios/${studio.slug}`} aria-label={`Ver ${studio.name}, foto ${index+1}`}><img src={photo.url} alt={photo.alt||`Espacio de ${studio.name}`} loading="lazy"/></a>)}
+    {photos.map((photo,index)=><a href={`/estudios/${studio.slug}`} aria-label={`Ver ${studio.name}, foto ${index+1}`}><img src={photo.url} alt={photo.alt||`Espacio de ${studio.name}`} loading="lazy" decoding="async"/></a>)}
   </div>
   <div class="card-photo-dots" aria-hidden="true">{photos.map((_,index)=><span class:list={[index===0&&'active']}></span>)}</div>
-</> : <a class="studio-card-link" href={`/estudios/${studio.slug}`}><div class:list={["studio-photo",!cover&&"placeholder"]}>{cover?<img src={cover.url} alt={cover.alt||`Espacio de ${studio.name}`} loading="lazy"/>:<span class="placeholder-mark">{initials}</span>}{!cover&&<span class="photo-status">Foto próximamente</span>}</div></a>}
+</> : <a class="studio-card-link" href={`/estudios/${studio.slug}`}><div class:list={["studio-photo",!cover&&"placeholder"]}>{cover?<img src={cover.url} alt={cover.alt||`Espacio de ${studio.name}`} loading="lazy" decoding="async"/>:<span class="placeholder-mark">{initials}</span>}{!cover&&<span class="photo-status">Foto próximamente</span>}</div></a>}
 <a class="studio-card-link" href={`/estudios/${studio.slug}`}>
   <div class="studio-copy"><div class="studio-topline"><h3>{studio.name}</h3></div><div class="meta">{studio.zone}, {city}</div>{studio.firstClassDonation?<div class="meta">Primera clase · Donativo</div>:firstClassPrice&&<div class="meta">Tu primera vez por {firstClassPrice} MXN</div>}</div>
 </a>
