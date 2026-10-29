@@ -75,7 +75,7 @@ const structuredData = {
 </Base>
 
 <script>
-const params=new URLSearchParams(window.location.search);
+let params=new URLSearchParams(window.location.search);
 const normalize=(value:string)=>value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 const cards=[...document.querySelectorAll<HTMLElement>('.results-grid .studio-card')];
 const matches=(card:HTMLElement,p:URLSearchParams)=>{
@@ -83,25 +83,31 @@ const matches=(card:HTMLElement,p:URLSearchParams)=>{
  const price=card.dataset.price?Number(card.dataset.price):null;
  return (!zone||card.dataset.zone===zone)&&(!style||normalize(card.dataset.modalities||'').includes(normalize(style)))&&(!query||normalize(card.querySelector('h3')?.textContent||'').includes(normalize(query)))&&(!p.has('min')&&!p.has('max')||(price!==null&&price>=Number(p.get('min')||150)&&price<=Number(p.get('max')||420)))&&(!p.has('donativo')||card.dataset.donation==='true');
 };
-const count=cards.filter(card=>{const visible=matches(card,params);card.hidden=!visible;return visible;}).length;
+const renderResults=()=>{
+const visibleCards=cards.filter(card=>{const visible=matches(card,params);card.hidden=!visible;return visible;});
+const count=visibleCards.length;
+visibleCards.slice(0,3).forEach(card=>{const image=card.querySelector<HTMLImageElement>('img');if(image){image.loading='eager';image.fetchPriority='high';}});
 const zone=params.get('zona')||'',style=params.get('estilo')||'',query=params.get('q')||'';
 const summary=`${count} ${count===1?'estudio de yoga':'estudios de yoga'} ${zone?'en '+zone:'en CDMX'}`;
 const title=document.querySelector('#city-results-title');if(title)title.textContent=summary;
 const status=document.querySelector('.results-count');if(status)status.textContent=summary;
 document.querySelector('.results-empty')?.toggleAttribute('hidden',count>0);
 const caption=document.querySelector('#results-search-caption');if(caption)caption.textContent=[zone||'Todas las zonas',style||'Todos los estilos',query,params.has('min')||params.has('max')?'$'+(params.get('min')||150)+'–$'+(params.get('max')||420):'',params.has('donativo')?'Donativo':''].filter(Boolean).join(' · ');
-const badge=document.querySelector('#results-filter-badge');const activeCount=[zone,style,query,params.has('min')||params.has('max'),params.has('donativo')].filter(Boolean).length;if(badge&&activeCount){badge.textContent=String(activeCount);badge.removeAttribute('hidden');}
+const badge=document.querySelector('#results-filter-badge');const activeCount=[zone,style,query,params.has('min')||params.has('max'),params.has('donativo')].filter(Boolean).length;if(badge){badge.textContent=String(activeCount);badge.toggleAttribute('hidden',!activeCount);}
 document.querySelectorAll<HTMLAnchorElement>('[data-style-filter]').forEach(link=>{const value=link.dataset.styleFilter||'';const next=new URLSearchParams(params);if(value)next.set('estilo',value);else next.delete('estilo');link.href='/cdmx'+(next.size?'?'+next:'');if(normalize(value)===normalize(style))link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});
+};
+renderResults();
 const sheet=document.querySelector<HTMLDialogElement>('.results-filter-sheet');
 const form=sheet?.querySelector('form');
 const min=form?.querySelector<HTMLInputElement>('[name=min]');const max=form?.querySelector<HTMLInputElement>('[name=max]');
 let priceActive=params.has('min')||params.has('max');
-form?.querySelectorAll<HTMLInputElement>('input').forEach(input=>{
+const syncForm=()=>form?.querySelectorAll<HTMLInputElement>('input').forEach(input=>{
  const value=params.get(input.name);
  if(input.type==='radio')input.checked=normalize(input.value)===normalize(value||'');
  else if(input.type==='checkbox')input.checked=params.has(input.name);
  else if(value!==null)input.value=value;
 });
+syncForm();
 const draft=()=>{const p=new URLSearchParams(new FormData(form!) as any);for(const [key,value] of [...p])if(!value)p.delete(key);if(!priceActive||p.has('donativo')){p.delete('min');p.delete('max');}return p;};
 const preview=()=>{
  if(!form||!min||!max)return;
@@ -113,7 +119,10 @@ const preview=()=>{
  const donation=form.querySelector<HTMLInputElement>('[name=donativo]')!.checked;min.disabled=donation;max.disabled=donation;
 };
 form?.addEventListener('input',event=>{if(event.target===min||event.target===max){priceActive=true;if(Number(min!.value)>Number(max!.value)){if(event.target===min)max!.value=min!.value;else min!.value=max!.value;}}preview();});
-form?.addEventListener('submit',event=>{event.preventDefault();const p=draft();window.location.href='/cdmx'+(p.size?'?'+p:'');});
+const applyFilters=(p:URLSearchParams)=>{params=p;history.pushState(null,'','/cdmx'+(p.size?'?'+p:''));renderResults();syncForm();priceActive=p.has('min')||p.has('max');sheet?.close();document.querySelector('.results-content')?.scrollIntoView({block:'start'});};
+form?.addEventListener('submit',event=>{event.preventDefault();applyFilters(draft());});
+document.querySelectorAll<HTMLAnchorElement>('[data-style-filter]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();applyFilters(new URL(link.href).searchParams);}));
+window.addEventListener('popstate',()=>{params=new URLSearchParams(window.location.search);renderResults();syncForm();priceActive=params.has('min')||params.has('max');});
 document.querySelector('.filter-reset')?.addEventListener('click',()=>{form?.reset();priceActive=false;preview();});
 document.querySelectorAll('[data-open-filters]').forEach(button=>button.addEventListener('click',()=>{preview();sheet?.showModal();}));
 document.querySelector('.results-close')?.addEventListener('click',()=>sheet?.close());
