@@ -8,6 +8,7 @@ export function GET() {
     { loc: `${site}/` },
     { loc: `${site}/cdmx` },
     { loc: `${site}/guadalajara` },
+    { loc: `${site}/guia-retiros-yoga-mexico` },
     { loc: `${site}/cdmx/roma-norte` },
     { loc: `${site}/cdmx/polanco` },
     { loc: `${site}/cdmx/del-valle` },
