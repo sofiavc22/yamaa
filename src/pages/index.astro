@@ -61,6 +61,11 @@ const structuredData={
     <div class="city-carousel" aria-label="Estudios de yoga en Guadalajara y Zapopan" tabindex="0">{guadalajaraStudios.map(s=><StudioCard studio={s}/>)}</div>
   </section>}
 
+  <section class="shell section retreat-home-feature" data-retreats-content hidden>
+    <div class="section-head"><div><div class="kicker">Guía Yamaa · 2026–2027</div><h2>Un viaje para volver a ti.</h2><p class="section-caption">Retiros de yoga y bienestar por todo México. Fechas, precios, hospedaje y formas de contactar directamente a los organizadores.</p></div></div>
+    <a class="btn primary" href="/guia-retiros-yoga-mexico">Explorar retiros de yoga →</a>
+  </section>
+
   <section class="shell section category-empty" hidden aria-live="polite">
     <h2 id="category-heading"></h2>
     <p class="muted">Estamos preparando esta selección para ti. Vuelve pronto para descubrir más.</p>
@@ -76,6 +81,7 @@ const structuredData={
   <section id="guias" class="shell section guides">
     <div class="kicker">Guías de Yamaa</div><h2>No necesitas saber de yoga para empezar.</h2>
     <div class="guide-grid">
+      <a href="/guia-retiros-yoga-mexico"><span>RETIROS</span><h3>Los mejores retiros de yoga en México 2026–2027</h3><p>Escápate unos días para reconectar contigo.</p></a>
       <a href="/cdmx"><span>EMPEZAR</span><h3>Nunca he hecho yoga. ¿Qué clase elijo?</h3><p>Una guía sencilla para encontrar una práctica que se sienta bien para ti.</p></a>
       <a href="/cdmx"><span>ENTENDER</span><h3>Hatha, Vinyasa, Yin… ¿qué significa todo eso?</h3><p>Te explicamos los estilos sin complicarlo.</p></a>
       <a href="/cdmx"><span>CDMX</span><h3>Cómo elegir un estudio de yoga.</h3><p>Qué revisar antes de reservar tu primera clase.</p></a>
@@ -158,8 +164,10 @@ document.querySelectorAll('[data-category]').forEach(button=>{
     const category=button.getAttribute('data-category');
     document.querySelectorAll('[data-category]').forEach(tab=>{const active=tab===button;tab.classList.toggle('active',active);tab.setAttribute('aria-pressed',String(active));});
     document.querySelectorAll('[data-studios-content]').forEach(section=>section.toggleAttribute('hidden',category!=='estudios'));
+    const retreats=document.querySelector('[data-retreats-content]');
+    retreats?.toggleAttribute('hidden',category!=='retiros');
     const empty=document.querySelector('.category-empty');
-    empty?.toggleAttribute('hidden',category==='estudios');
+    empty?.toggleAttribute('hidden',category==='estudios'||category==='retiros');
     const heading=document.querySelector('#category-heading');
     if(heading)heading.textContent=categoryNames[category]||'';
   });
