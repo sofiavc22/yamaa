@@ -13,10 +13,10 @@ const structuredData={'@context':'https://schema.org','@type':'CollectionPage',n
   <section class="shell retreat-hero">
     <p class="kicker">GUÍA YAMAA · 2026–2027</p>
     <h1>Un viaje para volver a ti.</h1>
-    <p>Los mejores retiros de yoga en México, reunidos para que encuentres tu próxima pausa. Explora destinos, compara programas y conecta directamente con sus organizadores.</p>
+    <p>Los mejores retiros de yoga en México, reunidos para que encuentres tu próxima pausa. Compara destinos, fechas y precios. Encuentra tu próxima experiencia de yoga y bienestar.</p>
     <a class="btn primary" href="#explorar-retiros">Explorar retiros ↓</a>
   </section>
-  <section class="shell retreat-intro">
+  <section class="shell retreat-intro" hidden>
     <h2>¿Y si tu próximo viaje fuera para ti?</h2>
     <p>No para cumplir pendientes ni llenar la agenda, sino para regalarte unos días de movimiento, descanso y reconexión. Desde las montañas de Puebla y Morelos hasta las playas de Oaxaca, Nayarit y Jalisco, hay una experiencia para cada momento.</p>
     <div class="retreat-info-grid">
@@ -35,17 +35,17 @@ const structuredData={'@context':'https://schema.org','@type':'CollectionPage',n
     <p class="retreat-disclaimer">Precios publicados por organizadores, sujetos a cambios. Algunos corresponden únicamente al programa, sin hospedaje ni alimentos. Las fechas y condiciones se deben confirmar directamente antes de reservar.</p>
     <div class="retreat-list" id="retreat-list">
       {upcomingRetreats.map(retreat=><article class="retreat-card" data-state={retreat.state} data-price={retreat.price??''} data-duration={retreat.start===retreat.end?'day':'multi'}>
-        <div class="retreat-card-top"><span>{formatted(retreat.start)}{retreat.start!==retreat.end?' — '+formatted(retreat.end):''}</span><span>{retreat.duration}</span></div>
-        <div class="retreat-card-body">
+        
+        <div class="retreat-card-body"><div class="retreat-visual" aria-label={`Destino: ${retreat.location}`}><span class="visual-kicker">YAMAA · MÉXICO</span><span class="visual-state">{retreat.state}</span><span class="visual-location">{retreat.location}</span><span class="visual-note">Descubre el destino</span></div>
           <div class="retreat-card-content">
-            <span class="retreat-place">⌁ {retreat.location}</span>
+            <span class="retreat-place">{formatted(retreat.start)}{retreat.start!==retreat.end?' — '+formatted(retreat.end):''} · {retreat.duration}</span>
             <h3>{retreat.name}</h3>
             <p class="retreat-organizer">{retreat.organizer}</p>
-            <p>{retreat.intro}</p>
+            <p>{retreat.intro}</p><details class="retreat-details"><summary>Qué incluye y detalles del retiro</summary>
             {retreat.included?.length>0&&<div class="retreat-includes"><strong>¿Qué incluye?</strong><ul>{retreat.included.map(x=><li>{x}</li>)}</ul></div>}
             {retreat.notIncluded?.length>0&&<p class="retreat-not-included"><strong>No incluido:</strong> {retreat.notIncluded.join('; ')}</p>}
             {retreat.language&&<p class="retreat-not-included"><strong>Idioma:</strong> {retreat.language}</p>}
-            {retreat.status!=='complete'&&<p class="retreat-pending">Información pendiente de confirmar. Consulta los detalles con el organizador.</p>}
+            {retreat.status!=='complete'&&<p class="retreat-pending">Información pendiente de confirmar. Consulta los detalles con el organizador.</p>}</details>
           </div>
           <aside class="retreat-card-side">
             <span>Precio por persona</span>
@@ -91,4 +91,47 @@ const update=()=>{
 <style>
 .retreats-page{background:linear-gradient(#f6f4ee 0,#fff 390px)}.retreat-hero{padding:86px 0 68px;max-width:1100px}.retreat-hero h1{font-size:clamp(46px,7vw,92px);line-height:1;letter-spacing:-.075em;max-width:820px;font-weight:550;margin:17px 0 24px}.retreat-hero>p:not(.kicker){font-size:clamp(16px,2vw,21px);line-height:1.55;color:var(--muted);max-width:690px;margin:0 0 30px}.retreat-hero .btn{display:inline-flex}.retreat-intro{padding:28px 0 60px}.retreat-intro h2,.retreat-advice h2{font-size:clamp(28px,4vw,47px);font-weight:550;letter-spacing:-.05em;margin:0 0 18px}.retreat-intro>p,.retreat-advice>p:not(.kicker){max-width:750px;color:var(--muted);line-height:1.8;font-size:16px}.retreat-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:35px}.retreat-info-grid article{border:1px solid var(--line);padding:24px;border-radius:19px;display:flex;flex-direction:column;gap:11px;background:#fff}.retreat-info-grid strong{font-size:18px;font-weight:600}.retreat-info-grid span{color:var(--muted);line-height:1.6;font-size:14px}.retreat-catalog{padding:40px 0 80px}.retreat-heading{display:flex;justify-content:space-between;align-items:end;gap:24px}.retreat-heading h2{font-size:clamp(29px,4vw,44px);font-weight:550;letter-spacing:-.05em;margin:12px 0 0}.retreat-heading>p{color:var(--muted);white-space:nowrap}.retreat-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:24px 0}.retreat-filters label{display:flex;flex-direction:column;gap:9px;font-size:13px;font-weight:650}.retreat-filters select{width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;padding:15px;font-size:14px;color:var(--ink)}.retreat-disclaimer{color:var(--muted);font-size:13px;line-height:1.7;margin:16px 0 30px}.retreat-list{display:grid;gap:20px}.retreat-card{border:1px solid var(--line);border-radius:22px;background:#fff;overflow:hidden}.retreat-card[hidden]{display:none}.retreat-card-top{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:15px 25px;color:var(--brand);font-size:12px;font-weight:750}.retreat-card-body{display:grid;grid-template-columns:minmax(0,1fr) 230px}.retreat-card-content{padding:27px}.retreat-place{font-size:13px;color:var(--brand);font-weight:600}.retreat-card h3{font-size:clamp(25px,3vw,35px);font-weight:550;letter-spacing:-.04em;line-height:1.13;margin:12px 0 5px}.retreat-organizer{color:var(--muted);font-size:13px;margin:0 0 17px!important}.retreat-card-content>p:not(.retreat-organizer){font-size:14px;line-height:1.8;color:#5d605b}.retreat-includes{margin-top:20px}.retreat-includes strong{font-size:13px}.retreat-includes ul{padding-left:19px;margin:9px 0 0;color:#555;line-height:1.8;font-size:13px}.retreat-pending{color:#887856!important;font-size:12px!important}.retreat-not-included{font-size:12px!important}.retreat-card-side{border-left:1px solid var(--line);padding:27px 22px;display:flex;flex-direction:column;gap:13px;background:#fbfaf7}.retreat-card-side>span{font-size:12px;color:var(--muted)}.retreat-card-side>strong{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.03em}.retreat-action{border:1px solid var(--brand);background:var(--brand);color:white;border-radius:999px;padding:13px 15px;font-size:12px;text-align:center;font-weight:650}.retreat-secondary{font-size:12px;color:var(--brand);text-align:center;padding:6px}.retreat-empty{padding:40px;text-align:center;border-radius:18px;background:var(--warm)}.retreat-advice{padding:55px 0 90px;border-top:1px solid var(--line)}
 @media(max-width:700px){.retreat-hero{padding:48px 0 45px}.retreat-intro{padding:15px 0 35px}.retreat-info-grid{grid-template-columns:1fr;gap:10px}.retreat-info-grid article{padding:19px}.retreat-heading{align-items:start}.retreat-filters{grid-template-columns:1fr;gap:10px}.retreat-card-top{padding:14px 17px;flex-wrap:wrap}.retreat-card-body{grid-template-columns:1fr}.retreat-card-content{padding:23px 19px}.retreat-card-side{border-left:0;border-top:1px solid var(--line);padding:20px}.retreat-advice{padding:42px 0 60px}}
+</style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+.retreats-page,.retreats-page button,.retreats-page select{font-family:'Manrope',sans-serif}
+.retreats-page{background:#fff;color:#263b33}
+.retreat-hero{padding:58px 0 38px;max-width:1140px}
+.retreat-hero h1{font-family:'Manrope',sans-serif;font-size:clamp(38px,5.3vw,68px);letter-spacing:-.065em;line-height:1.09;max-width:780px;font-weight:600}
+.retreat-hero>p:not(.kicker){font-size:16px;max-width:590px}
+.retreat-hero .btn{display:none}
+.retreat-intro[hidden]{display:none}
+.retreat-catalog{padding:18px 0 85px;max-width:1140px}
+.retreat-heading h2{font-size:clamp(23px,3vw,34px);font-weight:650;letter-spacing:-.04em}
+.retreat-filters{display:flex;flex-wrap:wrap;gap:10px;margin:25px 0 18px}
+.retreat-filters label{font-size:11px;letter-spacing:.02em;color:#68776e;gap:5px;min-width:190px}
+.retreat-filters select{border-radius:8px;border-color:#e4e8e3;padding:11px 13px;font-family:inherit;font-size:13px}
+.retreat-disclaimer{max-width:850px;font-size:12px;margin:16px 0 25px}
+.retreat-list{display:block}
+.retreat-card{border:0;border-top:1px solid #e5e9e5;border-radius:0;background:#fff;padding:25px 0;overflow:visible}
+.retreat-card:last-child{border-bottom:1px solid #e5e9e5}
+.retreat-card-body{display:grid;grid-template-columns:minmax(190px,30%) minmax(0,1fr) 190px;gap:26px;align-items:start}
+.retreat-visual{min-height:235px;border-radius:11px;padding:21px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#dce6d8,#b5c7b7 55%,#819f8c);color:#254337;overflow:hidden;position:relative}
+.retreat-card:nth-child(3n+2) .retreat-visual{background:linear-gradient(145deg,#e8e2d2,#c9c7b1 60%,#98a78e)}
+.retreat-card:nth-child(3n) .retreat-visual{background:linear-gradient(145deg,#dce5e4,#b6cecc 60%,#87a9a7)}
+.visual-kicker{font-size:10px;font-weight:800;letter-spacing:.14em;opacity:.75}
+.visual-state{font-size:clamp(25px,3vw,39px);line-height:1.1;font-weight:600;letter-spacing:-.055em;overflow-wrap:anywhere;margin-top:auto}
+.visual-location{font-size:12px;line-height:1.5;margin-top:10px}
+.visual-note{font-size:10px;opacity:.65;margin-top:16px}
+.retreat-card-content{padding:3px 0}
+.retreat-place{font-size:11px;letter-spacing:.02em;color:#668071;font-weight:700}
+.retreat-card h3{font-family:inherit;font-size:clamp(20px,2.3vw,28px);font-weight:700;letter-spacing:-.045em;line-height:1.2;margin:11px 0 7px}
+.retreat-organizer{font-size:12px;margin-bottom:12px!important}
+.retreat-card-content>p:not(.retreat-organizer){font-size:13px;line-height:1.7;margin:8px 0}
+.retreat-details{margin-top:14px;font-size:12px;color:#54655b}
+.retreat-details summary{cursor:pointer;color:#315f4d;font-weight:700;list-style-position:inside}
+.retreat-includes{margin-top:14px}
+.retreat-includes ul{font-size:12px;line-height:1.65}
+.retreat-card-side{border:0;background:transparent;padding:4px 0;gap:12px;align-items:stretch}
+.retreat-card-side>span{font-size:11px}
+.retreat-card-side>strong{font-size:18px;font-weight:750}
+.retreat-action{font-family:inherit;font-size:11px;border-radius:8px;padding:12px 10px}
+.retreat-secondary{font-size:11px}
+@media(max-width:900px){.retreat-card-body{grid-template-columns:210px minmax(0,1fr);gap:20px}.retreat-card-side{grid-column:2;display:flex;flex-direction:row;flex-wrap:wrap;align-items:center}.retreat-card-side>span{display:none}.retreat-card-side>strong{width:100%}.retreat-action{flex:1;min-width:145px}.retreat-visual{min-height:220px}}
+@media(max-width:600px){.retreat-hero{padding:42px 0 20px}.retreat-catalog{padding-top:8px}.retreat-heading{gap:8px}.retreat-heading>p{font-size:12px}.retreat-filters{display:grid;grid-template-columns:1fr 1fr;gap:10px}.retreat-filters label{min-width:0}.retreat-filters label:first-child{grid-column:1/-1}.retreat-card{padding:22px 0}.retreat-card-body{grid-template-columns:115px minmax(0,1fr);gap:13px}.retreat-visual{min-height:168px;padding:12px;border-radius:8px}.visual-state{font-size:21px}.visual-location{font-size:10px}.visual-kicker,.visual-note{font-size:8px}.retreat-card h3{font-size:19px}.retreat-place{font-size:10px}.retreat-card-content>p:not(.retreat-organizer){font-size:12px}.retreat-card-side{grid-column:1/-1;padding-top:0}.retreat-card-side>strong{width:auto;margin-right:auto}.retreat-action{flex:1}.retreat-details{font-size:11px}}
 </style>
